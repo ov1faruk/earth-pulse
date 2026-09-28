@@ -1,0 +1,445 @@
+{
+ "tempo": 1.06,
+ "segments": [
+  {
+   "name": "hook",
+   "start": 0.0,
+   "end": 15.0,
+   "kind": "film",
+   "o0": 8.0
+  },
+  {
+   "name": "team",
+   "start": 15.0,
+   "end": 56.0,
+   "kind": "team"
+  },
+  {
+   "name": "nisar",
+   "start": 56.0,
+   "end": 83.0,
+   "kind": "film",
+   "o0": 43.0
+  },
+  {
+   "name": "problem",
+   "start": 83.0,
+   "end": 99.0,
+   "kind": "problem"
+  },
+  {
+   "name": "bangladesh",
+   "start": 99.0,
+   "end": 128.8,
+   "kind": "film",
+   "o0": 81.0
+  },
+  {
+   "name": "kumamoto",
+   "start": 128.8,
+   "end": 156.0,
+   "kind": "film",
+   "o0": 118.5
+  },
+  {
+   "name": "change",
+   "start": 156.0,
+   "end": 172.0,
+   "kind": "film",
+   "o0": 148.5
+  },
+  {
+   "name": "integrity",
+   "start": 172.0,
+   "end": 180.0,
+   "kind": "film",
+   "o0": 178.5
+  },
+  {
+   "name": "sonify",
+   "start": 180.0,
+   "end": 194.3,
+   "kind": "film",
+   "warp": [
+    [
+     0.0,
+     6.3,
+     200.6,
+     202.9
+    ],
+    [
+     6.3,
+     14.3,
+     203.0,
+     211.0
+    ]
+   ]
+  },
+  {
+   "name": "impact",
+   "start": 194.3,
+   "end": 240.0,
+   "kind": "impact",
+   "groups": [
+    0.3,
+    12.3,
+    23.4,
+    33.4
+   ],
+   "finale": 33.4
+  }
+ ],
+ "vo": [
+  {
+   "i": 0,
+   "start": 1.0,
+   "dur": 2.772,
+   "end": 3.772,
+   "text": "[softly] Right now, somewhere on Earth, a river is rising."
+  },
+  {
+   "i": 1,
+   "start": 4.222,
+   "dur": 5.451,
+   "end": 9.672,
+   "text": "The ground is cracking. A forest is thinning. A glacier is slipping toward the sea."
+  },
+  {
+   "i": 2,
+   "start": 10.122,
+   "dur": 3.898,
+   "end": 14.02,
+   "text": "[softly] Our planet never stops moving, and most of it happens where no one is looking."
+  },
+  {
+   "i": 3,
+   "start": 15.4,
+   "dur": 8.486,
+   "end": 23.886,
+   "text": "We are The L Band. We named ourselves after the radar band that lets NISAR see through clouds, because that's exactly what we wanted to do."
+  },
+  {
+   "i": 4,
+   "start": 24.336,
+   "dur": 4.727,
+   "end": 29.064,
+   "text": "মোহাম্মদ গোলাম ফারুক অভি leads the team as system and solution architect."
+  },
+  {
+   "i": 5,
+   "start": 29.514,
+   "dur": 4.016,
+   "end": 33.53,
+   "text": "এম ডি জাহারাবি ভূঁইয়া রাফি shapes the product as our product analyst."
+  },
+  {
+   "i": 6,
+   "start": 33.98,
+   "dur": 4.785,
+   "end": 38.765,
+   "text": "মোহাম্মদ মুশফিক উস সালেহীন builds the intelligence as our AI engineer."
+  },
+  {
+   "i": 7,
+   "start": 39.215,
+   "dur": 3.981,
+   "end": 43.196,
+   "text": "রেজাউল করিম অনিক digs into the science as our system researcher."
+  },
+  {
+   "i": 8,
+   "start": 43.646,
+   "dur": 4.806,
+   "end": 48.451,
+   "text": "And রিফাহ তামান্না keeps us all connected, leading communication and coordination."
+  },
+  {
+   "i": 9,
+   "start": 48.901,
+   "dur": 6.034,
+   "end": 54.935,
+   "text": "[warmly] We come from a country that lives with water. So this challenge didn't feel like homework. It felt like home."
+  },
+  {
+   "i": 10,
+   "start": 57.0,
+   "dur": 4.363,
+   "end": 61.363,
+   "text": "Meet NISAR, a satellite built by NASA and ISRO together."
+  },
+  {
+   "i": 11,
+   "start": 61.813,
+   "dur": 6.617,
+   "end": 68.431,
+   "text": "It carries a radar that brings its own light. Day or night, through cloud and storm, it keeps watching."
+  },
+  {
+   "i": 12,
+   "start": 68.881,
+   "dur": 4.361,
+   "end": 73.242,
+   "text": "Every twelve days, it comes back to map nearly all of Earth's land and ice."
+  },
+  {
+   "i": 13,
+   "start": 73.692,
+   "dur": 5.041,
+   "end": 78.733,
+   "text": "What you're seeing is its real orbit, replayed over Bangladesh on September twenty-second."
+  },
+  {
+   "i": 14,
+   "start": 79.183,
+   "dur": 3.268,
+   "end": 82.452,
+   "text": "In just three days, it captured more than two thousand images."
+  },
+  {
+   "i": 15,
+   "start": 83.3,
+   "dur": 1.046,
+   "end": 84.346,
+   "text": "[quietly] But there's a catch."
+  },
+  {
+   "i": 16,
+   "start": 84.9,
+   "dur": 6.316,
+   "end": 91.216,
+   "text": "Open a single image, and this is what you get: nearly seven gigabytes of radar data, made for specialists."
+  },
+  {
+   "i": 17,
+   "start": 91.666,
+   "dur": 7.108,
+   "end": 98.774,
+   "text": "The floods, the earthquakes, the failing crops are all in there. But for the people who need them most, they stay invisible."
+  },
+  {
+   "i": 18,
+   "start": 99.4,
+   "dur": 3.774,
+   "end": 103.174,
+   "text": "So we built Earth Pulse: a way to see what the radar sees."
+  },
+  {
+   "i": 19,
+   "start": 103.624,
+   "dur": 6.58,
+   "end": 110.203,
+   "text": "This is Bangladesh, through NISAR's eyes. Calm water turns radar away, so water shows up dark."
+  },
+  {
+   "i": 20,
+   "start": 110.8,
+   "dur": 4.362,
+   "end": 115.162,
+   "text": "Now watch, twelve days at a time, as the river spills across its floodplain."
+  },
+  {
+   "i": 21,
+   "start": 118.5,
+   "dur": 2.455,
+   "end": 120.955,
+   "text": "June on one side. July on the other."
+  },
+  {
+   "i": 22,
+   "start": 121.405,
+   "dur": 7.255,
+   "end": 128.66,
+   "text": "Nearly two thousand square kilometres became water-like. That's an estimate we compute, and we label it honestly as one."
+  },
+  {
+   "i": 23,
+   "start": 129.4,
+   "dur": 5.039,
+   "end": 134.439,
+   "text": "Now, Japan. Five radar views of the same place, stacked through time."
+  },
+  {
+   "i": 24,
+   "start": 134.9,
+   "dur": 7.849,
+   "end": 142.749,
+   "text": "On July twenty-eighth, a magnitude six-point-eight earthquake struck Kumamoto. Only one of these pairs spans that moment…"
+  },
+  {
+   "i": 25,
+   "start": 143.199,
+   "dur": 4.311,
+   "end": 147.51,
+   "text": "…and only that one lights up. Tight rings, right on the epicentre."
+  },
+  {
+   "i": 26,
+   "start": 147.96,
+   "dur": 4.494,
+   "end": 152.454,
+   "text": "Each ring traces the ground itself, moving toward or away from the satellite."
+  },
+  {
+   "i": 27,
+   "start": 152.904,
+   "dur": 2.732,
+   "end": 155.636,
+   "text": "The ground moved, and NISAR saw it from orbit."
+  },
+  {
+   "i": 28,
+   "start": 156.3,
+   "dur": 3.803,
+   "end": 160.103,
+   "text": "But we didn't want five stories. We wanted every place on Earth."
+  },
+  {
+   "i": 29,
+   "start": 160.553,
+   "dur": 5.736,
+   "end": 166.289,
+   "text": "So: click anywhere. Earth Pulse finds two NISAR passes of that exact spot…"
+  },
+  {
+   "i": 30,
+   "start": 166.739,
+   "dur": 4.073,
+   "end": 170.812,
+   "text": "…lines them up, and shows you what changed, live, in your browser."
+  },
+  {
+   "i": 31,
+   "start": 172.4,
+   "dur": 7.124,
+   "end": 179.524,
+   "text": "Every pixel has a source. Every claim tells you how sure we are. And nothing simulated ever pretends to be real."
+  },
+  {
+   "i": 32,
+   "start": 180.2,
+   "dur": 6.286,
+   "end": 186.486,
+   "text": "[hushed] This challenge is called Dancing with the SARs, so we made the change dance. Listen."
+  },
+  {
+   "i": 33,
+   "start": 195.1,
+   "dur": 10.551,
+   "end": 205.651,
+   "text": "Picture a farmer checking a flooded field after a night of rain. A rescue team asking where the water went. A student watching an earthquake reshape the ground."
+  },
+  {
+   "i": 34,
+   "start": 206.9,
+   "dur": 9.279,
+   "end": 216.179,
+   "text": "Next, we'll bring in calibrated NISAR measurements, change alerts for any place on Earth, and ISRO's S-band radar to help explain every change."
+  },
+  {
+   "i": 35,
+   "start": 218.1,
+   "dur": 8.841,
+   "end": 226.941,
+   "text": "We can't do it alone. We need Earthdata access and compute, mentors in radar science, and partners on the ground in disaster response."
+  },
+  {
+   "i": 36,
+   "start": 228.5,
+   "dur": 5.715,
+   "end": 234.215,
+   "text": "[softly] Because one day, anyone, anywhere, should be able to ask: what changed here?"
+  },
+  {
+   "i": 37,
+   "start": 235.1,
+   "dur": 4.561,
+   "end": 239.661,
+   "text": "[warmly] We are The L Band. This is Earth Pulse. Watch Earth change."
+  }
+ ],
+ "team_cards": [
+  9.336,
+  14.514,
+  18.98,
+  24.215,
+  28.646
+ ],
+ "cues": {
+  "big": [
+   15.3,
+   58.3,
+   99.0,
+   144.8,
+   168.7,
+   232.70000000000002
+  ],
+  "med": [
+   135.8,
+   159.5,
+   235.3,
+   56.0,
+   128.8,
+   156.0,
+   194.3
+  ],
+  "cards": [
+   24.336,
+   29.514,
+   33.980000000000004,
+   39.215,
+   43.646
+  ],
+  "sonify": [
+   [
+    186.3,
+    194.3
+   ]
+  ],
+  "problem": [
+   83.0,
+   99.0
+  ],
+  "segments": {
+   "hook": [
+    0.0,
+    15.0
+   ],
+   "team": [
+    15.0,
+    56.0
+   ],
+   "nisar": [
+    56.0,
+    83.0
+   ],
+   "problem": [
+    83.0,
+    99.0
+   ],
+   "bangladesh": [
+    99.0,
+    128.8
+   ],
+   "kumamoto": [
+    128.8,
+    156.0
+   ],
+   "change": [
+    156.0,
+    172.0
+   ],
+   "integrity": [
+    172.0,
+    180.0
+   ],
+   "sonify": [
+    180.0,
+    194.3
+   ],
+   "impact": [
+    194.3,
+    240.0
+   ]
+  }
+ }
+}

@@ -1,0 +1,32 @@
+node_modules
+dist
+.pulse-cache
+tools/.cache
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+
+# Video production: keep the scripts and docs, not the rendered media or models
+brag-output/**/*.mp4
+brag-output/**/*.wav
+brag-output/**/*.m4a
+brag-output/**/*.mp3
+brag-output/work/tts/
+brag-output/work/.venv-tts/
+brag-output/work/eleven/
+brag-output/work/assets/
+brag-output/work/chg/
+brag-output/work/team/
+brag-output/work/*stills*/
+brag-output/work/poster/
+brag-output/work/pcheck/
+brag-output/work/vcheck/
+brag-output/work/*.png
+brag-output/work/orbits.json
+brag-output/voice-samples/
+brag-output/work/*.rgba
+brag-output/work/*.lum
+brag-output/work/*.valid

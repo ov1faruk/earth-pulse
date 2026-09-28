@@ -1,0 +1,25 @@
+{
+  "name": "earth-pulse",
+  "private": true,
+  "version": "0.1.0",
+  "description": "EARTH//PULSE \u2014 watch Earth change. An interactive planetary observation experience built on real NISAR and Earth-observation data.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "data": "python3 tools/build_stories.py",
+    "snapshot": "sh tools/snapshot_live.sh",
+    "test": "node --test test/*.test.mjs",
+    "scan": "python3 tools/scan_changes.py"
+  },
+  "dependencies": {
+    "cesium": "^1.124.0",
+    "satellite.js": "^6.0.2"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0",
+    "vite-plugin-cesium": "^1.2.23"
+  }
+}

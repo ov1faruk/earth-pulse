@@ -1,0 +1,35 @@
+{
+ "generatedAt": "2026-09-25T17:07:49.958083+00:00",
+ "stories": [
+  {
+   "id": "bangladesh-water",
+   "available": true,
+   "frames": 8,
+   "generatedAt": "2026-09-25T16:58:08.694473Z"
+  },
+  {
+   "id": "kumamoto-ground",
+   "available": true,
+   "frames": 5,
+   "generatedAt": "2026-09-25T16:57:11.369422Z"
+  },
+  {
+   "id": "punjab-crops",
+   "available": true,
+   "frames": 10,
+   "generatedAt": "2026-09-25T17:03:57.795830Z"
+  },
+  {
+   "id": "rondonia-forest",
+   "available": true,
+   "frames": 4,
+   "generatedAt": "2026-09-25T17:07:49.956131Z"
+  },
+  {
+   "id": "greenland-ice",
+   "available": true,
+   "frames": 4,
+   "generatedAt": "2026-09-25T17:02:40.661930Z"
+  }
+ ]
+}

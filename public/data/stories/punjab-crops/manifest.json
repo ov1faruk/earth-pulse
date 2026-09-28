@@ -1,0 +1,662 @@
+{
+ "storyId": "punjab-crops",
+ "generatedAt": "2026-09-25T17:03:57.795830Z",
+ "dataClass": "REAL_NISAR",
+ "source": {
+  "name": "NASA/ISRO NISAR via ASF DAAC",
+  "search": "https://api.daac.asf.alaska.edu/services/search/param",
+  "query": {
+   "product": "GCOV",
+   "point": "POINT(75.85 30.9)",
+   "track": 156,
+   "frame": 17,
+   "direction": "A",
+   "thin": "monthly"
+  },
+  "access": "Public browse images (no login). Full HDF5 products require NASA Earthdata login.",
+  "status": "PROVISIONAL products (collection *_PROVISIONAL_V1)"
+ },
+ "assetNotes": [
+  "Images are ASF/NISAR LATLON browse quick-looks: 8-bit renderings of the product, not calibrated values.",
+  "Georeferencing is approximate (see residualKm per frame)."
+ ],
+ "frames": [
+  {
+   "id": "NISAR_L2_PR_GCOV_006_156_A_017_4005_DHDH_A_20251203T001311_20251203T001345_P05023_N_F_J_001",
+   "file": "2025-12-03.webp",
+   "rectangle": {
+    "west": 74.12506233718469,
+    "south": 29.115574910087712,
+    "east": 77.84440906268291,
+    "north": 32.2516332759259
+   },
+   "footprint": [
+    [
+     77.70186,
+     29.94054
+    ],
+    [
+     77.00873,
+     31.99798
+    ],
+    [
+     74.43197,
+     31.35166
+    ],
+    [
+     75.14268,
+     29.30124
+    ]
+   ],
+   "acquisitionStart": "2025-12-03T00:13:11Z",
+   "acquisitionStop": "2025-12-03T00:13:45Z",
+   "productType": "GCOV",
+   "processingLevel": "L2",
+   "collection": "NISAR_L2_GCOV_PROVISIONAL_V1",
+   "conceptId": "C2854338529-ASF",
+   "flightDirection": "ASCENDING",
+   "track": 156,
+   "frame": 17,
+   "orbit": "1812",
+   "instrument": "L-SAR",
+   "polarization": [
+    "HH",
+    "HV"
+   ],
+   "sideBandPolarization": [
+    "HH",
+    "HV"
+   ],
+   "rangeBandwidth": [
+    "40+5"
+   ],
+   "frameCoverage": "Full",
+   "orbitType": "MOE",
+   "pgeVersion": "R05.02.3",
+   "crid": "P05023",
+   "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_006_156_A_017_4005_DHDH_A_20251203T001311_20251203T001345_P05023_N_F_J_001/NISAR_L2_PR_GCOV_006_156_A_017_4005_DHDH_A_20251203T001311_20251203T001345_P05023_N_F_J_001.h5",
+   "browseUrl": "https://nisar.asf.earthdatacloud.nasa.gov/BROWSE/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_006_156_A_017_4005_DHDH_A_20251203T001311_20251203T001345_P05023_N_F_J_001/NISAR_L2_PR_GCOV_006_156_A_017_4005_DHDH_A_20251203T001311_20251203T001345_P05023_N_F_J_001_LATLON.png",
+   "asfSearchUrl": "https://search.asf.alaska.edu/#/?dataset=NISAR&searchType=List%20Search&searchList=NISAR_L2_PR_GCOV_006_156_A_017_4005_DHDH_A_20251203T001311_20251203T001345_P05023_N_F_J_001",
+   "georeferencing": {
+    "method": "corner-fit of browse valid-data quadrilateral to ASF footprint polygon",
+    "residualPx": 3.3,
+    "residualKm": 0.6,
+    "kmPerPx": 0.1825
+   }
+  },
+  {
+   "id": "NISAR_L2_PR_GCOV_010_156_A_017_4005_DHDH_A_20260120T001313_20260120T001348_P05023_N_F_J_001",
+   "file": "2026-01-20.webp",
+   "rectangle": {
+    "west": 74.12606448818342,
+    "south": 29.113821778895563,
+    "east": 77.84215834413959,
+    "north": 32.25171729862591
+   },
+   "footprint": [
+    [
+     77.70987,
+     29.91823
+    ],
+    [
+     77.00143,
+     32.03554
+    ],
+    [
+     74.42,
+     31.38805
+    ],
+    [
+     75.15114,
+     29.27907
+    ]
+   ],
+   "acquisitionStart": "2026-01-20T00:13:13Z",
+   "acquisitionStop": "2026-01-20T00:13:48Z",
+   "productType": "GCOV",
+   "processingLevel": "L2",
+   "collection": "NISAR_L2_GCOV_PROVISIONAL_V1",
+   "conceptId": "C2854338529-ASF",
+   "flightDirection": "ASCENDING",
+   "track": 156,
+   "frame": 17,
+   "orbit": "2504",
+   "instrument": "L-SAR",
+   "polarization": [
+    "HH",
+    "HV"
+   ],
+   "sideBandPolarization": [
+    "HH",
+    "HV"
+   ],
+   "rangeBandwidth": [
+    "40+5"
+   ],
+   "frameCoverage": "Full",
+   "orbitType": "MOE",
+   "pgeVersion": "R05.02.3",
+   "crid": "P05023",
+   "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_010_156_A_017_4005_DHDH_A_20260120T001313_20260120T001348_P05023_N_F_J_001/NISAR_L2_PR_GCOV_010_156_A_017_4005_DHDH_A_20260120T001313_20260120T001348_P05023_N_F_J_001.h5",
+   "browseUrl": "https://nisar.asf.earthdatacloud.nasa.gov/BROWSE/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_010_156_A_017_4005_DHDH_A_20260120T001313_20260120T001348_P05023_N_F_J_001/NISAR_L2_PR_GCOV_010_156_A_017_4005_DHDH_A_20260120T001313_20260120T001348_P05023_N_F_J_001_LATLON.png",
+   "asfSearchUrl": "https://search.asf.alaska.edu/#/?dataset=NISAR&searchType=List%20Search&searchList=NISAR_L2_PR_GCOV_010_156_A_017_4005_DHDH_A_20260120T001313_20260120T001348_P05023_N_F_J_001",
+   "georeferencing": {
+    "method": "corner-fit of browse valid-data quadrilateral to ASF footprint polygon",
+    "residualPx": 1.9,
+    "residualKm": 0.34,
+    "kmPerPx": 0.1824
+   }
+  },
+  {
+   "id": "NISAR_L2_PR_GCOV_011_156_A_017_4005_DHDH_A_20260201T001314_20260201T001348_P05023_N_F_J_001",
+   "file": "2026-02-01.webp",
+   "rectangle": {
+    "west": 74.12526230475576,
+    "south": 29.11497870358913,
+    "east": 77.84338603004923,
+    "north": 32.25281155689964
+   },
+   "footprint": [
+    [
+     77.70047,
+     29.94839
+    ],
+    [
+     77.01169,
+     32.00689
+    ],
+    [
+     74.43025,
+     31.35944
+    ],
+    [
+     75.14107,
+     29.30903
+    ]
+   ],
+   "acquisitionStart": "2026-02-01T00:13:14Z",
+   "acquisitionStop": "2026-02-01T00:13:48Z",
+   "productType": "GCOV",
+   "processingLevel": "L2",
+   "collection": "NISAR_L2_GCOV_PROVISIONAL_V1",
+   "conceptId": "C2854338529-ASF",
+   "flightDirection": "ASCENDING",
+   "track": 156,
+   "frame": 17,
+   "orbit": "2677",
+   "instrument": "L-SAR",
+   "polarization": [
+    "HH",
+    "HV"
+   ],
+   "sideBandPolarization": [
+    "HH",
+    "HV"
+   ],
+   "rangeBandwidth": [
+    "40+5"
+   ],
+   "frameCoverage": "Full",
+   "orbitType": "MOE",
+   "pgeVersion": "R05.02.3",
+   "crid": "P05023",
+   "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_011_156_A_017_4005_DHDH_A_20260201T001314_20260201T001348_P05023_N_F_J_001/NISAR_L2_PR_GCOV_011_156_A_017_4005_DHDH_A_20260201T001314_20260201T001348_P05023_N_F_J_001.h5",
+   "browseUrl": "https://nisar.asf.earthdatacloud.nasa.gov/BROWSE/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_011_156_A_017_4005_DHDH_A_20260201T001314_20260201T001348_P05023_N_F_J_001/NISAR_L2_PR_GCOV_011_156_A_017_4005_DHDH_A_20260201T001314_20260201T001348_P05023_N_F_J_001_LATLON.png",
+   "asfSearchUrl": "https://search.asf.alaska.edu/#/?dataset=NISAR&searchType=List%20Search&searchList=NISAR_L2_PR_GCOV_011_156_A_017_4005_DHDH_A_20260201T001314_20260201T001348_P05023_N_F_J_001",
+   "georeferencing": {
+    "method": "corner-fit of browse valid-data quadrilateral to ASF footprint polygon",
+    "residualPx": 2.2,
+    "residualKm": 0.4,
+    "kmPerPx": 0.1825
+   }
+  },
+  {
+   "id": "NISAR_L2_PR_GCOV_014_156_A_017_4005_DHDH_A_20260309T001315_20260309T001350_P05023_N_F_J_001",
+   "file": "2026-03-09.webp",
+   "rectangle": {
+    "west": 74.12617744043429,
+    "south": 29.115904710036865,
+    "east": 77.84074028283193,
+    "north": 32.25286136256549
+   },
+   "footprint": [
+    [
+     77.70301,
+     29.94024
+    ],
+    [
+     76.97954,
+     32.05397
+    ],
+    [
+     74.41178,
+     31.40968
+    ],
+    [
+     75.14332,
+     29.30076
+    ]
+   ],
+   "acquisitionStart": "2026-03-09T00:13:15Z",
+   "acquisitionStop": "2026-03-09T00:13:50Z",
+   "productType": "GCOV",
+   "processingLevel": "L2",
+   "collection": "NISAR_L2_GCOV_PROVISIONAL_V1",
+   "conceptId": "C2854338529-ASF",
+   "flightDirection": "ASCENDING",
+   "track": 156,
+   "frame": 17,
+   "orbit": "3196",
+   "instrument": "L-SAR",
+   "polarization": [
+    "HH",
+    "HV"
+   ],
+   "sideBandPolarization": [
+    "HH",
+    "HV"
+   ],
+   "rangeBandwidth": [
+    "40+5"
+   ],
+   "frameCoverage": "Full",
+   "orbitType": "MOE",
+   "pgeVersion": "R05.02.3",
+   "crid": "P05023",
+   "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_014_156_A_017_4005_DHDH_A_20260309T001315_20260309T001350_P05023_N_F_J_001/NISAR_L2_PR_GCOV_014_156_A_017_4005_DHDH_A_20260309T001315_20260309T001350_P05023_N_F_J_001.h5",
+   "browseUrl": "https://nisar.asf.earthdatacloud.nasa.gov/BROWSE/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_014_156_A_017_4005_DHDH_A_20260309T001315_20260309T001350_P05023_N_F_J_001/NISAR_L2_PR_GCOV_014_156_A_017_4005_DHDH_A_20260309T001315_20260309T001350_P05023_N_F_J_001_LATLON.png",
+   "asfSearchUrl": "https://search.asf.alaska.edu/#/?dataset=NISAR&searchType=List%20Search&searchList=NISAR_L2_PR_GCOV_014_156_A_017_4005_DHDH_A_20260309T001315_20260309T001350_P05023_N_F_J_001",
+   "georeferencing": {
+    "method": "corner-fit of browse valid-data quadrilateral to ASF footprint polygon",
+    "residualPx": 1.3,
+    "residualKm": 0.24,
+    "kmPerPx": 0.1824
+   }
+  },
+  {
+   "id": "NISAR_L2_PR_GCOV_018_156_A_017_4005_DHDH_A_20260426T001316_20260426T001350_P05023_N_F_J_001",
+   "file": "2026-04-26.webp",
+   "rectangle": {
+    "west": 74.12472024321075,
+    "south": 29.113176276294833,
+    "east": 77.84431068061265,
+    "north": 32.253069402562524
+   },
+   "footprint": [
+    [
+     77.68027,
+     30.01034
+    ],
+    [
+     76.98572,
+     32.06756
+    ],
+    [
+     74.40734,
+     31.42072
+    ],
+    [
+     75.11921,
+     29.37046
+    ]
+   ],
+   "acquisitionStart": "2026-04-26T00:13:16Z",
+   "acquisitionStop": "2026-04-26T00:13:50Z",
+   "productType": "GCOV",
+   "processingLevel": "L2",
+   "collection": "NISAR_L2_GCOV_PROVISIONAL_V1",
+   "conceptId": "C2854338529-ASF",
+   "flightDirection": "ASCENDING",
+   "track": 156,
+   "frame": 17,
+   "orbit": "3888",
+   "instrument": "L-SAR",
+   "polarization": [
+    "HH",
+    "HV"
+   ],
+   "sideBandPolarization": [
+    "HH",
+    "HV"
+   ],
+   "rangeBandwidth": [
+    "40+5"
+   ],
+   "frameCoverage": "Full",
+   "orbitType": "MOE",
+   "pgeVersion": "R05.02.3",
+   "crid": "P05023",
+   "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_018_156_A_017_4005_DHDH_A_20260426T001316_20260426T001350_P05023_N_F_J_001/NISAR_L2_PR_GCOV_018_156_A_017_4005_DHDH_A_20260426T001316_20260426T001350_P05023_N_F_J_001.h5",
+   "browseUrl": "https://nisar.asf.earthdatacloud.nasa.gov/BROWSE/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_018_156_A_017_4005_DHDH_A_20260426T001316_20260426T001350_P05023_N_F_J_001/NISAR_L2_PR_GCOV_018_156_A_017_4005_DHDH_A_20260426T001316_20260426T001350_P05023_N_F_J_001_LATLON.png",
+   "asfSearchUrl": "https://search.asf.alaska.edu/#/?dataset=NISAR&searchType=List%20Search&searchList=NISAR_L2_PR_GCOV_018_156_A_017_4005_DHDH_A_20260426T001316_20260426T001350_P05023_N_F_J_001",
+   "georeferencing": {
+    "method": "corner-fit of browse valid-data quadrilateral to ASF footprint polygon",
+    "residualPx": 2.5,
+    "residualKm": 0.46,
+    "kmPerPx": 0.1826
+   }
+  },
+  {
+   "id": "NISAR_L2_PR_GCOV_019_156_A_017_4005_DHDH_A_20260508T001315_20260508T001350_P05023_N_F_J_001",
+   "file": "2026-05-08.webp",
+   "rectangle": {
+    "west": 74.12364008161168,
+    "south": 29.11271867824743,
+    "east": 77.84333108719052,
+    "north": 32.251705513825115
+   },
+   "footprint": [
+    [
+     77.68797,
+     29.98642
+    ],
+    [
+     76.96246,
+     32.09975
+    ],
+    [
+     74.39519,
+     31.45554
+    ],
+    [
+     75.1275,
+     29.34672
+    ]
+   ],
+   "acquisitionStart": "2026-05-08T00:13:15Z",
+   "acquisitionStop": "2026-05-08T00:13:50Z",
+   "productType": "GCOV",
+   "processingLevel": "L2",
+   "collection": "NISAR_L2_GCOV_PROVISIONAL_V1",
+   "conceptId": "C2854338529-ASF",
+   "flightDirection": "ASCENDING",
+   "track": 156,
+   "frame": 17,
+   "orbit": "4061",
+   "instrument": "L-SAR",
+   "polarization": [
+    "HH",
+    "HV"
+   ],
+   "sideBandPolarization": [
+    "HH",
+    "HV"
+   ],
+   "rangeBandwidth": [
+    "40+5"
+   ],
+   "frameCoverage": "Full",
+   "orbitType": "MOE",
+   "pgeVersion": "R05.02.3",
+   "crid": "P05023",
+   "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_019_156_A_017_4005_DHDH_A_20260508T001315_20260508T001350_P05023_N_F_J_001/NISAR_L2_PR_GCOV_019_156_A_017_4005_DHDH_A_20260508T001315_20260508T001350_P05023_N_F_J_001.h5",
+   "browseUrl": "https://nisar.asf.earthdatacloud.nasa.gov/BROWSE/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_019_156_A_017_4005_DHDH_A_20260508T001315_20260508T001350_P05023_N_F_J_001/NISAR_L2_PR_GCOV_019_156_A_017_4005_DHDH_A_20260508T001315_20260508T001350_P05023_N_F_J_001_LATLON.png",
+   "asfSearchUrl": "https://search.asf.alaska.edu/#/?dataset=NISAR&searchType=List%20Search&searchList=NISAR_L2_PR_GCOV_019_156_A_017_4005_DHDH_A_20260508T001315_20260508T001350_P05023_N_F_J_001",
+   "georeferencing": {
+    "method": "corner-fit of browse valid-data quadrilateral to ASF footprint polygon",
+    "residualPx": 3.2,
+    "residualKm": 0.58,
+    "kmPerPx": 0.1825
+   }
+  },
+  {
+   "id": "NISAR_L2_PR_GCOV_021_156_A_017_4005_DHDH_A_20260601T001314_20260601T001349_P05023_N_F_J_001",
+   "file": "2026-06-01.webp",
+   "rectangle": {
+    "west": 74.12537550327116,
+    "south": 29.111972768349226,
+    "east": 77.84126533474353,
+    "north": 32.25164714321206
+   },
+   "footprint": [
+    [
+     77.68426,
+     30.00151
+    ],
+    [
+     76.94125,
+     32.11066
+    ],
+    [
+     74.39085,
+     31.47054
+    ],
+    [
+     75.12336,
+     29.36174
+    ]
+   ],
+   "acquisitionStart": "2026-06-01T00:13:14Z",
+   "acquisitionStop": "2026-06-01T00:13:49Z",
+   "productType": "GCOV",
+   "processingLevel": "L2",
+   "collection": "NISAR_L2_GCOV_PROVISIONAL_V1",
+   "conceptId": "C2854338529-ASF",
+   "flightDirection": "ASCENDING",
+   "track": 156,
+   "frame": 17,
+   "orbit": "4407",
+   "instrument": "L-SAR",
+   "polarization": [
+    "HH",
+    "HV"
+   ],
+   "sideBandPolarization": [
+    "HH",
+    "HV"
+   ],
+   "rangeBandwidth": [
+    "40+5"
+   ],
+   "frameCoverage": "Full",
+   "orbitType": "MOE",
+   "pgeVersion": "R05.02.3",
+   "crid": "P05023",
+   "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_021_156_A_017_4005_DHDH_A_20260601T001314_20260601T001349_P05023_N_F_J_001/NISAR_L2_PR_GCOV_021_156_A_017_4005_DHDH_A_20260601T001314_20260601T001349_P05023_N_F_J_001.h5",
+   "browseUrl": "https://nisar.asf.earthdatacloud.nasa.gov/BROWSE/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_021_156_A_017_4005_DHDH_A_20260601T001314_20260601T001349_P05023_N_F_J_001/NISAR_L2_PR_GCOV_021_156_A_017_4005_DHDH_A_20260601T001314_20260601T001349_P05023_N_F_J_001_LATLON.png",
+   "asfSearchUrl": "https://search.asf.alaska.edu/#/?dataset=NISAR&searchType=List%20Search&searchList=NISAR_L2_PR_GCOV_021_156_A_017_4005_DHDH_A_20260601T001314_20260601T001349_P05023_N_F_J_001",
+   "georeferencing": {
+    "method": "corner-fit of browse valid-data quadrilateral to ASF footprint polygon",
+    "residualPx": 2.4,
+    "residualKm": 0.44,
+    "kmPerPx": 0.1825
+   }
+  },
+  {
+   "id": "NISAR_L2_PR_GCOV_024_156_A_017_4005_DHDH_A_20260707T001312_20260707T001346_P05023_N_F_J_001",
+   "file": "2026-07-07.webp",
+   "rectangle": {
+    "west": 74.12490858492264,
+    "south": 29.116020516580853,
+    "east": 77.83603918692003,
+    "north": 32.250677117469
+   },
+   "footprint": [
+    [
+     77.68084,
+     30.00739
+    ],
+    [
+     76.97655,
+     32.06226
+    ],
+    [
+     74.40805,
+     31.41779
+    ],
+    [
+     75.1199,
+     29.36753
+    ]
+   ],
+   "acquisitionStart": "2026-07-07T00:13:12Z",
+   "acquisitionStop": "2026-07-07T00:13:46Z",
+   "productType": "GCOV",
+   "processingLevel": "L2",
+   "collection": "NISAR_L2_GCOV_PROVISIONAL_V1",
+   "conceptId": "C2854338529-ASF",
+   "flightDirection": "ASCENDING",
+   "track": 156,
+   "frame": 17,
+   "orbit": "4926",
+   "instrument": "L-SAR",
+   "polarization": [
+    "HH",
+    "HV"
+   ],
+   "sideBandPolarization": [
+    "HH",
+    "HV"
+   ],
+   "rangeBandwidth": [
+    "40+5"
+   ],
+   "frameCoverage": "Full",
+   "orbitType": "MOE",
+   "pgeVersion": "R05.02.3",
+   "crid": "P05023",
+   "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_024_156_A_017_4005_DHDH_A_20260707T001312_20260707T001346_P05023_N_F_J_001/NISAR_L2_PR_GCOV_024_156_A_017_4005_DHDH_A_20260707T001312_20260707T001346_P05023_N_F_J_001.h5",
+   "browseUrl": "https://nisar.asf.earthdatacloud.nasa.gov/BROWSE/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_024_156_A_017_4005_DHDH_A_20260707T001312_20260707T001346_P05023_N_F_J_001/NISAR_L2_PR_GCOV_024_156_A_017_4005_DHDH_A_20260707T001312_20260707T001346_P05023_N_F_J_001_LATLON.png",
+   "asfSearchUrl": "https://search.asf.alaska.edu/#/?dataset=NISAR&searchType=List%20Search&searchList=NISAR_L2_PR_GCOV_024_156_A_017_4005_DHDH_A_20260707T001312_20260707T001346_P05023_N_F_J_001",
+   "georeferencing": {
+    "method": "corner-fit of browse valid-data quadrilateral to ASF footprint polygon",
+    "residualPx": 2.3,
+    "residualKm": 0.42,
+    "kmPerPx": 0.1822
+   }
+  },
+  {
+   "id": "NISAR_L2_PR_GCOV_027_156_A_017_4005_DHDH_A_20260812T001310_20260812T001344_P05023_N_F_J_001",
+   "file": "2026-08-12.webp",
+   "rectangle": {
+    "west": 74.12564236582207,
+    "south": 29.11475465619376,
+    "east": 77.84043893156235,
+    "north": 32.25228079474837
+   },
+   "footprint": [
+    [
+     77.68463,
+     29.99844
+    ],
+    [
+     76.98016,
+     32.05325
+    ],
+    [
+     74.4126,
+     31.40909
+    ],
+    [
+     75.12421,
+     29.3588
+    ]
+   ],
+   "acquisitionStart": "2026-08-12T00:13:10Z",
+   "acquisitionStop": "2026-08-12T00:13:44Z",
+   "productType": "GCOV",
+   "processingLevel": "L2",
+   "collection": "NISAR_L2_GCOV_PROVISIONAL_V1",
+   "conceptId": "C2854338529-ASF",
+   "flightDirection": "ASCENDING",
+   "track": 156,
+   "frame": 17,
+   "orbit": "5445",
+   "instrument": "L-SAR",
+   "polarization": [
+    "HH",
+    "HV"
+   ],
+   "sideBandPolarization": [
+    "HH",
+    "HV"
+   ],
+   "rangeBandwidth": [
+    "40+5"
+   ],
+   "frameCoverage": "Full",
+   "orbitType": "MOE",
+   "pgeVersion": "R05.02.3",
+   "crid": "P05023",
+   "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_027_156_A_017_4005_DHDH_A_20260812T001310_20260812T001344_P05023_N_F_J_001/NISAR_L2_PR_GCOV_027_156_A_017_4005_DHDH_A_20260812T001310_20260812T001344_P05023_N_F_J_001.h5",
+   "browseUrl": "https://nisar.asf.earthdatacloud.nasa.gov/BROWSE/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_027_156_A_017_4005_DHDH_A_20260812T001310_20260812T001344_P05023_N_F_J_001/NISAR_L2_PR_GCOV_027_156_A_017_4005_DHDH_A_20260812T001310_20260812T001344_P05023_N_F_J_001_LATLON.png",
+   "asfSearchUrl": "https://search.asf.alaska.edu/#/?dataset=NISAR&searchType=List%20Search&searchList=NISAR_L2_PR_GCOV_027_156_A_017_4005_DHDH_A_20260812T001310_20260812T001344_P05023_N_F_J_001",
+   "georeferencing": {
+    "method": "corner-fit of browse valid-data quadrilateral to ASF footprint polygon",
+    "residualPx": 0.8,
+    "residualKm": 0.15,
+    "kmPerPx": 0.1824
+   }
+  },
+  {
+   "id": "NISAR_L2_PR_GCOV_029_156_A_017_4005_DHDH_A_20260905T001309_20260905T001344_P05023_N_F_J_001",
+   "file": "2026-09-05.webp",
+   "rectangle": {
+    "west": 74.12532020898198,
+    "south": 29.11195307722027,
+    "east": 77.84316552418584,
+    "north": 32.25284007738982
+   },
+   "footprint": [
+    [
+     77.69469,
+     29.96525
+    ],
+    [
+     76.97469,
+     32.07987
+    ],
+    [
+     74.40265,
+     31.43453
+    ],
+    [
+     75.1346,
+     29.32566
+    ]
+   ],
+   "acquisitionStart": "2026-09-05T00:13:09Z",
+   "acquisitionStop": "2026-09-05T00:13:44Z",
+   "productType": "GCOV",
+   "processingLevel": "L2",
+   "collection": "NISAR_L2_GCOV_PROVISIONAL_V1",
+   "conceptId": "C2854338529-ASF",
+   "flightDirection": "ASCENDING",
+   "track": 156,
+   "frame": 17,
+   "orbit": "5791",
+   "instrument": "L-SAR",
+   "polarization": [
+    "HH",
+    "HV"
+   ],
+   "sideBandPolarization": [
+    "HH",
+    "HV"
+   ],
+   "rangeBandwidth": [
+    "40+5"
+   ],
+   "frameCoverage": "Full",
+   "orbitType": "MOE",
+   "pgeVersion": "R05.02.3",
+   "crid": "P05023",
+   "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_029_156_A_017_4005_DHDH_A_20260905T001309_20260905T001344_P05023_N_F_J_001/NISAR_L2_PR_GCOV_029_156_A_017_4005_DHDH_A_20260905T001309_20260905T001344_P05023_N_F_J_001.h5",
+   "browseUrl": "https://nisar.asf.earthdatacloud.nasa.gov/BROWSE/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_029_156_A_017_4005_DHDH_A_20260905T001309_20260905T001344_P05023_N_F_J_001/NISAR_L2_PR_GCOV_029_156_A_017_4005_DHDH_A_20260905T001309_20260905T001344_P05023_N_F_J_001_LATLON.png",
+   "asfSearchUrl": "https://search.asf.alaska.edu/#/?dataset=NISAR&searchType=List%20Search&searchList=NISAR_L2_PR_GCOV_029_156_A_017_4005_DHDH_A_20260905T001309_20260905T001344_P05023_N_F_J_001",
+   "georeferencing": {
+    "method": "corner-fit of browse valid-data quadrilateral to ASF footprint polygon",
+    "residualPx": 2.7,
+    "residualKm": 0.5,
+    "kmPerPx": 0.1826
+   }
+  }
+ ],
+ "skipped": [
+  {
+   "granule": "NISAR_L2_PR_GCOV_005_156_A_017_4005_DHDH_A_20251121T001310_20251121T001345_X05009_N_F_J_001",
+   "reason": "browse image not publicly available"
+  }
+ ],
+ "derived": null
+}

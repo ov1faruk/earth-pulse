@@ -1,0 +1,69 @@
+{
+ "stories": [
+  {
+   "id": "bangladesh-water",
+   "select": {
+    "product": "GCOV",
+    "point": "POINT(90.9 24.6)",
+    "track": 69,
+    "frame": 14,
+    "direction": "A",
+    "start": "2026-05-01",
+    "end": "2026-10-01"
+   },
+   "derive": "water"
+  },
+  {
+   "id": "kumamoto-ground",
+   "select": {
+    "product": "GUNW",
+    "point": "POINT(130.6269 32.6043)",
+    "track": 24,
+    "frame": 18,
+    "direction": "A",
+    "start": "2026-06-01",
+    "end": "2026-09-15",
+    "pairs": [
+     "20260627-20260709",
+     "20260709-20260721",
+     "20260721-20260814",
+     "20260814-20260826",
+     "20260826-20260907"
+    ]
+   }
+  },
+  {
+   "id": "punjab-crops",
+   "select": {
+    "product": "GCOV",
+    "point": "POINT(75.85 30.9)",
+    "track": 156,
+    "frame": 17,
+    "direction": "A",
+    "thin": "monthly"
+   }
+  },
+  {
+   "id": "rondonia-forest",
+   "select": {
+    "product": "GCOV",
+    "point": "POINT(-62.9 -9.9)",
+    "track": 68,
+    "frame": 93,
+    "direction": "D",
+    "thin": "monthly"
+   }
+  },
+  {
+   "id": "greenland-ice",
+   "select": {
+    "product": "GCOV",
+    "point": "POINT(-49.9 69.17)",
+    "track": 170,
+    "frame": 53,
+    "direction": "D",
+    "thin": "monthly"
+   }
+  }
+ ]
+}

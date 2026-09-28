@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>EARTH//PULSE — Watch Earth change</title>
+  <meta name="description" content="An interactive planetary observation experience built on real NISAR radar data." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <div id="globe" aria-label="3D Earth" role="application"></div>
+  <div id="credits" class="credits" aria-hidden="true"></div>
+  <div id="split-divider" class="split-divider" hidden role="slider" tabindex="0" aria-label="Before and after divider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+    <span class="split-handle"><span></span><span></span></span>
+  </div>
+
+  <!-- Brand -->
+  <header class="brand" id="brand">
+    <button class="brand-mark" id="brand-home" aria-label="Return to Earth">
+      <span class="brand-name">EARTH<span class="brand-slash">//</span>PULSE</span>
+      <span class="brand-tag">WATCH EARTH CHANGE.</span>
+    </button>
+  </header>
+
+  <!-- Status / freshness -->
+  <div class="status" id="status" aria-live="polite"></div>
+
+  <!-- Top-right controls -->
+  <nav class="top-controls" id="top-controls" aria-label="View controls">
+    <div class="modes" id="modes" role="radiogroup" aria-label="Visual mode"></div>
+    <button class="ghost-btn" id="btn-demo" title="Play the guided demo (deterministic)">▶ PLAY DEMO</button>
+  </nav>
+
+  <!-- First screen -->
+  <section class="explore" id="explore" aria-label="Explore">
+    <h1 class="explore-q">WHAT DO YOU WANT TO EXPLORE?</h1>
+    <form class="search" id="search" role="search" autocomplete="off">
+      <input id="search-input" type="search" placeholder="A flood in Bangladesh" aria-label="Search a place or a kind of change" />
+      <button type="submit" aria-label="Search">→</button>
+      <ul class="search-results" id="search-results" role="listbox" hidden></ul>
+    </form>
+    <div class="chips" id="chips" aria-label="Suggested explorations"></div>
+  </section>
+
+  <!-- Living Earth -->
+  <aside class="legend glass" id="legend" aria-label="Living Earth layers"></aside>
+  <div class="lapse glass" id="lapse" hidden aria-live="polite"></div>
+  <aside class="sat-card glass" id="live-card" hidden aria-live="polite"></aside>
+  <aside class="feed-panel glass" id="feed" hidden aria-label="What's happening"></aside>
+  <div class="tooltip" id="tooltip" hidden></div>
+  <div class="gibs-chip" id="gibs-chip" hidden></div>
+
+  <!-- Change Engine -->
+  <aside class="sat-card glass ce-card" id="change-card" hidden aria-live="polite" aria-label="Change engine"></aside>
+  <div class="change-fab" id="change-fab" hidden></div>
+  <div class="scanline" id="scanline" hidden></div>
+
+  <!-- Satellite card -->
+  <aside class="sat-card glass" id="sat-card" hidden aria-live="polite"></aside>
+
+  <!-- Story -->
+  <section class="story" id="story" hidden aria-label="Earth story"></section>
+
+  <!-- Before/after mode bar + time machine -->
+  <section class="timebar glass" id="timebar" hidden aria-label="Time machine"></section>
+
+  <!-- How did NISAR know -->
+  <section class="know" id="know" hidden aria-label="How did NISAR know"></section>
+
+  <!-- Science mode -->
+  <section class="science" id="science" hidden aria-label="Science mode"></section>
+
+  <!-- Provenance drawer -->
+  <aside class="drawer" id="drawer" hidden aria-label="Data provenance"></aside>
+
+  <!-- Demo caption -->
+  <div class="caption" id="caption" aria-live="polite" hidden></div>
+
+  <div class="loading" id="loading"><span class="loading-ring"></span><span>Loading Earth…</span></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
