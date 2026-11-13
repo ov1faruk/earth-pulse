@@ -39,34 +39,6 @@ npm run snapshot     # refresh the offline snapshot of the live feeds (dev serve
 npm run build && npm run preview
 ```
 
-## Presentation video
-
-**[EARTH//PULSE — The L-Band — NASA Space Apps 2026](https://youtu.be/9V4cdIAdCfo?si=7PG7CgoQE0bn1mTI)** · 3:39 · 1080p
-
-Our entry film for the NASA Space Apps Challenge 2026, "Dancing with the SARs".
-It introduces the challenge and The L-Band team, then shows EARTH//PULSE running:
-the living planet, NISAR's real orbit, monsoon water spreading across Bangladesh,
-the Kumamoto earthquake rings, the change engine, all 15 acts of THE MISSION,
-Mission Control's NASA layers, and the change map turned into sound.
-
-> **AI disclosure: the voice-over in this video is AI-generated.** No team member
-> recorded it. It was produced with Kokoro-82M, an open-source text-to-speech model
-> run offline, and every line was checked with Whisper speech recognition.
-
-- **Footage:** a real screen recording of the running app. No AI-generated images
-  or video; all imagery is NASA and partner satellite data.
-- **Music:** original, generated in code. The sound near the end is the real
-  sonification of the Bangladesh change map.
-- **Built with free tools:** FFmpeg, Kokoro-82M (AI voice), Whisper via sherpa-onnx,
-  Python and Pillow.
-- **Team:** Mohammad Golam Faruk Ovi (Team Lead, System & Solution Architect),
-  Md. Zaharabi Bhuiyain Rafi (Product Analyst), Mohammad Mushfiq Us Saleheen
-  (AI Engineer), Rezaul Karim Anik (System Researcher), Rifah Tamanna
-  (Communication & Coordination).
-
-<!-- Also add this line at the end of the existing "### AI disclosure" section: -->
-<!-- The presentation video's voice-over is AI-generated (Kokoro-82M text-to-speech); see "Presentation video" above. -->
-
 ## What's inside
 
 | | |
