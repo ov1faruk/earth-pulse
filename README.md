@@ -41,7 +41,7 @@ npm run build && npm run preview
 
 ## Presentation video
 
-**[EARTH//PULSE — The L-Band — NASA Space Apps 2026](EARTH-PULSE_The-L-Band_NASA-Space-Apps-2026.mp4)** · 3:39 · 1080p
+**[EARTH//PULSE — The L-Band — NASA Space Apps 2026](https://youtu.be/9V4cdIAdCfo?si=7PG7CgoQE0bn1mTI)** · 3:39 · 1080p
 
 Our entry film for the NASA Space Apps Challenge 2026, "Dancing with the SARs".
 It introduces the challenge and The L-Band team, then shows EARTH//PULSE running:
