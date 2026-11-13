@@ -32,6 +32,9 @@
   <!-- Top-right controls -->
   <nav class="top-controls" id="top-controls" aria-label="View controls">
     <div class="modes" id="modes" role="radiogroup" aria-label="Visual mode"></div>
+    <button class="ghost-btn" id="btn-sound" aria-pressed="false">♪ SOUND OFF</button>
+    <button class="ghost-btn" id="btn-mc" aria-pressed="false" title="NASA layers, place probe, live alerts, Earth today">◈ MISSION CONTROL</button>
+    <button class="ghost-btn" id="btn-mission" aria-pressed="false" title="The story of a changing planet, told on the globe">▶ THE MISSION</button>
     <button class="ghost-btn" id="btn-demo" title="Play the guided demo (deterministic)">▶ PLAY DEMO</button>
   </nav>
 
@@ -44,7 +47,14 @@
       <ul class="search-results" id="search-results" role="listbox" hidden></ul>
     </form>
     <div class="chips" id="chips" aria-label="Suggested explorations"></div>
+    <button class="mission-cta" id="mission-cta"><i></i>BEGIN THE MISSION — THE STORY OF A CHANGING PLANET</button>
   </section>
+
+  <!-- Mission Control: NASA layers, place probe, alerts, Earth today -->
+  <aside class="mc glass" id="mc" hidden aria-label="Mission control"></aside>
+
+  <!-- The Mission: the story, told on the globe -->
+  <section class="mission" id="mission" hidden aria-label="The Mission" aria-live="polite"></section>
 
   <!-- Living Earth -->
   <aside class="legend glass" id="legend" aria-label="Living Earth layers"></aside>

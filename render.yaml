@@ -1,0 +1,11 @@
+# One-click deploy on Render (free tier): New → Blueprint → pick this repo.
+services:
+  - type: web
+    name: earth-pulse
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "22"

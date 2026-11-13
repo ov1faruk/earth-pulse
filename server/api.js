@@ -5,8 +5,11 @@ import zlib from 'node:zlib';
 import { promises as fsp } from 'node:fs';
 import { NISARDataProvider } from './providers/nisar.js';
 import { getGroup, getByNorad, ALLOWED_GROUPS } from './providers/space.js';
-import { getUsgsEvent, geocode } from './providers/context.js';
+import { getUsgsEvent, geocode, getEpic } from './providers/context.js';
 import { getFires, getQuakes, getEvents, getNisarRecent } from './providers/live.js';
+import { getVitals } from './providers/vitals.js';
+import { getOutlook } from './providers/outlook.js';
+import { getRiskAt, getRiskMap, getSignalSeries, getEconomy, getFireDensity } from './providers/risk.js';
 import { STORIES, storyById } from '../src/core/stories.js';
 import { resolveStory } from '../src/core/storyModel.js';
 
@@ -158,29 +161,60 @@ const routes = [
   ['GET', /^\/api\/live\/fires$/, async () => getFires()],
   ['GET', /^\/api\/live\/quakes$/, async () => getQuakes()],
   ['GET', /^\/api\/live\/events$/, async () => getEvents()],
+  ['GET', /^\/api\/live\/fires\/density$/, async () => getFireDensity()],
   ['GET', /^\/api\/live\/nisar$/, async (_, q) => getNisarRecent(Number(q.get('days')) || 3)],
+
+  // ---------- THE STORY (vital signs, signals, risk index, impact calculator) ----------
+  ['GET', /^\/api\/vitals$/, async () => getVitals()],
+  ['GET', /^\/api\/epic$/, async () => getEpic()],
+  ['GET', /^\/api\/outlook$/, async (_, q) => {
+    const lat = num(q.get('lat')), lon = num(q.get('lon'));
+    if (!validLatLon(lat, lon)) throw Object.assign(new Error('lat/lon required'), { status: 400 });
+    return getOutlook(lat, lon);
+  }],
+  ['GET', /^\/api\/signals$/, async (_, q) => {
+    const lat = num(q.get('lat')), lon = num(q.get('lon'));
+    const start = q.get('start') || '', end = q.get('end') || '';
+    if (!validLatLon(lat, lon)) throw Object.assign(new Error('lat/lon required'), { status: 400 });
+    if (!/^\d{8}$/.test(start) || !/^\d{8}$/.test(end) || end < start || Number(end.slice(0, 4)) - Number(start.slice(0, 4)) > 1) throw Object.assign(new Error('start/end must be YYYYMMDD, at most a year apart'), { status: 400 });
+    return getSignalSeries(lat, lon, start, end);
+  }],
+  ['GET', /^\/api\/risk$/, async (_, q) => {
+    const lat = num(q.get('lat')), lon = num(q.get('lon'));
+    if (!validLatLon(lat, lon)) throw Object.assign(new Error('lat/lon required'), { status: 400 });
+    return getRiskAt(lat, lon, (q.get('name') || '').slice(0, 80) || null);
+  }],
+  ['GET', /^\/api\/risk\/map$/, async () => getRiskMap()],
+  ['GET', /^\/api\/economy\/([A-Z]{3})$/, async ([iso3]) => getEconomy(iso3)],
 ];
+
+/** Connect-style handler for every /api/* route (used by Vite and by server/prod.js). */
+export async function handleApi(req, res, next) {
+  if (!req.url?.startsWith('/api/')) return next();
+  const url = new URL(req.url, 'http://local');
+  const route = routes.find(([m, re]) => m === req.method && re.test(url.pathname));
+  if (!route) return send(res, 404, { error: 'not found' });
+  try {
+    const params = route[1].exec(url.pathname).slice(1);
+    const out = await route[2](params, url.searchParams, res);
+    if (out !== undefined) send(res, 200, out);
+  } catch (e) {
+    const status = e.status || 502;
+    send(res, status, { error: status === 502 ? 'DATA TEMPORARILY UNAVAILABLE' : e.message, detail: e.message });
+  }
+}
+
+/** Warm the live caches so the first visitor sees a living planet quickly. */
+export function warmCaches() {
+  setTimeout(() => {
+    for (const f of [getQuakes, getEvents, () => getNisarRecent(3), getFires, getVitals]) f().catch(() => {});
+  }, 500);
+}
 
 export function earthPulseApi() {
   const install = (server) => {
-    // Warm the live caches so the first visitor sees a living planet quickly.
-    setTimeout(() => {
-      for (const f of [getQuakes, getEvents, () => getNisarRecent(3), getFires]) f().catch(() => {});
-    }, 500);
-    server.middlewares.use(async (req, res, next) => {
-      if (!req.url?.startsWith('/api/')) return next();
-      const url = new URL(req.url, 'http://local');
-      const route = routes.find(([m, re]) => m === req.method && re.test(url.pathname));
-      if (!route) return send(res, 404, { error: 'not found' });
-      try {
-        const params = route[1].exec(url.pathname).slice(1);
-        const out = await route[2](params, url.searchParams, res);
-        if (out !== undefined) send(res, 200, out);
-      } catch (e) {
-        const status = e.status || 502;
-        send(res, status, { error: status === 502 ? 'DATA TEMPORARILY UNAVAILABLE' : e.message, detail: e.message });
-      }
-    });
+    warmCaches();
+    server.middlewares.use(handleApi);
   };
   return { name: 'earth-pulse-api', configureServer: install, configurePreviewServer: install };
 }

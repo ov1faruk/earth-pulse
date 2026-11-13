@@ -327,3 +327,7 @@ a:hover { text-decoration: underline; }
 .change-fab span { font-size: 10.5px; color: var(--ink-2); background: rgba(6,9,15,.85); padding: 3px 8px; border-radius: 6px; font-family: var(--mono); }
 .change-fab::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
 .scanline { position: fixed; top: 0; bottom: 0; width: 2px; z-index: 12; background: linear-gradient(transparent, #fff, transparent); box-shadow: 0 0 20px rgba(255,255,255,.7); pointer-events: none; }
+
+/* Link to the scroll story (story.html) */
+a.ghost-btn { text-decoration: none; display: inline-flex; align-items: center; color: var(--cyan); border-color: rgba(127, 230, 255, 0.4); }
+a.ghost-btn:hover { text-decoration: none; }

@@ -5,6 +5,19 @@ import { normalizeUsgsEvent } from '../../src/core/storyModel.js';
 const usgsCache = createCache('usgs', { ttlMs: 24 * 3600_000 });
 const geoCache = createCache('geocode', { ttlMs: 7 * 24 * 3600_000 });
 
+// NASA EPIC (DSCOVR): the day's full-disc photographs of the sunlit Earth. Keyless.
+const epicCache = createCache('epic', { ttlMs: 3 * 3600_000 });
+export async function getEpic() {
+  const hit = await epicCache.get('natural', async () => {
+    const list = JSON.parse(await fetchText('https://epic.gsfc.nasa.gov/api/natural', { timeoutMs: 30000 }));
+    if (!list.length) throw new Error('EPIC returned no images');
+    const day = list[0].date.slice(0, 10);
+    const [y, m, d] = day.split('-');
+    return { body: { date: day, images: list.map((x) => ({ url: `https://epic.gsfc.nasa.gov/archive/natural/${y}/${m}/${d}/jpg/${x.image}.jpg`, time: x.date.slice(11, 16), lat: x.centroid_coordinates.lat, lon: x.centroid_coordinates.lon })) } };
+  });
+  return { ...hit.body, freshness: hit.state, source: { name: 'NASA EPIC / DSCOVR (NASA GSFC, NOAA)', url: 'https://epic.gsfc.nasa.gov/' } };
+}
+
 export async function getUsgsEvent(eventId) {
   if (!/^[a-z0-9]{4,20}$/i.test(eventId)) throw new Error('invalid event id');
   const url = `https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=${eventId}&format=geojson`;

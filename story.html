@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>EARTH//PULSE — The Story</title>
+  <meta name="description" content="Earth's vital signs, a year of disasters, and what satellites like NISAR saw — told with real NASA data." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/story/story.css" />
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <header class="topbar" id="topbar">
+    <a class="brand-mark" href="/" aria-label="EARTH//PULSE live globe">
+      <span class="brand-name">EARTH<span class="brand-slash">//</span>PULSE</span>
+      <span class="brand-tag">THE STORY</span>
+    </a>
+    <nav class="topnav" aria-label="Chapters" id="topnav"></nav>
+    <button class="cta" id="btn-sound" aria-pressed="false">♪ SOUND OFF</button>
+    <a class="cta" href="/">OPEN LIVE GLOBE →</a>
+  </header>
+
+  <nav class="rail" id="rail" aria-label="Chapter progress"></nav>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-earth" id="hero-earth" role="img" aria-label="Earth as seen from orbit"></div>
+      <div class="hero-shade"></div>
+      <div class="hero-copy">
+        <p class="kicker" id="hero-kicker">NASA SPACE APPS 2026 · DANCING WITH THE SARs</p>
+        <h1>Earth has a pulse.<br /><span>We learned to read it.</span></h1>
+        <p class="lede">Eight chapters, from the planet's vital signs to one valley in Nepal — told with real measurements from NISAR and the satellites around it. Nothing here is simulated unless it says so.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#ch1">BEGIN ↓</a>
+          <a class="btn" href="/">EXPLORE THE LIVE GLOBE</a>
+        </div>
+        <p class="hero-credit mono" id="hero-credit"></p>
+      </div>
+    </section>
+
+    <!-- 1 -->
+    <section class="chapter" id="ch1" data-title="The Pulse">
+      <header class="ch-head">
+        <span class="ch-num">01</span>
+        <h2>The Pulse</h2>
+        <p>Four vital signs, read from the agencies' own files a moment ago.</p>
+      </header>
+      <div class="vitals" id="vitals"><div class="skeleton tall"></div></div>
+    </section>
+
+    <!-- 2 -->
+    <section class="chapter" id="ch2" data-title="The Warming">
+      <header class="ch-head">
+        <span class="ch-num">02</span>
+        <h2>The Warming</h2>
+        <p>One stripe per year since 1880. Blue is cooler than the 1951–1980 average, red is warmer.</p>
+      </header>
+      <div class="panel">
+        <div class="stripes" id="stripes"></div>
+        <div class="stripes-read mono" id="stripes-read">Move across the stripes</div>
+      </div>
+      <div class="grid two">
+        <div class="panel"><h3>Global temperature</h3><div id="chart-temp"></div><div id="note-temp"></div></div>
+        <div class="panel"><h3>Carbon dioxide in the air</h3><div id="chart-co2"></div><div id="note-co2"></div></div>
+        <div class="panel"><h3>Global sea level</h3><div id="chart-sea"></div><div id="note-sea"></div></div>
+        <div class="panel"><h3>Arctic sea ice in September</h3><div id="chart-ice"></div><div id="note-ice"></div></div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="chapter wide" id="ch3" data-title="When Earth Breaks">
+      <header class="ch-head">
+        <span class="ch-num">03</span>
+        <h2>When Earth Breaks</h2>
+        <p>Every open event and recent earthquake, live. Filter by type, region and time.</p>
+      </header>
+      <div class="console">
+        <div class="console-map">
+          <div id="live-globe" class="live-globe"><div class="globe-poster" id="globe-poster"><button class="btn primary" id="globe-start">LOAD THE LIVE GLOBE</button><span>3D · about 5 MB</span></div></div>
+          <div id="live-credits" class="credits-inline"></div>
+          <div class="filters" id="filters"></div>
+          <div class="pick-card glass" id="pick-card" hidden></div>
+        </div>
+        <aside class="feed" id="feed" aria-label="Live disaster feed"><div class="skeleton tall"></div></aside>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="chapter" id="ch4" data-title="The Ripple Effect">
+      <header class="ch-head">
+        <span class="ch-num">04</span>
+        <h2>The Ripple Effect</h2>
+        <p>One collapse on one mountain, followed through seven systems. Every figure is from the Nepal flood of 26 August 2026.</p>
+      </header>
+      <div class="ripple" id="ripple"></div>
+    </section>
+
+    <!-- 5 -->
+    <section class="chapter wide" id="ch5" data-title="Nepal Under the Lens">
+      <header class="ch-head">
+        <span class="ch-num">05</span>
+        <h2>Nepal Under the Lens</h2>
+        <p id="nepal-summary"></p>
+      </header>
+      <div class="toll" id="nepal-toll"></div>
+      <div class="grid two lens">
+        <div class="panel">
+          <h3>Before and after, from orbit</h3>
+          <div class="seg" id="ba-views"></div>
+          <div class="ba" id="ba"></div>
+          <div id="ba-note"></div>
+        </div>
+        <div class="panel">
+          <h3>What radar saw: NISAR, 19 → 31 August</h3>
+          <div class="nisar" id="nisar"></div>
+        </div>
+      </div>
+      <div class="grid two">
+        <div class="panel"><h3>Where it went</h3><div class="areamap" id="areamap"></div><div id="areamap-note"></div></div>
+        <div class="panel"><h3>Minute by minute</h3><ol class="timeline" id="timeline"></ol></div>
+      </div>
+      <div class="panel"><h3>Why it happened</h3><div class="causes" id="nepal-cause"></div></div>
+    </section>
+
+    <!-- 6 -->
+    <section class="chapter wide" id="ch6" data-title="A Year of Disasters">
+      <header class="ch-head">
+        <span class="ch-num">06</span>
+        <h2>A Year of Disasters</h2>
+        <p>The seven deadliest and costliest events from 13 November 2025 to today, with daily NASA imagery you can scrub through.</p>
+      </header>
+      <div class="context" id="year-context"></div>
+      <div class="events-nav" id="events-nav"></div>
+      <div class="event" id="event"></div>
+      <div class="panel calc" id="calc"></div>
+    </section>
+
+    <!-- 7 -->
+    <section class="chapter" id="ch7" data-title="Reading the Signals">
+      <header class="ch-head">
+        <span class="ch-num">07</span>
+        <h2>Reading the Signals</h2>
+        <p>Disasters rarely arrive without notice. These are the small changes that came first — and one case where they did not.</p>
+      </header>
+      <div class="grid two" id="signals"></div>
+      <div class="grid three" id="signal-notes"></div>
+      <div class="panel"><h3>Where the planet is burning right now</h3><div id="fire-density"><div class="skeleton"></div></div></div>
+    </section>
+
+    <!-- 8 -->
+    <section class="chapter wide" id="ch8" data-title="The Forecast">
+      <header class="ch-head">
+        <span class="ch-num">08</span>
+        <h2>The Forecast</h2>
+        <p>A transparent index of the warning signals being measured around each place today. It is a risk estimate, not a prediction.</p>
+      </header>
+      <div class="console risk">
+        <div class="riskmap-wrap">
+          <div class="riskmap" id="riskmap"></div>
+          <form class="risk-search" id="risk-search" autocomplete="off">
+            <input id="risk-q" type="search" placeholder="Check any place — e.g. Pokhara" aria-label="Search a place" />
+            <button class="btn" type="submit">CHECK</button>
+            <ul class="search-results" id="risk-results" hidden></ul>
+          </form>
+          <div class="risk-legend" id="risk-legend"></div>
+        </div>
+        <aside class="risk-detail" id="risk-detail"><div class="skeleton tall"></div></aside>
+      </div>
+      <div class="panel" id="method"></div>
+      <header class="ch-sub"><h3>Longer horizons</h3><p>Three scenario tools built only from published projections and measured trends.</p></header>
+      <div class="grid three sims" id="sims"></div>
+    </section>
+
+    <!-- SOURCES -->
+    <section class="chapter" id="sources" data-title="Sources">
+      <header class="ch-head">
+        <span class="ch-num">∑</span>
+        <h2>Sources and methods</h2>
+        <p>Every dataset, API and study used on this page.</p>
+      </header>
+      <div class="sources" id="source-list"></div>
+      <p class="fine" id="fine"></p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>EARTH//PULSE · NASA Space Apps Challenge 2026 · MIT licence</span>
+    <a href="/">Live globe</a>
+    <a href="https://github.com/ov1faruk/earth-pulse" target="_blank" rel="noopener">Source code</a>
+  </footer>
+
+  <script type="module" src="/src/story/main.js"></script>
+</body>
+</html>

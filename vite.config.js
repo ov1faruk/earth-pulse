@@ -5,5 +5,9 @@ import { earthPulseApi } from './server/api.js';
 export default defineConfig({
   plugins: [cesium(), earthPulseApi()],
   server: { port: 5173, fs: { deny: ['.env', '.env.*'] } },
-  build: { chunkSizeWarningLimit: 6000 },
+  build: {
+    chunkSizeWarningLimit: 6000,
+    // Two pages: the live globe (index.html) and the scroll story (story.html).
+    rollupOptions: { input: { main: 'index.html', story: 'story.html' } },
+  },
 });

@@ -1,0 +1,106 @@
+/* THE MISSION — cinematic story mode on the globe (src/platform/mission.js).
+   Same tokens, glass and type as the rest of the globe UI (src/styles.css). */
+.mission { position: fixed; left: 50%; bottom: clamp(18px, 4vh, 40px); transform: translateX(-50%); z-index: 40; width: min(1180px, calc(100vw - 2 * var(--gutter))); padding: 0 0 14px; background: var(--glass-strong); backdrop-filter: blur(22px) saturate(1.25); -webkit-backdrop-filter: blur(22px) saturate(1.25); border: 1px solid var(--line-2); border-radius: 18px; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, .55); --c: var(--cyan); }
+.mission.in .ms-left > *, .mission.in .ms-right { animation: msRise .8s var(--ease) both; }
+.mission.in .ms-kicker { animation-delay: .06s; } .mission.in h2 { animation-delay: .12s; } .mission.in .ms-line { animation-delay: .2s; } .mission.in .ms-right { animation-delay: .3s; }
+@keyframes msRise { from { opacity: 0; transform: translateY(16px); } }
+
+/* cinema: letterbox bars, everything else steps back */
+body::before, body::after { content: ''; position: fixed; left: 0; right: 0; height: 0; background: #000; z-index: 39; transition: height .8s var(--ease); pointer-events: none; }
+body::before { top: 0; } body::after { bottom: 0; }
+body.mission-on::before { height: 5.5vh; } body.mission-on::after { height: 5.5vh; }
+body.mission-on .explore, body.mission-on .legend, body.mission-on .mc, body.mission-on .status, body.mission-on .feed-panel, body.mission-on .modes, body.mission-on .change-fab, body.mission-on .sat-card, body.mission-on #btn-demo, body.mission-on #btn-mc, body.mission-on .lapse, body.mission-on .gibs-chip { opacity: 0 !important; pointer-events: none !important; transition: opacity .5s var(--ease); }
+body.mission-on .brand, body.mission-on .top-controls { z-index: 41; }
+
+.ms-progress { display: flex; gap: 3px; padding: 0; }
+.ms-progress button { flex: 1; height: 14px; padding: 5px 0 6px; background: none; border: 0; cursor: pointer; }
+.ms-progress button::before { content: ''; display: block; height: 3px; background: rgba(255, 255, 255, .14); }
+.ms-progress button { position: relative; }
+.ms-progress i { position: absolute; left: 0; top: 5px; height: 3px; width: 0; background: var(--c); box-shadow: 0 0 10px var(--c); }
+.ms-progress .done i { width: 100%; opacity: .55; box-shadow: none; }
+.ms-progress .now i { animation: msFill linear forwards; }
+@keyframes msFill { from { width: 0; } to { width: 100%; } }
+.ms-progress button:hover::before { background: rgba(255, 255, 255, .4); }
+
+.ms-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(18px, 3vw, 40px); padding: 14px clamp(18px, 2.4vw, 30px) 10px; align-items: center; min-height: 190px; }
+.ms-chapter { display: block; font-size: 10px; letter-spacing: .34em; color: var(--c); }
+.ms-kicker { display: block; margin-top: 6px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; color: var(--ink-3); text-transform: uppercase; }
+.mission h2 { margin: 8px 0 0; font-size: clamp(22px, 2.5vw, 34px); line-height: 1.08; letter-spacing: -.02em; font-weight: 600; text-wrap: balance; }
+.ms-line { margin: 10px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); max-width: 54ch; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.ms-right { min-width: 0; }
+.ms-figs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; }
+.ms-figs div { border-top: 1px solid var(--line-2); padding-top: 8px; animation: msRise .7s var(--ease) both; }
+.ms-figs b { display: block; font-size: clamp(18px, 1.9vw, 25px); font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.ms-figs span { font-size: 12px; color: var(--ink-2); line-height: 1.35; display: block; }
+.ms-why { margin-top: 10px; display: grid; gap: 4px; }
+.ms-why p { margin: 0; font-size: 11.5px; line-height: 1.4; color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ms-why i { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--c); margin-right: 6px; vertical-align: 1px; }
+.ms-why b { font-weight: 500; color: var(--ink); margin-right: 4px; letter-spacing: .08em; font-size: 10px; text-transform: uppercase; }
+.ms-miss { font-size: 12.5px; color: #ffb3b3; }
+
+.ms-stripes { display: flex; height: 96px; border-radius: 8px; overflow: hidden; }
+.ms-stripes i { flex: 1; transition: opacity .3s; }
+.ms-stripes i.off { opacity: .05; }
+.ms-year { margin: 10px 0 0; font-size: 13px; color: var(--ink-2); }
+.ms-year b { font-size: 24px; color: var(--ink); margin-right: 8px; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.ms-ba { display: flex; gap: 8px; margin-bottom: 12px; }
+.ms-ba span { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; padding: 5px 10px; border-radius: 99px; border: 1px solid var(--line-2); color: var(--ink-3); transition: all .3s; }
+.ms-ba span.on { background: var(--ink); color: #05080d; border-color: var(--ink); }
+.ms-ripple h3 { margin: 10px 0 10px; font-size: 15px; font-weight: 500; color: var(--ink); }
+.ms-steps { display: flex; gap: 6px; }
+.ms-steps i { flex: 1; height: 4px; border-radius: 99px; background: rgba(255, 255, 255, .12); transition: background .3s; }
+.ms-steps i.done { background: var(--c); opacity: .5; }
+.ms-steps i.on { background: var(--c); box-shadow: 0 0 10px var(--c); }
+.ms-rank { display: grid; gap: 4px; }
+.ms-rank button { display: grid; grid-template-columns: 44px 1fr auto; gap: 10px; align-items: baseline; text-align: left; background: none; border: 0; border-top: 1px solid var(--line); padding: 6px 2px; color: inherit; animation: msRise .6s var(--ease) both; }
+.ms-rank button:hover { background: rgba(255, 255, 255, .05); }
+.ms-rank b { font-size: 21px; color: var(--c); font-variant-numeric: tabular-nums; }
+.ms-rank span { font-size: 14px; }
+.ms-rank em { font-style: normal; font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; color: var(--c); text-transform: uppercase; }
+.ms-end { display: flex; flex-wrap: wrap; gap: 10px; }
+.ms-cta { border: 1px solid var(--cyan); background: var(--cyan); color: #04121a; border-radius: 99px; padding: 12px 18px; font-size: 10.5px; letter-spacing: .16em; font-weight: 600; text-decoration: none; transition: box-shadow .2s; animation: msRise .6s var(--ease) both; }
+.ms-cta:hover { box-shadow: 0 0 26px rgba(127, 230, 255, .5); }
+.ms-cta.ghost { background: rgba(255, 255, 255, .04); color: var(--ink); border-color: var(--line-2); font-weight: 400; }
+
+.ms-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 clamp(18px, 2.4vw, 30px); }
+.ms-src { margin: 0; font-size: 10.5px; color: var(--ink-3); min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ms-src a { color: var(--ink-2); text-decoration: none; border-bottom: 1px dotted var(--line-2); }
+.ms-ctl { display: flex; align-items: center; gap: 6px; flex: none; }
+.ms-ctl button { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line-2); background: rgba(255, 255, 255, .04); color: var(--ink); font-size: 11px; }
+.ms-ctl button:hover { border-color: var(--cyan); color: var(--cyan); }
+.ms-ctl .ms-exit { width: auto; border-radius: 99px; padding: 0 14px; font-size: 10px; letter-spacing: .16em; }
+.ms-count { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); margin: 0 6px; }
+
+/* charts inside the mission panel (same look as the story charts) */
+.ms-chart { position: relative; }
+.ms-chart svg { display: block; overflow: visible; }
+.ms-chart .grid { stroke: rgba(255, 255, 255, .07); stroke-width: 1; }
+.ms-chart .grid.zero { stroke: rgba(255, 255, 255, .22); }
+.ms-chart .tick { fill: rgba(236, 242, 248, .5); font-family: var(--mono); font-size: 10px; }
+.ms-chart .mark { stroke-width: 1; stroke-dasharray: 3 3; }
+.ms-chart .mark-label { font-family: var(--mono); font-size: 9.5px; }
+.ms-chart .cross { stroke: rgba(255, 255, 255, .35); }
+.ms-chart .chart-tip { display: none; }
+.ms-chart .grow { transform-box: fill-box; transform-origin: 50% 100%; animation: msBar 1.2s var(--ease) both; }
+@keyframes msBar { from { transform: scaleY(0); } }
+
+#btn-mission { color: #04121a; background: var(--cyan); border-color: var(--cyan); font-weight: 600; }
+#btn-mission:hover { box-shadow: 0 0 24px rgba(127, 230, 255, .5); }
+#btn-mission[aria-pressed='true'] { background: rgba(127, 230, 255, .16); color: var(--cyan); }
+.mission-cta { margin: 14px auto 0; display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(127, 230, 255, .5); background: rgba(127, 230, 255, .1); color: var(--cyan); border-radius: 99px; padding: 10px 18px; font-size: 10.5px; letter-spacing: .2em; transition: all .25s var(--ease); }
+.mission-cta:hover { background: var(--cyan); color: #04121a; box-shadow: 0 0 26px rgba(127, 230, 255, .45); }
+.mission-cta i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; animation: msBeat 1.6s ease-in-out infinite; }
+@keyframes msBeat { 50% { transform: scale(.5); opacity: .4; } }
+
+@media (max-width: 860px) {
+  .ms-main { grid-template-columns: 1fr; min-height: 0; gap: 12px; }
+  .mission { bottom: 8px; max-height: 70vh; overflow-y: auto; }
+  .ms-line { -webkit-line-clamp: 3; }
+  .ms-src { display: none; }
+  .ms-foot { justify-content: flex-end; }
+  body.mission-on::before, body.mission-on::after { height: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mission.in .ms-left > *, .mission.in .ms-right, .ms-figs div, .ms-rank button, .ms-cta, .mission-cta i { animation: none !important; }
+  body::before, body::after { transition: none; }
+}

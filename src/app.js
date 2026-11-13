@@ -398,7 +398,7 @@ export async function startApp() {
     // First impression: let the planet light up with the real data, once —
     // only if it arrived quickly (otherwise the layers simply appear).
     const quick = performance.now() - liveStart < 15000;
-    if (quick && state.view === 'home' && !state.demoRunning && !new URLSearchParams(location.search).has('story')) living.playLapse({ seconds: 12 });
+    if (quick && state.view === 'home' && !state.demoRunning && !new URLSearchParams(location.search).has('story') && !new URLSearchParams(location.search).has('change')) living.playLapse({ seconds: 12 });
   });
 
   // ---------- load data ----------
@@ -419,5 +419,12 @@ export async function startApp() {
   if (new URLSearchParams(location.search).has('demo')) setTimeout(() => demo.start(), 1500);
   const storyParam = new URLSearchParams(location.search).get('story');
   if (storyParam) openStory(storyParam);
+  // Deep link from the story page: /?change=lat,lon runs the change engine there.
+  const changeParam = (new URLSearchParams(location.search).get('change') || '').split(',').map(Number);
+  if (changeParam.length === 2 && changeParam.every(Number.isFinite) && Math.abs(changeParam[0]) <= 90 && Math.abs(changeParam[1]) <= 180) {
+    cam.idleSpin(false);
+    viewer.camera.flyTo({ destination: Cesium.Cartesian3.fromDegrees(changeParam[1], changeParam[0], 6e5), duration: 2.2 });
+    setTimeout(() => change.start(changeParam[0], changeParam[1]), 800);
+  }
   return api;
 }

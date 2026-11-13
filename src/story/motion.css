@@ -1,0 +1,73 @@
+/* Motion layer for the story page (src/story/motion.js). Everything here
+   animates real, already-rendered data; nothing is shown that isn't measured.
+   All of it switches off under prefers-reduced-motion. */
+body::before { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background-image: linear-gradient(rgba(127, 230, 255, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(127, 230, 255, 0.035) 1px, transparent 1px); background-size: 64px 64px; -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 20%, transparent 75%); mask-image: radial-gradient(ellipse at 50% 40%, #000 20%, transparent 75%); animation: gridmove 40s linear infinite; }
+@keyframes gridmove { to { background-position: 64px 64px, 64px 64px; } }
+.ecg { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 80px; pointer-events: none; }
+.ecg path { fill: none; stroke: var(--cyan); stroke-width: 1.6; vector-effect: non-scaling-stroke; stroke-dasharray: 0.22 0.78; animation: ecg 4.5s linear infinite; filter: drop-shadow(0 0 6px var(--cyan)); }
+@keyframes ecg { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.hero-copy { will-change: transform, opacity; }
+
+/* Charts draw themselves */
+.chart .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.chart.play .draw { animation: draw 2.2s var(--ease) forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.chart .grow { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(0); }
+.chart.play .grow { animation: growbar 1.1s var(--ease) forwards; }
+@keyframes growbar { to { transform: scaleY(1); } }
+.chart circle { opacity: 0; }
+.chart.play circle { animation: fadein .5s 1.6s forwards; }
+@keyframes fadein { to { opacity: 1; } }
+.bar span { animation: barin 1.2s var(--ease) both; transform-origin: 0 50%; }
+@keyframes barin { from { transform: scaleX(0); } }
+
+/* Replays */
+.replay { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 12px 0 4px; }
+.replay-year { font-size: 13px; color: var(--ink-2); }
+.replay-year b { font-size: 22px; color: var(--ink); margin-right: 8px; font-family: var(--font); letter-spacing: -0.02em; }
+.replay-note { font-size: 12px; color: var(--ink-3); flex: 1; min-width: 220px; }
+.stripes i { transition: opacity .25s, transform .15s; }
+.stripes i.off { opacity: 0.06; }
+.stripes i.now { transform: scaleY(1.12); box-shadow: 0 0 18px #fff; z-index: 1; }
+
+.areamap .pt { transition: opacity .4s, transform .4s; }
+.areamap .pt.dim { opacity: .25; transform: translate(-50%, -50%) scale(.7); }
+.front { position: absolute; width: 18px; height: 18px; margin: -9px; border-radius: 50%; background: #ff4d6d; box-shadow: 0 0 0 0 rgba(255, 77, 109, .7); animation: ping 1s ease-out infinite; z-index: 4; pointer-events: none; }
+@keyframes ping { to { box-shadow: 0 0 0 22px rgba(255, 77, 109, 0); } }
+.replay-clock { position: absolute; left: 10px; top: 10px; padding: 8px 12px; font-size: 12px; color: var(--ink-2); z-index: 5; max-width: calc(100% - 20px); }
+.replay-clock b { font-family: var(--mono); color: var(--ink); margin-right: 8px; font-weight: 500; }
+
+/* Ripple rings, feed, mission-control sweeps */
+.ripple-stage { position: relative; overflow: hidden; }
+.ripple-stage::before, .ripple-stage::after { content: ''; position: absolute; right: -60px; top: -60px; width: 240px; height: 240px; border-radius: 50%; border: 1px solid var(--c); opacity: 0; animation: ripple 4s ease-out infinite; pointer-events: none; }
+.ripple-stage::after { animation-delay: 2s; }
+@keyframes ripple { 0% { transform: scale(.2); opacity: .55; } 100% { transform: scale(2.6); opacity: 0; } }
+.ripple-stage > * { position: relative; }
+.feed-item { animation: slidein .5s var(--ease) both; }
+.feed-item:nth-child(2) { animation-delay: .04s; } .feed-item:nth-child(3) { animation-delay: .08s; } .feed-item:nth-child(4) { animation-delay: .12s; } .feed-item:nth-child(5) { animation-delay: .16s; } .feed-item:nth-child(6) { animation-delay: .2s; }
+@keyframes slidein { from { opacity: 0; transform: translateX(14px); } }
+.feed-item.alert i { animation: beat 1.2s infinite; }
+.riskmap button { animation: glow 2.6s ease-in-out infinite; }
+.sweep { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, transparent 0%, rgba(127, 230, 255, 0.16) 49%, rgba(127, 230, 255, 0.5) 50%, transparent 50.5%); background-size: 200% 100%; animation: sweep 7s linear infinite; mix-blend-mode: screen; }
+@keyframes sweep { from { background-position: 200% 0; } to { background-position: 0% 0; } }
+.viewer-img::after { content: ''; position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(127, 230, 255, 0.7), transparent); animation: scan 5s linear infinite; pointer-events: none; }
+@keyframes scan { from { top: 0; } to { top: 100%; } }
+.ch-num { animation: flick 6s steps(1) infinite; }
+@keyframes flick { 0%, 96%, 100% { opacity: 1; } 97% { opacity: .3; } 98% { opacity: 1; } 99% { opacity: .5; } }
+
+/* Scenario gauges */
+.tank { position: relative; height: 96px; margin-top: 12px; border: 1px solid var(--line-2); border-radius: 10px; overflow: hidden; background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(72, 214, 255, 0.04)); }
+.tank-water { position: absolute; left: 0; right: 0; bottom: 0; height: 0; background: linear-gradient(180deg, rgba(72, 214, 255, 0.55), rgba(40, 110, 200, 0.5)); transition: height 1.4s var(--ease); }
+.tank-water svg { position: absolute; left: 0; bottom: 100%; width: 200%; height: 14px; margin-bottom: -1px; fill: rgba(72, 214, 255, 0.55); animation: wave 5s linear infinite; }
+@keyframes wave { to { transform: translateX(-50%); } }
+.tank-mark { position: absolute; left: 8px; right: 0; border-top: 1px dashed var(--line-2); font-family: var(--mono); font-size: 9.5px; color: var(--ink-3); padding-left: 2px; line-height: 0; }
+.tank-now { position: absolute; right: 10px; bottom: 8px; font-family: var(--mono); font-size: 11px; color: var(--ink); }
+.thermo { position: relative; height: 14px; margin: 14px 0 20px; border-radius: 99px; background: rgba(255, 255, 255, 0.07); }
+.thermo-fill { height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, #7fe6ff, #ffd166 35%, #ff9447 60%, #ff4d6d); background-size: 600px 100%; transition: width 1.4s var(--ease); box-shadow: 0 0 16px rgba(255, 148, 71, 0.5); }
+.thermo span { position: absolute; top: 18px; transform: translateX(-50%); font-family: var(--mono); font-size: 9.5px; color: var(--ink-3); }
+.thermo span::before { content: ''; position: absolute; left: 50%; top: -18px; height: 14px; border-left: 1px solid rgba(255, 255, 255, 0.35); }
+
+@media (prefers-reduced-motion: reduce) {
+  body::before, .ecg path, .sweep, .viewer-img::after, .ripple-stage::before, .ripple-stage::after, .ch-num, .front, .tank-water svg, .feed-item, .bar span { animation: none !important; }
+  .chart .draw { stroke-dashoffset: 0; } .chart .grow { transform: none; } .chart circle { opacity: 1; }
+}

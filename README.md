@@ -44,6 +44,87 @@ npm run build && npm run preview
 | **Science Mode** | Granule IDs, orbits, polarizations, georeferencing error, processing, uncertainty, the live ASF archive, and product links |
 | **Provenance** | Machine-readable data class on everything; LIVE / CACHED / ARCHIVED / UNAVAILABLE status always visible |
 
+## The Mission (the story, on the globe)
+
+**▶ THE MISSION** plays the whole story on the globe itself — one cinematic sequence of 15 acts, no separate page. The camera flies between real places while a lower-third panel carries the narrative, the figures and their sources:
+
+pulse (live vital signs) → the warming (year-by-year stripes over today's sea temperature) → live disasters → the year's seven events, each over that day's real VIIRS imagery → Nepal under the lens (before/after HLS images draped on the terrain) → the ripple effect through seven systems → reading the signals (NASA rainfall before Cyclone Ditwah) → the forecast (hazard-signal index for 24 cities) → your turn (probe any place).
+
+Controls: play/pause, previous/next, click the progress bar to jump, arrow keys, space, Esc. Touching the globe pauses it. Deep link: `/?mission` or `/?mission=<act id>`. Code: `src/platform/mission.js`.
+
+The earlier scroll page (`story.html`) is still in the repo with its charts and "how we calculated this" notes, but it is no longer linked from the app.
+
+## Mission Control (on the globe)
+
+The ◈ MISSION CONTROL dock turns the globe into a working tool:
+
+- **LAYERS** — 11 NASA observation layers draped on the globe from [NASA GIBS](https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/gibs-api), with a 14-day time-lapse: radar backscatter, radar surface water and vegetation-disturbance alerts ([OPERA, NASA JPL](https://www.jpl.nasa.gov/go/opera)), soil moisture (SMAP, JPL), sea surface temperature (MUR, JPL PO.DAAC), IMERG rainfall, MODIS flood detection, land temperature, snow, aerosol and true colour. Plus the [NASA Global Landslide Catalog](https://data.nasa.gov/dataset/global-landslide-catalog-export) from data.nasa.gov (11,033 events, 1988–2017; rebuild with `node tools/build_landslides.mjs`).
+- **Hazard and exposure layers** — eight more from NASA SEDAC (catalogued on data.nasa.gov, served by GIBS): population density 2020 (GPW v4), built-up extent (Landsat HBASE), and the Natural Disaster Hotspots maps for landslide, flood frequency, flood mortality risk, cyclone, drought and volcano. Each event and each probed place offers the ones relevant to it as one-click context chips; The Mission uses population in the forecast act and landslide hazard in the ripple act.
+- **NASA references, linked where relevant** — resources that need an Earthdata login or have no open endpoint are linked from the events they concern and listed in the DATA tab with an amber ring: LHASA landslide nowcast, High Mountain Asia glacial lake inventory, JPL ARIA damage maps (earthquakes), NASA Disasters Mapping Portal (every event), NISAR orbit and observation-plan products.
+- **PROBE** — click anywhere, search, or use your location: hazard-signal index, landslide history within 50 km, what to do, and a jump into the NISAR change engine.
+- **ALERTS** — live M 5+ earthquakes and open events; click to fly there and probe.
+- **PROBE → next 7 days** — a real forecast for the place (rain, temperature, wind from [Open-Meteo](https://open-meteo.com/); river flow from Copernicus GloFAS — not NASA products), the rain signal projected a week ahead, and a what-if simulator: add rain and watch the signal respond.
+- **EVENTS** — the year's seven major disasters pinned worldwide, with a fly-through tour and links into the story (`/?event=<id>`, `/?probe=lat,lon,name`).
+- **DATA** — every dataset, API and JPL resource in use: who publishes it, what it is used for, how it is wired in, and a live status dot (`src/platform/registry.js`).
+- **Sound** — optional, off by default (♪ SOUND). All sounds are synthesised in the browser with the Web Audio API (`src/platform/sound.js`); there are no audio files.
+- **EARTH TODAY** — full-disc photos of the sunlit Earth from [NASA EPIC / DSCOVR](https://epic.gsfc.nasa.gov/) (listed on [api.nasa.gov](https://api.nasa.gov/)), played as a rotation.
+
+## The Story (story.html)
+
+A scroll-driven narrative at `/story.html`, linked from the globe (◉ THE STORY). Eight chapters, all on real data:
+
+1. **The Pulse** — live temperature, CO₂, sea level and Arctic sea ice.
+2. **The Warming** — warming stripes and the long records since 1880 / 1958 / 1992 / 1979.
+3. **When Earth Breaks** — live 3D globe of open events and earthquakes, filterable by type, region, time and magnitude, with an alert feed.
+4. **The Ripple Effect** — one disaster followed through environment → economy → finance → GDP → health → mind → society.
+5. **Nepal Under the Lens** — the 26 Aug 2026 Langtang glacier collapse: before/after imagery with zoom, an in-browser NISAR change map (19 → 31 Aug passes), area map, timeline, causes.
+6. **A Year of Disasters** — seven events (13 Nov 2025 – 13 Nov 2026) with a daily NASA imagery scrubber, time-lapse, layer toggles, cause explorer, research links and an impact calculator.
+7. **Reading the Signals** — NASA POWER rain and heat before each event, and live fire density.
+8. **The Forecast** — a transparent hazard-signal index for 24 cities or any searched place, preparedness guidance, and IPCC AR6 scenario tools.
+
+Every number has a source link, a LIVE / ARCHIVED / DERIVED label and a "How we calculated this" note. If a source is down, a dated snapshot from `public/data/story/` is shown; refresh it with `npm run snapshot:story`.
+
+### Watch it drive itself
+
+```bash
+node tools/walkthrough.mjs   # opens a visible Chrome window and walks through the NASA sources and the platform
+```
+
+### Deploy
+
+```bash
+npm run build && npm start     # serves dist/ + the API on $PORT (default 8080)
+```
+
+`render.yaml` is included for a one-click Render deploy. A static-only host also works, but then live panels fall back to the archived snapshots.
+
+### Data, APIs and research used by the story
+
+| Source | Used for |
+|---|---|
+| [NASA GISTEMP v4](https://data.giss.nasa.gov/gistemp/) | Global temperature record |
+| [NASA GIBS / Worldview Snapshots](https://wvs.earthdata.nasa.gov/) | VIIRS, MODIS and HLS imagery; fire overlays |
+| [Harmonized Landsat Sentinel-2 (HLS)](https://www.earthdata.nasa.gov/data/projects/hls) | Nepal before/after images |
+| [NASA POWER](https://power.larc.nasa.gov/) | Daily rain and temperature, 2001–2025 climatology |
+| [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/) | Active fires, fire density |
+| [NASA EONET v3](https://eonet.gsfc.nasa.gov/) | Open natural events |
+| [NASA CMR](https://cmr.earthdata.nasa.gov/) / [ASF DAAC](https://search.asf.alaska.edu/) | NISAR L2 GCOV / GUNW (NASA/JPL-Caltech × ISRO) |
+| [NISAR mission, NASA JPL](https://nisar.jpl.nasa.gov/) | Mission reference |
+| [NSIDC Sea Ice Index v4](https://nsidc.org/data/g02135) (NASA NSIDC DAAC) | Arctic sea ice |
+| [NASA Vital Signs](https://climate.nasa.gov/vital-signs/) · [NASA Sea Level Change](https://sealevel.nasa.gov/) | Reference for the vital signs |
+| [NOAA GML Mauna Loa CO₂](https://gml.noaa.gov/ccgg/trends/) | Carbon dioxide |
+| [NOAA Laboratory for Satellite Altimetry](https://www.star.nesdis.noaa.gov/socd/lsa/SeaLevelRise/) | Sea level (TOPEX → Sentinel-6) |
+| [USGS Earthquake Hazards Program](https://earthquake.usgs.gov/) · [GDACS](https://www.gdacs.org/) | Earthquakes, alerts |
+| [World Bank Open Data](https://data.worldbank.org/) | GDP and population for the impact calculator |
+| [IPCC AR6 WG1](https://www.ipcc.ch/report/ar6/wg1/) (Table SPM.1, Table 9.9) | Scenario tools |
+| Shugar et al. 2020, World Weather Attribution 2026, World Bank GRADE 2025, Munich Re / Swiss Re 2026 | Research figures (full list on the page under Sources) |
+
+Event figures were compiled on 13 Nov 2026 from the sources linked beside each number (several via Wikipedia event pages that compile agency reports); 2026 tolls are still being revised.
+
+### AI disclosure
+
+The story page (`story.html`, `src/story/`, `src/core/risk.js`, `server/providers/vitals.js`, `server/providers/risk.js`, `server/prod.js`, `test/story.test.mjs`, `src/story/motion.*`, `src/platform/` (Mission Control, The Mission, sound), `tools/build_landslides.mjs`, `tools/walkthrough.mjs`) was written with AI assistance (Claude). AI-assisted files say so in their header comment. No AI-generated images are used: all imagery is NASA satellite data.
+
 ## Docs
 
 [ARCHITECTURE.md](ARCHITECTURE.md) · [DATA_SOURCES.md](DATA_SOURCES.md) · [PROVENANCE.md](PROVENANCE.md) · [EARTH_STORIES.md](EARTH_STORIES.md) · [SCIENCE_MODEL.md](SCIENCE_MODEL.md)
