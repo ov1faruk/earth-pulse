@@ -93,7 +93,6 @@ export function createLivingEarth(app) {
       if (typeof picked.id === 'number') {
         if (picked.collection === col.radar) p = { kind: 'radar', record: d.radar.hotspots[picked.id] };
         else if (picked.collection === col.fires) p = { kind: 'fire', record: d.fires.fires[picked.id] };
-        else if (picked.collection === col.quakes) p = { kind: 'quake', record: d.quakes.quakes[picked.id] };
         else if (picked.collection === col.events) p = { kind: 'event', record: d.events.events[picked.id] };
       } else if (picked.id?.live === 'nisar') p = { kind: 'nisar', record: d.nisar.granules[picked.id.i] };
     }
@@ -172,7 +171,7 @@ export function createLivingEarth(app) {
       const b = e.target.closest('[data-feed]');
       if (!b) return;
       const it = feedItems[Number(b.dataset.feed)];
-      const rec = it.kind === 'fire' ? live.data.fires.fires[it.i] : it.kind === 'quake' ? live.data.quakes.quakes[it.i] : it.kind === 'event' ? live.data.events.events[it.i] : live.data.nisar.granules[it.i];
+      const rec = it.kind === 'fire' ? live.data.fires.fires[it.i] : it.kind === 'event' ? live.data.events.events[it.i] : live.data.nisar.granules[it.i];
       app.cam.idleSpin(false);
       app.cam.flyToLocation({ lon: it.lon, lat: it.lat, height: it.kind === 'fire' ? 250000 : 900000, pitch: -60, duration: 3 });
       openCard({ kind: it.kind, i: it.i, record: rec });

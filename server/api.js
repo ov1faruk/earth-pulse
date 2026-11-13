@@ -5,11 +5,12 @@ import zlib from 'node:zlib';
 import { promises as fsp } from 'node:fs';
 import { NISARDataProvider } from './providers/nisar.js';
 import { getGroup, getByNorad, ALLOWED_GROUPS } from './providers/space.js';
-import { getUsgsEvent, geocode, getEpic } from './providers/context.js';
-import { getFires, getQuakes, getEvents, getNisarRecent } from './providers/live.js';
+import { geocode, getEpic } from './providers/context.js';
+import { getFires, getEvents, getNisarRecent } from './providers/live.js';
 import { getVitals } from './providers/vitals.js';
 import { getOutlook } from './providers/outlook.js';
-import { getRiskAt, getRiskMap, getSignalSeries, getEconomy, getFireDensity } from './providers/risk.js';
+import { getRiskAt, getRiskMap, getSignalSeries, getFireDensity } from './providers/risk.js';
+import { getPulse } from './providers/pulse.js';
 import { STORIES, storyById } from '../src/core/stories.js';
 import { resolveStory } from '../src/core/storyModel.js';
 
@@ -49,18 +50,8 @@ async function buildStory(id) {
   const story = storyById(id);
   if (!story) return null;
   const manifest = await readManifest(id);
-  let contextEvent = null;
-  let contextError = null;
-  if (story.contextEvent?.provider === 'USGS') {
-    try {
-      contextEvent = (await getUsgsEvent(story.contextEvent.eventId)).event;
-    } catch (e) {
-      contextError = 'USGS context temporarily unavailable';
-    }
-  }
-  const resolved = resolveStory(story, manifest, { contextEvent, freshness: 'ARCHIVED' });
-  if (contextError) resolved.contextError = contextError;
-  return resolved;
+  // Event context (e.g. the Kumamoto earthquake time) is stored with the story, not fetched.
+  return resolveStory(story, manifest, { contextEvent: story.contextEvent?.event || null, freshness: 'ARCHIVED' });
 }
 
 // Tiny router: [method, pattern, handler(params, query)]
@@ -155,11 +146,8 @@ const routes = [
   // returns the TLE and states that explicitly rather than inventing a schedule.
   ['GET', /^\/api\/satellites\/(\d{1,6})\/passes$/, async ([id]) => ({ ...(await getByNorad(id)), note: 'Pass times are propagated client-side from this TLE with SGP4 (satellite.js). They are predictions of geometry, not acquisition plans.' })],
 
-  ['GET', /^\/api\/context\/usgs\/([a-z0-9]+)$/, async ([id]) => getUsgsEvent(id)],
-
   // ---------- LIVING EARTH ----------
   ['GET', /^\/api\/live\/fires$/, async () => getFires()],
-  ['GET', /^\/api\/live\/quakes$/, async () => getQuakes()],
   ['GET', /^\/api\/live\/events$/, async () => getEvents()],
   ['GET', /^\/api\/live\/fires\/density$/, async () => getFireDensity()],
   ['GET', /^\/api\/live\/nisar$/, async (_, q) => getNisarRecent(Number(q.get('days')) || 3)],
@@ -185,7 +173,11 @@ const routes = [
     return getRiskAt(lat, lon, (q.get('name') || '').slice(0, 80) || null);
   }],
   ['GET', /^\/api\/risk\/map$/, async () => getRiskMap()],
-  ['GET', /^\/api\/economy\/([A-Z]{3})$/, async ([iso3]) => getEconomy(iso3)],
+  ['GET', /^\/api\/pulse$/, async (_, q) => {
+    const lat = num(q.get('lat')), lon = num(q.get('lon'));
+    if (!validLatLon(lat, lon)) throw Object.assign(new Error('lat/lon required'), { status: 400 });
+    return getPulse(lat, lon, (q.get('name') || '').slice(0, 80) || null);
+  }],
 ];
 
 /** Connect-style handler for every /api/* route (used by Vite and by server/prod.js). */
@@ -207,7 +199,7 @@ export async function handleApi(req, res, next) {
 /** Warm the live caches so the first visitor sees a living planet quickly. */
 export function warmCaches() {
   setTimeout(() => {
-    for (const f of [getQuakes, getEvents, () => getNisarRecent(3), getFires, getVitals]) f().catch(() => {});
+    for (const f of [getEvents, () => getNisarRecent(3), getFires, getVitals]) f().catch(() => {});
   }, 500);
 }
 

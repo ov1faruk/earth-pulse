@@ -1,0 +1,58 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Inter, sans-serif; color: #fff; }
+    #s7-wipe { position: absolute; inset: 0; background: #0d1b3a; }
+    #s7-svg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    #s7-frame { position: absolute; left: 1050px; top: 60px; width: 760px; height: 960px; border-radius: 34px; overflow: hidden; background: #070a10; border: 1px solid rgba(255,255,255,.25); box-shadow: 0 50px 120px rgba(0,10,30,.7); }
+    #s7-card { position: absolute; left: 0; top: 0; width: 760px; }
+    #s7-kick { position: absolute; left: 120px; top: 90px; font: 500 28px 'IBM Plex Mono', monospace; letter-spacing: .2em; color: #9fd8ff; }
+    #s7-h { position: absolute; left: 112px; top: 136px; font-size: 124px; font-weight: 700; letter-spacing: -.04em; line-height: 1; white-space: nowrap; }
+    .s7-f { position: absolute; left: 120px; width: 900px; }
+    .s7-f b { display: block; font-size: 66px; font-weight: 700; letter-spacing: -.03em; line-height: 1; }
+    .s7-f i { display: block; font-style: normal; font-size: 30px; font-weight: 400; color: rgba(255,255,255,.9); margin-top: 6px; }
+  </style>
+  <div id="root" data-composition-id="s7" data-width="1920" data-height="1080">
+    <div id="s7-wipe">
+      <svg id="s7-svg" viewBox="0 0 1920 1080">
+        <defs><linearGradient id="s7-g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1b3a" /><stop offset=".6" stop-color="#3f6a9c" /><stop offset="1" stop-color="#b9d6ee" /></linearGradient>
+          <linearGradient id="s7-g2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#030811" stop-opacity=".55" /><stop offset=".5" stop-color="#030811" stop-opacity=".2" /><stop offset="1" stop-color="#030811" stop-opacity=".6" /></linearGradient></defs>
+        <rect width="1920" height="1080" fill="url(#s7-g1)" />
+        <g fill="#fff" opacity=".8"><circle cx="300" cy="120" r="2.5" /><circle cx="620" cy="80" r="2" /><circle cx="900" cy="170" r="2.5" /><circle cx="1240" cy="70" r="2" /><circle cx="1650" cy="140" r="2.5" /><circle cx="1800" cy="60" r="2" /></g>
+        <g transform="translate(-430 0)"><g id="s7-far"><path d="M-100 760 L260 520 L420 640 L640 380 L820 600 L1000 470 L1180 660 L1400 430 L1620 640 L2020 500 L2500 620 V1080 H-100Z" fill="#5f86b3" opacity=".7" />
+          <path d="M640 380 L700 452 L660 470 L610 440 L575 458Z M1400 430 L1470 505 L1420 500 L1380 520 L1345 495Z" fill="#eef6ff" opacity=".9" /></g>
+        <g id="s7-near"><path d="M-100 1080 L-100 900 L380 760 L760 600 L1100 420 L1250 300 L1330 240 L1420 330 L1560 470 L1760 640 L2500 1000 V1080Z" fill="#16304f" />
+          <path d="M1330 240 L1420 330 L1470 380 L1400 372 L1350 410 L1300 360 L1230 372 L1250 300Z" fill="#f4f9ff" />
+          <path d="M968 536 C820 610 640 680 420 760" stroke="#ffb347" stroke-width="3" fill="none" stroke-dasharray="2 12" stroke-linecap="round" />
+          <g id="s7-man" fill="#04101f" stroke="#04101f" stroke-linecap="round">
+            <circle cx="1010" cy="402" r="15" /><path d="M1006 420 l-10 62" stroke-width="28" /><rect x="970" y="418" width="24" height="46" rx="8" />
+            <path d="M990 484 l-22 52 M1004 484 l26 46" stroke-width="12" /><path d="M1016 432 l40 -18" stroke-width="9" /><path d="M1056 414 l10 70" stroke-width="5" /><path d="M1050 414 l22 -6" stroke-width="7" />
+          </g></g></g>
+        <path d="M-100 1080 L-100 980 L500 860 L900 800 L1300 900 L2020 840 V1080Z" fill="#0a1a2e" />
+        <rect width="1920" height="1080" fill="url(#s7-g2)" />
+      </svg>
+      <div id="s7-frame"><img id="s7-card" src="assets/card_climber_langtang.png" alt="" /></div>
+      <div id="s7-kick">FOR THE CLIMBER · LANGTANG, NEPAL</div>
+      <div id="s7-h">The mountain.</div>
+      <div class="s7-f" id="s7-f1" style="top:640px"><b>4,740 m</b><i>freezing level — above your 4,500 m objective</i></div>
+      <div class="s7-f" id="s7-f2" style="top:776px"><b>−192 cm</b><i>of snow on the ground in one week</i></div>
+      <div class="s7-f" id="s7-f3" style="top:912px"><b>32 landslides</b><i>recorded within 50 km · NASA catalog</i></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s7-wipe", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "power3.inOut" }, 0);
+      tl.fromTo("#s7-far", { x: 40, y: 30 }, { x: -30, y: 0, duration: 7.8, ease: "sine.out" }, 0);
+      tl.fromTo("#s7-near", { x: 90, y: 70 }, { x: -60, y: 0, duration: 7.8, ease: "sine.out" }, 0);
+      tl.fromTo("#s7-man", { x: -64, y: 34 }, { x: 0, y: 0, duration: 7.8, ease: "none" }, 0);
+      tl.fromTo("#s7-kick", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.45);
+      tl.fromTo("#s7-h", { opacity: 0, y: 70, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.5);
+      tl.fromTo("#s7-frame", { y: 1100 }, { y: 0, duration: 0.8, ease: "expo.out" }, 0.9);
+      tl.fromTo("#s7-card", { y: -440 }, { y: -440, duration: 0.01 }, 0);
+      tl.to("#s7-card", { y: -700, duration: 1.2, ease: "power2.inOut" }, 3.4);
+      [["#s7-f1", 1.7], ["#s7-f2", 3.2], ["#s7-f3", 5.1]].forEach(([s, t]) =>
+        tl.fromTo(s, { opacity: 0, x: -120, filter: "blur(14px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, t));
+      window.__timelines["s7"] = tl;
+    })();
+  </script>
+</template>

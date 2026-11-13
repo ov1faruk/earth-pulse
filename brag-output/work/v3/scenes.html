@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8" />
+<title>EARTH//PULSE — film scenes</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root { --cyan: #7fe6ff; --amber: #ffb347; --red: #ff6b4d; --ink: #04060a; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); color: #fff; font-family: 'Inter Tight', system-ui, sans-serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: .16em; text-transform: uppercase; }
+  .scene { position: absolute; inset: 0; display: none; }
+  .scene.on { display: block; }
+  .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .shade { position: absolute; inset: 0; }
+  .kicker { font: 500 20px 'IBM Plex Mono', monospace; letter-spacing: .22em; text-transform: uppercase; color: var(--cyan); }
+  h1 { font-weight: 600; letter-spacing: -.02em; line-height: 1.02; }
+
+  /* ---------- phone weather widget (our own generic design) ---------- */
+  .phone { position: absolute; width: 430px; height: 860px; border-radius: 64px; background: #0b0d12; border: 3px solid #2a2f3a; box-shadow: 0 60px 140px rgba(0,0,0,.7), inset 0 0 0 10px #000; padding: 26px; }
+  .phone .notch { width: 130px; height: 34px; border-radius: 20px; background: #000; margin: 4px auto 18px; }
+  .wx { height: 740px; border-radius: 44px; padding: 44px 36px; background: linear-gradient(170deg, #4aa3f0 0%, #7cc4ff 55%, #f8d58a 100%); color: #fff; position: relative; overflow: hidden; }
+  .wx .city { font-size: 34px; font-weight: 600; }
+  .wx .cond { font-size: 22px; opacity: .92; margin-top: 4px; }
+  .wx .temp { font-size: 190px; font-weight: 300; line-height: 1; margin: 34px 0 0 -8px; letter-spacing: -.05em; }
+  .wx .sun { position: absolute; right: -40px; top: 150px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, #fff7c2 0%, #ffd95a 55%, rgba(255,217,90,0) 72%); }
+  .wx .row { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.35); font-size: 22px; }
+  .wx .row b { display: block; font-size: 34px; font-weight: 600; margin-top: 4px; }
+  .wx .days { display: flex; justify-content: space-between; margin-top: 44px; font-size: 20px; text-align: center; }
+  .wx .days i { display: block; width: 26px; height: 26px; border-radius: 50%; background: #ffe27a; margin: 10px auto; font-style: normal; }
+
+  /* ---------- hook ---------- */
+  #h1 .phone, #h2 .phone { left: 240px; top: 110px; }
+  #h1 .cap { position: absolute; left: 800px; top: 400px; width: 900px; }
+  #h1 .cap h1 { font-size: 96px; margin-top: 22px; }
+  #h1 .cap p { font-size: 34px; color: rgba(255,255,255,.7); margin-top: 26px; font-weight: 300; }
+  #h2 .phone { transform: scale(.82); transform-origin: left center; left: 150px; filter: saturate(.55) brightness(.75); }
+  #h2 .right { position: absolute; left: 700px; top: 120px; width: 1080px; }
+  #h2 h1 { font-size: 64px; margin: 18px 0 40px; }
+  .stat { display: flex; align-items: center; gap: 34px; padding: 30px 38px; border-radius: 26px; background: rgba(8,11,17,.78); border: 1px solid rgba(255,255,255,.16); margin-bottom: 22px; backdrop-filter: blur(14px); opacity: 0; }
+  .stat.show { opacity: 1; }
+  .stat .n { font-size: 108px; font-weight: 600; letter-spacing: -.04em; line-height: 1; min-width: 330px; }
+  .stat .t { font-size: 34px; font-weight: 500; }
+  .stat .s { font: 400 17px 'IBM Plex Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-top: 10px; }
+  #h3 .c { position: absolute; left: 160px; right: 160px; top: 250px; }
+  #h3 .a { font-size: 62px; font-weight: 300; color: rgba(255,255,255,.72); }
+  #h3 .b { font-size: 118px; font-weight: 600; letter-spacing: -.03em; line-height: 1.02; margin-top: 30px; }
+  #h3 .b em { font-style: normal; color: var(--cyan); }
+  .logo { font: 600 34px 'Inter Tight'; letter-spacing: .34em; }
+  .logo i { font-style: normal; color: var(--cyan); }
+
+  /* ---------- team ---------- */
+  #team { background: radial-gradient(1200px 700px at 50% 0%, #10202e 0%, var(--ink) 70%); }
+  #team .head { position: absolute; left: 0; right: 0; top: 92px; text-align: center; }
+  #team .head h1 { font-size: 104px; letter-spacing: .08em; margin-top: 16px; }
+  #team .head p { font-size: 28px; color: rgba(255,255,255,.66); margin-top: 14px; font-weight: 300; }
+  #team .cards { position: absolute; left: 110px; right: 110px; top: 420px; display: flex; gap: 28px; }
+  #team .m { flex: 1; text-align: center; padding: 34px 18px 30px; border-radius: 28px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); opacity: .28; transform: scale(.94); }
+  #team .m.hi { opacity: 1; transform: scale(1.06); border-color: var(--cyan); background: rgba(127,230,255,.08); box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+  #team.all .m { opacity: 1; transform: none; }
+  #team .m img { width: 190px; height: 190px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,.85); }
+  #team .m b { display: block; font-size: 27px; font-weight: 600; margin-top: 22px; line-height: 1.15; min-height: 62px; }
+  #team .m span { display: block; font: 500 14px 'IBM Plex Mono', monospace; letter-spacing: .16em; text-transform: uppercase; color: var(--cyan); margin-top: 12px; line-height: 1.5; }
+
+  /* ---------- persona ad scenes ---------- */
+  .persona .txt { position: absolute; left: 130px; bottom: 120px; width: 1100px; }
+  .persona h1 { font-size: 150px; margin-top: 18px; }
+  .persona p { font-size: 46px; font-weight: 300; margin-top: 22px; color: rgba(255,255,255,.9); line-height: 1.2; }
+  .persona svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* ---------- bridge / next / outro ---------- */
+  .center { position: absolute; left: 160px; right: 160px; top: 50%; transform: translateY(-50%); }
+  #bridge h1 { font-size: 112px; margin-top: 24px; }
+  #bridge p { font-size: 38px; font-weight: 300; color: rgba(255,255,255,.75); margin-top: 28px; }
+  #next .items { display: flex; gap: 30px; margin-top: 54px; }
+  #next .it { flex: 1; padding: 44px 38px; border-radius: 28px; background: rgba(8,11,17,.72); border: 1px solid rgba(255,255,255,.16); backdrop-filter: blur(12px); }
+  #next .it b { font-size: 44px; font-weight: 600; display: block; line-height: 1.1; }
+  #next .it span { font-size: 26px; color: rgba(255,255,255,.7); display: block; margin-top: 16px; font-weight: 300; line-height: 1.3; }
+  #next h1 { font-size: 88px; margin-top: 20px; }
+  #outro { text-align: center; }
+  #outro .logo { font-size: 92px; }
+  #outro .tag { font-size: 54px; font-weight: 300; margin-top: 34px; }
+  #outro .tag b { font-weight: 600; color: var(--cyan); }
+  #outro .names { font-size: 24px; color: rgba(255,255,255,.8); margin-top: 70px; }
+  #outro .fine { font: 400 15px 'IBM Plex Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-top: 22px; line-height: 2; }
+</style></head>
+<body>
+
+<!-- h1: the weather app -->
+<section class="scene" id="h1" style="background: radial-gradient(1100px 800px at 24% 50%, #17324a 0%, #04060a 70%)">
+  <div class="phone"><div class="notch"></div><div class="wx"><div class="sun"></div>
+    <div class="city">Ludhiana</div><div class="cond">Sunny</div><div class="temp">29°</div>
+    <div class="row"><div>Rain<b>0%</b></div><div>Wind<b>6 km/h</b></div><div>Low<b>18°</b></div></div>
+    <div class="days"><div>Fri<i></i>29°</div><div>Sat<i></i>29°</div><div>Sun<i></i>27°</div><div>Mon<i></i>26°</div><div>Tue<i></i>25°</div></div>
+  </div></div>
+  <div class="cap"><div class="kicker">Punjab · this morning</div><h1>Sunny. 29°.<br />No rain.</h1><p>That's what the weather app says.</p></div>
+</section>
+
+<!-- h2: what NASA sees -->
+<section class="scene" id="h2">
+  <img class="bg" src="smoke.jpg" alt="" /><div class="shade" style="background: linear-gradient(90deg, rgba(4,6,10,.9) 0%, rgba(4,6,10,.62) 45%, rgba(4,6,10,.35) 100%)"></div>
+  <div class="phone"><div class="notch"></div><div class="wx"><div class="sun"></div><div class="city">Ludhiana</div><div class="cond">Sunny</div><div class="temp">29°</div>
+    <div class="row"><div>Rain<b>0%</b></div><div>Wind<b>6 km/h</b></div><div>Low<b>18°</b></div></div></div></div>
+  <div class="right"><div class="kicker">Same place · same morning · seen by NASA</div><h1>What the weather app can't tell you.</h1>
+    <div class="stat" data-k="1"><div class="n" style="color: var(--red)">74</div><div><div class="t">fires burning within 50 km</div><div class="s">NASA FIRMS · VIIRS · last 24 hours</div></div></div>
+    <div class="stat" data-k="2"><div class="n" style="color: var(--amber)">28 days</div><div><div class="t">without real rain — soil at 19%</div><div class="s">NASA POWER · IMERG · GWETTOP</div></div></div>
+    <div class="stat" data-k="3"><div class="n" style="color: var(--amber)">+5.2 °C</div><div><div class="t">warmer than a normal week</div><div class="s">NASA POWER · MERRA-2 · vs 2001–2025</div></div></div>
+  </div>
+</section>
+
+<!-- h3: the line -->
+<section class="scene" id="h3">
+  <img class="bg" src="smoke.jpg" alt="" /><div class="shade" style="background: rgba(4,6,10,.8)"></div>
+  <div class="c"><div class="a">Your weather app tells you if it will rain.</div>
+    <div class="b"><em>EARTH//PULSE</em> tells you<br />what the weather will do.</div></div>
+</section>
+
+<!-- team -->
+<section class="scene" id="team">
+  <div class="head"><div class="kicker">NASA Space Apps 2026 · Bangladesh</div><h1>THE L-BAND</h1><p>Named after the radar band NISAR uses to see through clouds.</p></div>
+  <div class="cards">
+    <div class="m"><img src="../../../Team/Mohammad%20Golam%20Faruk%20Ovi.jpeg" /><b>Mohammad Golam Faruk Ovi</b><span>Team lead · system &amp; solution architect</span></div>
+    <div class="m"><img src="../../../Team/Md.Zaharabi%20Bhuiyain%20Rafi.jpeg" /><b>Md. Zaharabi Bhuiyain Rafi</b><span>Product analyst</span></div>
+    <div class="m"><img src="../../../Team/Mohammad%20Mushfiq%20Us%20Saleheen.jpeg" /><b>Mohammad Mushfiq Us Saleheen</b><span>AI engineer</span></div>
+    <div class="m"><img src="../../../Team/Rezaul%20Karim%20Anik.jpeg" /><b>Rezaul Karim Anik</b><span>System researcher</span></div>
+    <div class="m"><img src="../../../Team/Rifah%20Tamanna.jpeg" /><b>Rifah Tamanna</b><span>Communication &amp; coordination</span></div>
+  </div>
+</section>
+
+<!-- EVERYONE: city at dusk, a family on the riverbank -->
+<section class="scene persona" id="p_everyone">
+  <svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="e1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101a3a" /><stop offset=".55" stop-color="#5a3f73" /><stop offset="1" stop-color="#f08a5d" /></linearGradient></defs>
+    <rect width="1920" height="1080" fill="url(#e1)" />
+    <g fill="#1b1f3d" opacity=".9"><rect x="980" y="430" width="90" height="400" /><rect x="1080" y="350" width="120" height="480" /><rect x="1210" y="470" width="80" height="360" /><rect x="1300" y="300" width="140" height="530" /><rect x="1450" y="420" width="100" height="410" /><rect x="1560" y="360" width="130" height="470" /><rect x="1700" y="480" width="110" height="350" /><rect x="1815" y="400" width="105" height="430" /></g>
+    <g fill="#ffd98a" opacity=".85"><rect x="1100" y="380" width="14" height="18" /><rect x="1140" y="430" width="14" height="18" /><rect x="1160" y="520" width="14" height="18" /><rect x="1330" y="340" width="14" height="18" /><rect x="1380" y="400" width="14" height="18" /><rect x="1350" y="500" width="14" height="18" /><rect x="1400" y="600" width="14" height="18" /><rect x="1590" y="400" width="14" height="18" /><rect x="1640" y="470" width="14" height="18" /><rect x="1600" y="560" width="14" height="18" /><rect x="1010" y="470" width="14" height="18" /><rect x="1480" y="460" width="14" height="18" /><rect x="1740" y="520" width="14" height="18" /><rect x="1850" y="450" width="14" height="18" /></g>
+    <path d="M0 830 H1920 V1080 H0Z" fill="#141631" />
+    <path d="M0 880 C400 850 900 910 1920 860 V1080 H0Z" fill="#2b3a6b" opacity=".8" />
+    <g stroke="#ffb98a" stroke-width="3" opacity=".5"><path d="M900 905 h240" /><path d="M1250 930 h320" /><path d="M1000 965 h200" /><path d="M1500 900 h180" /></g>
+    <path d="M0 850 C300 820 700 840 1050 870 L1050 1080 H0Z" fill="#0b0d1f" />
+    <!-- family silhouettes -->
+    <g fill="#05060f" stroke="#05060f" stroke-linecap="round">
+      <circle cx="1500" cy="640" r="26" /><path d="M1500 668 v120" stroke-width="44" /><path d="M1488 790 v84 M1512 790 v84" stroke-width="18" /><path d="M1478 700 l-44 70" stroke-width="14" />
+      <circle cx="1400" cy="745" r="19" /><path d="M1400 766 v62" stroke-width="30" /><path d="M1392 830 v46 M1408 830 v46" stroke-width="13" /><path d="M1414 780 l22 -8" stroke-width="10" />
+      <circle cx="1600" cy="655" r="25" /><path d="M1600 682 v110" stroke-width="40" /><path d="M1590 792 v82 M1610 792 v82" stroke-width="17" /><path d="M1622 710 l30 60" stroke-width="13" />
+    </g>
+    <rect width="1920" height="1080" fill="url(#fade)" />
+    <defs><linearGradient id="fade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#04060a" stop-opacity=".88" /><stop offset=".6" stop-color="#04060a" stop-opacity=".1" /></linearGradient></defs>
+  </svg>
+  <div class="txt"><div class="kicker">For everyone</div><h1>Home.</h1><p>Is something building up<br />around the place I live?</p></div>
+</section>
+
+<!-- FARMER: hazy field at sunrise -->
+<section class="scene persona" id="p_farmer">
+  <svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="f1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2b25c" /><stop offset=".5" stop-color="#f6cf8b" /><stop offset="1" stop-color="#d9903f" /></linearGradient>
+      <linearGradient id="ffade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1c0f04" stop-opacity=".86" /><stop offset=".62" stop-color="#1c0f04" stop-opacity=".05" /></linearGradient></defs>
+    <rect width="1920" height="1080" fill="url(#f1)" />
+    <circle cx="1480" cy="330" r="120" fill="#fff3c9" opacity=".9" /><circle cx="1480" cy="330" r="210" fill="#fff3c9" opacity=".22" />
+    <path d="M0 520 C300 470 700 500 1100 480 S1700 450 1920 500 V640 H0Z" fill="#c98a45" opacity=".55" />
+    <path d="M0 590 C500 550 1300 560 1920 580 V1080 H0Z" fill="#8a5a22" />
+    <g stroke="#5e3b12" stroke-width="5" opacity=".7" fill="none"><path d="M1180 585 L-200 1080" /><path d="M1200 585 L160 1080" /><path d="M1220 585 L520 1080" /><path d="M1240 585 L880 1080" /><path d="M1260 585 L1240 1080" /><path d="M1280 585 L1600 1080" /><path d="M1300 585 L1960 1080" /><path d="M1320 585 L2320 1080" /></g>
+    <g stroke="#3f7d2c" stroke-width="7" stroke-linecap="round" opacity=".9"><path d="M300 900 v-34 M360 940 v-36 M640 830 v-28 M700 870 v-32 M930 760 v-24 M980 800 v-28 M1500 820 v-28 M1580 880 v-34 M1700 800 v-26 M1780 900 v-36 M1130 700 v-20 M1380 720 v-22" /></g>
+    <!-- smoke haze on the horizon -->
+    <g fill="#f4e6cf" opacity=".5"><ellipse cx="420" cy="520" rx="420" ry="46" /><ellipse cx="900" cy="490" rx="360" ry="38" /><ellipse cx="200" cy="470" rx="260" ry="30" /></g>
+    <!-- farmer -->
+    <g fill="#2a1706" stroke="#2a1706" stroke-linecap="round">
+      <path d="M1335 468 L1465 468 L1400 420Z" /><circle cx="1400" cy="486" r="27" />
+      <path d="M1400 516 v150" stroke-width="54" /><path d="M1384 668 v150 M1418 668 v150" stroke-width="22" />
+      <path d="M1378 540 l-58 96" stroke-width="16" /><path d="M1424 540 l64 60" stroke-width="16" />
+      <path d="M1500 470 L1478 850" stroke-width="9" /><path d="M1500 470 l44 14" stroke-width="16" />
+    </g>
+    <rect width="1920" height="1080" fill="url(#ffade)" />
+  </svg>
+  <div class="txt"><div class="kicker" style="color: #ffe3a8">For the farmer</div><h1>The field.</h1><p>Will this season help the crop —<br />or take it?</p></div>
+</section>
+
+<!-- CLIMBER: ridge at dawn -->
+<section class="scene persona" id="p_climber">
+  <svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="c1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1b3a" /><stop offset=".6" stop-color="#3f6a9c" /><stop offset="1" stop-color="#b9d6ee" /></linearGradient>
+      <linearGradient id="cfade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#030811" stop-opacity=".9" /><stop offset=".6" stop-color="#030811" stop-opacity=".05" /></linearGradient></defs>
+    <rect width="1920" height="1080" fill="url(#c1)" />
+    <g fill="#fff" opacity=".8"><circle cx="300" cy="120" r="2.5" /><circle cx="620" cy="80" r="2" /><circle cx="900" cy="170" r="2.5" /><circle cx="1240" cy="70" r="2" /><circle cx="1650" cy="140" r="2.5" /><circle cx="1800" cy="60" r="2" /><circle cx="480" cy="230" r="2" /></g>
+    <path d="M0 760 L260 520 L420 640 L640 380 L820 600 L1000 470 L1180 660 L1400 430 L1620 640 L1920 500 V1080 H0Z" fill="#5f86b3" opacity=".7" />
+    <path d="M640 380 L700 452 L660 470 L610 440 L575 458Z M1400 430 L1470 505 L1420 500 L1380 520 L1345 495Z M260 520 L310 560 L270 575 L225 560Z" fill="#eef6ff" opacity=".9" />
+    <path d="M0 1080 L0 900 L380 760 L760 600 L1100 420 L1250 300 L1330 240 L1420 330 L1560 470 L1760 640 L1920 760 V1080Z" fill="#16304f" />
+    <path d="M1330 240 L1420 330 L1470 380 L1400 372 L1350 410 L1300 360 L1230 372 L1250 300Z" fill="#f4f9ff" />
+    <path d="M0 1080 L0 980 L500 860 L900 800 L1300 900 L1920 840 V1080Z" fill="#0a1a2e" />
+    <!-- climber on the ridge -->
+    <g fill="#04101f" stroke="#04101f" stroke-linecap="round">
+      <circle cx="1010" cy="402" r="15" /><path d="M1006 420 l-10 62" stroke-width="28" /><rect x="970" y="418" width="24" height="46" rx="8" />
+      <path d="M990 484 l-22 52 M1004 484 l26 46" stroke-width="12" /><path d="M1016 432 l40 -18" stroke-width="9" /><path d="M1056 414 l10 70" stroke-width="5" /><path d="M1050 414 l22 -6" stroke-width="7" />
+    </g>
+    <path d="M968 536 C820 610 640 680 420 760" stroke="#ffb347" stroke-width="3" fill="none" stroke-dasharray="2 12" stroke-linecap="round" />
+    <rect width="1920" height="1080" fill="url(#cfade)" />
+  </svg>
+  <div class="txt"><div class="kicker">For the climber</div><h1>The mountain.</h1><p>Is the ice holding —<br />or letting go?</p></div>
+</section>
+
+<!-- bridge -->
+<section class="scene" id="bridge" style="background: radial-gradient(1000px 700px at 70% 40%, #1b1440 0%, #04060a 70%)">
+  <div class="center"><div class="kicker">Behind every card</div><h1>NISAR. Radar that sees<br />through cloud and night.</h1><p>NASA × ISRO · every 12 days · real L2 data, compared in your browser.</p></div>
+</section>
+
+<!-- next -->
+<section class="scene" id="next">
+  <img class="bg" src="smoke.jpg" alt="" /><div class="shade" style="background: rgba(4,6,10,.78)"></div>
+  <div class="center"><div class="kicker">What's next</div><h1>From a card to a habit.</h1>
+    <div class="items"><div class="it"><b>Alerts on every phone and watch</b><span>The moment your own line is crossed.</span></div><div class="it"><b>Flood warnings measured by NISAR</b><span>Calibrated radar, through cloud, for any place.</span></div><div class="it"><b>In your language</b><span>Built for the people most exposed.</span></div></div></div>
+</section>
+
+<!-- outro -->
+<section class="scene" id="outro" style="background: radial-gradient(1100px 700px at 50% 45%, #10283a 0%, #04060a 72%)">
+  <div class="center"><div class="logo">EARTH<i>//</i>PULSE</div><div class="tag">Know what the weather <b>will do.</b></div>
+    <div class="names">Mohammad Golam Faruk Ovi · Md. Zaharabi Bhuiyain Rafi · Mohammad Mushfiq Us Saleheen · Rezaul Karim Anik · Rifah Tamanna</div>
+    <div class="fine">THE L-BAND · NASA SPACE APPS 2026<br />DATA: NASA NISAR (WITH ISRO) · POWER · FIRMS · EONET · GIBS — FORECAST: OPEN-METEO<br />VOICEOVER: AI-GENERATED WITH ELEVENLABS · MUSIC: ORIGINAL, GENERATED IN CODE · ILLUSTRATIONS: ORIGINAL, DRAWN IN CODE</div></div>
+</section>
+
+<script>
+  const q = new URLSearchParams(location.search), s = q.get('s') || 'h1', k = Number(q.get('k') || 0);
+  const el = document.getElementById(s); el.classList.add('on');
+  if (s === 'h2') document.querySelectorAll('.stat').forEach((x) => { if (Number(x.dataset.k) <= k) x.classList.add('show'); });
+  if (s === 'team') { if (k === 9) el.classList.add('all'); document.querySelectorAll('#team .m').forEach((m, i) => { if (i + 1 === k) m.classList.add('hi'); }); }
+</script>
+</body></html>

@@ -22,8 +22,7 @@ export function renderLegend(el, live, { lapse } = {}) {
   const rows = [
     ['radar', '#ffffff', 'NISAR CHANGE HOTSPOTS', d.radar?.hotspots?.length, d.radar ? `scanned ${d.radar.pairsCompared} frame pairs · ${d.radar.generatedAt.slice(0, 10)}` : 'NISAR repeat pairs', ''],
     ['fires', LIVE_COLORS.fires, 'FIRE DETECTIONS', d.fires?.fires?.length, `last ${fireSpan} h · NASA FIRMS`, live.fireFilter != null ? `only ${d.fires.satellites[live.fireFilter]}` : ''],
-    ['quakes', LIVE_COLORS.quakes, 'EARTHQUAKES', d.quakes?.quakes?.length, 'M2.5+ · 30 days · USGS', ''],
-    ['events', LIVE_COLORS.events, 'NATURAL EVENTS', d.events?.events?.length, 'open · NASA EONET + GDACS', ''],
+    ['events', LIVE_COLORS.events, 'NATURAL EVENTS', d.events?.events?.length, 'open · NASA EONET', ''],
     ['nisar', LIVE_COLORS.nisarGCOV, 'NISAR IMAGES', d.nisar?.granules?.length, `last ${d.nisar?.days || 3} days · ASF/CMR`, ''],
   ];
   el.innerHTML = `
@@ -46,9 +45,8 @@ export function renderLapseProgress(el, k, times) {
   const f = (d) => (d ? `${d.toISOString().slice(5, 10).replace('-', '/')} ${d.toISOString().slice(11, 16)}` : '—');
   el.innerHTML = `<div class="lapse-bar"><div style="width:${(k * 100).toFixed(1)}%"></div></div>
     <div class="lapse-times"><span style="color:${LIVE_COLORS.fires}">FIRES ${f(times.fires)}</span>
-    <span style="color:${LIVE_COLORS.quakes}">QUAKES ${f(times.quakes)}</span>
     <span style="color:${LIVE_COLORS.nisarGCOV}">NISAR ${f(times.nisar)}</span></div>
-    <div class="lapse-note">TIME-LAPSE · each layer replays its own window (fires ~1 day · quakes 30 days · NISAR 3 days) · UTC</div>`;
+    <div class="lapse-note">TIME-LAPSE · each layer replays its own window (fires ~1 day · NISAR 3 days) · UTC</div>`;
 }
 
 export function renderLiveCard(el, pick, live, { draped } = {}) {
@@ -73,22 +71,6 @@ export function renderLiveCard(el, pick, live, { draped } = {}) {
         <button class="btn primary" data-act="follow-sat" data-norad="${d.fires.satelliteNorad[sat]}">FOLLOW ${esc(satName)}</button>
         <button class="btn" data-act="sat-fires" data-sat="${sat}">ONLY ITS FIRES</button>
         <a class="btn" href="https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@${lon},${lat},9z" target="_blank" rel="noopener">FIRMS ↗</a>
-      </div>`;
-  } else if (pick.kind === 'quake') {
-    const [lon, lat, depth, mag, time, id, place, tsunami, alert] = pick.record;
-    html = `<div class="eyebrow">EARTHQUAKE · ${tag(DATA_CLASS.REAL_CONTEXT, 'USGS')}</div>
-      <h2 style="color:${LIVE_COLORS.quakes}">THE GROUND SHOOK</h2>
-      <p style="font-size:22px;margin:4px 0 10px;color:var(--ink)">M${mag.toFixed(1)} · ${esc(place || '')}</p>
-      <dl class="kv">
-        <dt>WHEN</dt><dd>${fmtDate(new Date(time).toISOString(), { time: true })} · ${ago(time)}</dd>
-        <dt>WHERE</dt><dd>${fmtCoord(lat, lon, 2)}</dd>
-        <dt>DEPTH</dt><dd>${depth} km</dd>
-        ${alert ? `<dt>PAGER</dt><dd>${esc(alert)}</dd>` : ''}${tsunami ? '<dt>TSUNAMI</dt><dd>flag set by USGS</dd>' : ''}
-      </dl>
-      <p class="fine">Located by seismometers, not satellites. NISAR can reveal the ground deformation of larger, shallow quakes.</p>
-      <div class="btn-row">
-        <button class="btn primary" data-act="nisar-here" data-lat="${lat}" data-lon="${lon}" data-after="${time}">DID NISAR SEE IT?</button>
-        <a class="btn" href="https://earthquake.usgs.gov/earthquakes/eventpage/${esc(id)}" target="_blank" rel="noopener">USGS ↗</a>
       </div>`;
   } else if (pick.kind === 'event') {
     const e = pick.record;
@@ -130,11 +112,6 @@ export function renderLiveCard(el, pick, live, { draped } = {}) {
 export function renderFeed(el, live) {
   const d = live.data;
   const items = [];
-  const now = Date.now();
-  if (d.quakes) {
-    d.quakes.quakes.map((q, i) => ({ q, i })).filter(({ q }) => now - q[4] < 7 * 864e5).sort((a, b) => b.q[3] - a.q[3]).slice(0, 4)
-      .forEach(({ q, i }) => items.push({ kind: 'quake', i, color: LIVE_COLORS.quakes, title: `M${q[3].toFixed(1)} earthquake`, sub: `${q[6] || ''} · ${ago(q[4])}`, lat: q[1], lon: q[0] }));
-  }
   if (d.fires) {
     d.fires.fires.map((f, i) => ({ f, i })).sort((a, b) => b.f[2] - a.f[2]).slice(0, 3)
       .forEach(({ f, i }) => items.push({ kind: 'fire', i, color: LIVE_COLORS.fires, title: `Intense fire · ${f[2]} MW`, sub: `${d.fires.satellites[f[4]]} · ${fmtCoord(f[1], f[0], 1)} · ${ago(f[3] * 60000)}`, lat: f[1], lon: f[0] }));
@@ -153,7 +130,7 @@ export function renderFeed(el, live) {
   el.innerHTML = `<button class="close-x" data-act="close-feed" aria-label="Close">✕</button>
     <h2>WHAT’S HAPPENING ON EARTH</h2>
     <ul class="feed">${items.map((it, j) => `<li><button data-feed="${j}"><i style="background:${it.color}"></i><span><b>${esc(it.title)}</b><small>${esc(it.sub)}</small></span></button></li>`).join('')}</ul>
-    <p class="fine">${freshnessPill(live.status.quakes)} USGS · ${freshnessPill(live.status.fires)} FIRMS · ${freshnessPill(live.status.events)} EONET/GDACS · ${freshnessPill(live.status.nisar)} NISAR</p>`;
+    <p class="fine">${freshnessPill(live.status.fires)} FIRMS · ${freshnessPill(live.status.events)} EONET · ${freshnessPill(live.status.nisar)} NISAR</p>`;
   return items;
 }
 
@@ -162,7 +139,6 @@ export function tooltipText(pick, live) {
   if (pick.kind === 'satellite') return pick.name || 'Satellite';
   if (pick.kind === 'story') return 'Earth story: click to explore';
   if (pick.kind === 'fire') return `Fire · ${d.fires.satellites[pick.record[4]]} · ${pick.record[2]} MW`;
-  if (pick.kind === 'quake') return `M${pick.record[3].toFixed(1)} · ${pick.record[6] || ''}`;
   if (pick.kind === 'event') return `${pick.record.categoryTitle}: ${pick.record.title}`;
   if (pick.kind === 'radar') return `NISAR change hotspot · ${Math.round(pick.record.score * 100)}% of frame changed · click to compare`;
   if (pick.kind === 'nisar') return `NISAR ${pick.record.type} · ${pick.record.t.slice(0, 16).replace('T', ' ')} UTC`;

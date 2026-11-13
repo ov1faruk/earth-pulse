@@ -1,6 +1,17 @@
 # EARTH//PULSE
 
-**Watch Earth change.**
+**Your weather app tells you if it will rain. EARTH//PULSE tells you what the rain will do.**
+
+The first screen is the **Pulse card**: pick a place (search, ◎ your location, or one of 24 cities) and who you are —
+**Everyone**, **Farmer** or **Climber** — and get one plain sentence about what is building there (floods on saturated
+ground, heat, fire, drought, melt, frost, slope failure), the alerts behind it, a 7-day strip and the NASA measurements
+it comes from: NASA POWER rain / temperature / soil wetness / snow, FIRMS fires, EONET events, the Global Landslide
+Catalog and NISAR passes. Farmers set their own alert lines (heavy rain over 7 days, dry spell, heat, frost; saved on
+the device); climbers set an objective altitude and get temperatures and freezing level there. Only the 7-day forecast
+is not NASA data (Open-Meteo), and it says so. Links: `/?persona=farmer&place=23.81,90.41,Dhaka`.
+
+**OPEN THE GLOBE** loads the heavy globe tools (fires, events, NISAR footprints, ~300 satellites) only when asked;
+**◉ MY PULSE** comes back to the card. `?globe` skips the card.
 
 An interactive planetary observation experience. It lets anyone explore how
 Earth is changing, and how NISAR (NASA × ISRO) and other satellites detect those
@@ -18,7 +29,7 @@ npm run dev          # http://localhost:5173
 - `?story=kumamoto-ground` opens a story directly.
 - Keys: **G** global · **O** follow NISAR · **T** play timeline · **C** change · **S** science · **R** radar · **Esc** close.
 
-No API keys are required. The optional `VITE_CESIUM_ION_TOKEN` in `.env` enables Cesium World Terrain.
+No API keys are required. Data is NASA-only except the labelled Open-Meteo forecast (see DATA_SOURCES.md). The optional `VITE_CESIUM_ION_TOKEN` in `.env` enables Cesium World Terrain.
 
 ```bash
 npm test             # orbit math, story integrity, language rules, live feeds (23 tests)
@@ -112,10 +123,6 @@ npm run build && npm start     # serves dist/ + the API on $PORT (default 8080)
 | [NISAR mission, NASA JPL](https://nisar.jpl.nasa.gov/) | Mission reference |
 | [NSIDC Sea Ice Index v4](https://nsidc.org/data/g02135) (NASA NSIDC DAAC) | Arctic sea ice |
 | [NASA Vital Signs](https://climate.nasa.gov/vital-signs/) · [NASA Sea Level Change](https://sealevel.nasa.gov/) | Reference for the vital signs |
-| [NOAA GML Mauna Loa CO₂](https://gml.noaa.gov/ccgg/trends/) | Carbon dioxide |
-| [NOAA Laboratory for Satellite Altimetry](https://www.star.nesdis.noaa.gov/socd/lsa/SeaLevelRise/) | Sea level (TOPEX → Sentinel-6) |
-| [USGS Earthquake Hazards Program](https://earthquake.usgs.gov/) · [GDACS](https://www.gdacs.org/) | Earthquakes, alerts |
-| [World Bank Open Data](https://data.worldbank.org/) | GDP and population for the impact calculator |
 | [IPCC AR6 WG1](https://www.ipcc.ch/report/ar6/wg1/) (Table SPM.1, Table 9.9) | Scenario tools |
 | Shugar et al. 2020, World Weather Attribution 2026, World Bank GRADE 2025, Munich Re / Swiss Re 2026 | Research figures (full list on the page under Sources) |
 

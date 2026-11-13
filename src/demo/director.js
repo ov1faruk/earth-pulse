@@ -32,6 +32,7 @@ export function createDemo(app) {
     const g = (p) => guard(signal, p);
 
     // 1 · Earth
+    await g(app.startGlobe({ lapse: false }));
     await g(app.goHome());
     $('#explore').classList.add('away');
     caption('EARTH IS ALIVE.', 'EARTH//PULSE · WATCH EARTH CHANGE');
@@ -41,7 +42,7 @@ export function createDemo(app) {
     // 2 · The living planet: every real observation of the last hours and days
     const L = app.living.live.data;
     const cnt = (x) => (x ?? 0).toLocaleString('en-US');
-    caption('WATCH THE PLANET', `${cnt(L.fires?.fires?.length)} FIRES · ${cnt(L.quakes?.quakes?.length)} EARTHQUAKES · ${cnt(L.events?.events?.length)} EVENTS · ${cnt(L.nisar?.granules?.length)} NISAR IMAGES`);
+    caption('WATCH THE PLANET', `${cnt(L.fires?.fires?.length)} FIRES · ${cnt(L.events?.events?.length)} EVENTS · ${cnt(L.nisar?.granules?.length)} NISAR IMAGES`);
     await g(app.living.playLapse({ seconds: 12 }));
     caption(`${cnt(L.fires?.fires?.length)} FIRES SEEN FROM SPACE IN ABOUT A DAY`, 'DETECTED BY NOAA-20 · NOAA-21 · SUOMI NPP · TERRA · AQUA · NASA FIRMS');
     await w(4200);

@@ -1,0 +1,54 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Inter, sans-serif; color: #fff; }
+    #s2-iris { position: absolute; inset: 0; background: #04060a; }
+    #s2-bg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: url(assets/bg_punjab.jpg) center / cover; }
+    #s2-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4,6,10,.9) 0%, rgba(4,6,10,.6) 45%, rgba(4,6,10,.3) 100%); }
+    #s2-phone { position: absolute; left: 250px; top: 70px; width: 470px; height: 940px; border-radius: 70px; background: #0b0d12; border: 3px solid #2a2f3a; padding: 28px; }
+    #s2-phone .notch { width: 140px; height: 36px; border-radius: 20px; background: #000; margin: 4px auto 18px; }
+    .s2-wx { height: 812px; border-radius: 48px; padding: 48px 40px; background: linear-gradient(170deg, #4aa3f0 0%, #7cc4ff 55%, #f8d58a 100%); position: relative; overflow: hidden; }
+    .s2-wx .city { font-size: 38px; font-weight: 600; } .s2-wx .cond { font-size: 26px; margin-top: 4px; }
+    .s2-wx .temp { font-size: 210px; font-weight: 300; line-height: 1; margin: 36px 0 0 -8px; letter-spacing: -.05em; }
+    .s2-wx .sun { position: absolute; right: -84px; top: -64px; width: 269px; height: 269px; border-radius: 50%; background: radial-gradient(circle, #fff7c2 0%, #ffd95a 55%, rgba(255,217,90,0) 72%); }
+    #s2-dim { position: absolute; left: 250px; top: 70px; width: 470px; height: 940px; border-radius: 70px; background: #04060a; }
+    #s2-kick { position: absolute; left: 850px; top: 120px; font: 500 26px 'IBM Plex Mono', monospace; letter-spacing: .2em; color: #7fe6ff; }
+    #s2-head { position: absolute; left: 850px; top: 172px; font-size: 62px; font-weight: 600; letter-spacing: -.02em; }
+    .s2-stat { position: absolute; left: 850px; width: 960px; height: 200px; border-radius: 28px; background: rgba(8,11,17,.82); border: 1px solid rgba(255,255,255,.18); }
+    .s2-stat .n { position: absolute; left: 40px; top: 32px; font-size: 124px; font-weight: 700; letter-spacing: -.04em; line-height: 1; }
+    .s2-stat .t { position: absolute; left: 470px; top: 52px; font-size: 38px; font-weight: 500; line-height: 1.15; width: 470px; }
+    .s2-stat .s { position: absolute; left: 470px; top: 150px; font: 400 20px 'IBM Plex Mono', monospace; letter-spacing: .14em; color: rgba(255,255,255,.62); white-space: nowrap; }
+    #s2-a { top: 290px; } #s2-b { top: 520px; } #s2-c { top: 750px; }
+    #s2-credit { position: absolute; left: 96px; top: 1030px; font: 400 18px 'IBM Plex Mono', monospace; letter-spacing: .14em; color: rgba(255,255,255,.6); }
+  </style>
+  <div id="root" data-composition-id="s2" data-width="1920" data-height="1080">
+    <div id="s2-iris">
+      <div id="s2-bg"></div><div id="s2-shade"></div>
+      <div id="s2-phone"><div class="notch"></div><div class="s2-wx"><div class="sun"></div><div class="city">Ludhiana</div><div class="cond">Sunny</div><div class="temp">29°</div></div></div>
+      <div id="s2-dim"></div>
+      <div id="s2-kick">SAME PLACE · SAME MORNING · FROM ORBIT</div>
+      <div id="s2-head">What NASA's satellites see.</div>
+      <div class="s2-stat" id="s2-a"><div class="n" style="color:#ff6b4d">74</div><div class="t">fires burning<br />within 50 km</div><div class="s">NASA FIRMS · VIIRS · LAST 24 H</div></div>
+      <div class="s2-stat" id="s2-b"><div class="n" style="color:#ffb347">28 days</div><div class="t" style="left:560px;width:380px">without real rain</div><div class="s" style="left:560px">NASA POWER · IMERG</div></div>
+      <div class="s2-stat" id="s2-c"><div class="n" style="color:#ffb347">+5.2 °C</div><div class="t" style="left:560px;width:380px">warmer than a normal week</div><div class="s" style="left:560px">NASA POWER · MERRA-2</div></div>
+      <div id="s2-credit">REAL IMAGE · SMOKE OVER PUNJAB · 11 NOV 2026 · NASA VIIRS / NOAA-20 · NASA GIBS</div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      // the phone's screen opens onto what orbit sees
+      tl.fromTo("#s2-iris", { clipPath: "circle(0px at 485px 540px)" }, { clipPath: "circle(2300px at 485px 540px)", duration: 0.9, ease: "power3.in" }, 0);
+      tl.fromTo("#s2-bg", { scale: 1.16 }, { scale: 1.0, duration: 11, ease: "none" }, 0);
+      tl.fromTo("#s2-dim", { opacity: 0 }, { opacity: 0.6, duration: 0.8, ease: "power2.inOut" }, 0.5);
+      tl.fromTo("#s2-kick", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.45, ease: "power4.out" }, 0.9);
+      tl.fromTo("#s2-head", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, 1.25);
+      [["#s2-a", 2.25], ["#s2-b", 5.95], ["#s2-c", 8.75]].forEach(([s, t]) => {
+        tl.fromTo(s, { opacity: 0, x: 220, filter: "blur(16px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, t);
+        tl.fromTo(s + " .n", { scale: 1.5, transformOrigin: "0% 60%" }, { scale: 1, duration: 0.7, ease: "back.out(1.4)" }, t + 0.05);
+      });
+      tl.fromTo("#s2-credit", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 2.6);
+      tl.to(["#s2-a", "#s2-b", "#s2-c", "#s2-kick", "#s2-head", "#s2-phone", "#s2-dim"], { opacity: 0, filter: "blur(10px)", duration: 0.22, ease: "power2.in", stagger: 0.02 }, 10.72);
+      window.__timelines["s2"] = tl;
+    })();
+  </script>
+</template>

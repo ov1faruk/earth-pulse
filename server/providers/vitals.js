@@ -15,18 +15,6 @@ export const VITAL_SOURCES = {
     file: 'https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv',
     cite: 'GISTEMP Team, NASA Goddard Institute for Space Studies. Lenssen et al. (2024).',
   },
-  co2: {
-    name: 'NOAA Global Monitoring Laboratory — Mauna Loa CO₂ (the record shown on climate.nasa.gov)',
-    url: 'https://gml.noaa.gov/ccgg/trends/',
-    file: 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv',
-    cite: 'Lan, X., Tans, P. & Thoning, K., NOAA GML; Keeling, R., Scripps Institution of Oceanography.',
-  },
-  seaLevel: {
-    name: 'Satellite radar altimetry (TOPEX/Poseidon, Jason-1/2/3, Sentinel-6 Michael Freilich — NASA/CNES/ESA/EUMETSAT/NOAA), NOAA Laboratory for Satellite Altimetry',
-    url: 'https://www.star.nesdis.noaa.gov/socd/lsa/SeaLevelRise/',
-    file: 'https://www.star.nesdis.noaa.gov/socd/lsa/SeaLevelRise/slr/slr_sla_gbl_free_ref_90.csv',
-    cite: 'NOAA Laboratory for Satellite Altimetry. Seasonal signals removed; no glacial isostatic adjustment.',
-  },
   seaIce: {
     name: 'NSIDC Sea Ice Index v4 (NASA NSIDC DAAC / NOAA@NSIDC, G02135)',
     url: 'https://nsidc.org/data/g02135',
@@ -62,49 +50,6 @@ export function parseGistemp(csv) {
   };
 }
 
-export function parseCo2(csv) {
-  const monthly = [];
-  for (const l of csv.split('\n')) {
-    if (!/^\d{4},/.test(l)) continue;
-    const p = l.split(',').map(num);
-    if (p[3] > 0) monthly.push([p[0], p[1], p[3], p[4]]); // year, month, average, deseasonalised
-  }
-  const last = monthly.at(-1);
-  const yearAgo = monthly.find((m) => m[0] === last[0] - 1 && m[1] === last[1]);
-  const annual = new Map();
-  for (const [y, , v] of monthly) { const a = annual.get(y) || [0, 0]; a[0] += v; a[1]++; annual.set(y, a); }
-  return {
-    unit: 'ppm', monthly,
-    annual: [...annual].filter(([, a]) => a[1] === 12).map(([y, a]) => [y, r2(a[0] / a[1])]),
-    latestMonth: { year: last[0], month: last[1], ppm: last[2], trendPpm: last[3] },
-    yearOverYear: yearAgo ? r2(last[2] - yearAgo[2]) : null,
-    preIndustrial: 280,
-    preIndustrialNote: 'Pre-industrial CO₂ was about 280 ppm (ice-core records; IPCC AR6 WG1 gives 278 ppm for 1750).',
-  };
-}
-
-export function parseSeaLevel(csv) {
-  const trend = num((csv.match(/#trend\s*=\s*([\d.]+)/) || [])[1]);
-  const series = [];
-  for (const l of csv.split('\n')) {
-    if (!/^\d{4}\.\d+,/.test(l)) continue;
-    const p = l.split(',');
-    const vals = p.slice(1).map(num).filter((v) => v != null);
-    if (vals.length) series.push([num(p[0]), r2(vals.reduce((a, b) => a + b, 0) / vals.length)]);
-  }
-  series.sort((a, b) => a[0] - b[0]);
-  // Rise since the start of the satellite record: mean of the first vs the last 12 months of data.
-  const mean = (a) => a.reduce((s, x) => s + x[1], 0) / a.length;
-  const first = series.filter((s) => s[0] < series[0][0] + 1);
-  const lastYr = series.filter((s) => s[0] > series.at(-1)[0] - 1);
-  // Thin to ~monthly for the chart.
-  const thin = series.filter((_, i) => i % 3 === 0);
-  return {
-    unit: 'mm', series: thin, trendMmPerYear: trend, latest: { decimalYear: series.at(-1)[0], mm: series.at(-1)[1] },
-    riseSinceStartMm: r2(mean(lastYr) - mean(first)), startYear: Math.floor(series[0][0]),
-  };
-}
-
 export function parseSeaIce(csv) {
   const days = [];
   for (const l of csv.split('\n')) {
@@ -136,7 +81,7 @@ export function parseSeaIce(csv) {
   };
 }
 
-const PARSERS = { temperature: parseGistemp, co2: parseCo2, seaLevel: parseSeaLevel, seaIce: parseSeaIce };
+const PARSERS = { temperature: parseGistemp, seaIce: parseSeaIce };
 
 // Last resort: the dated snapshot shipped in public/data/story (real data, labelled ARCHIVED).
 const SNAPSHOT = path.join(process.cwd(), 'public', 'data', 'story', 'vitals.json');

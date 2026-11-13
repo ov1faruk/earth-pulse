@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>EARTH//PULSE — Watch Earth change</title>
-  <meta name="description" content="An interactive planetary observation experience built on real NISAR radar data." />
+  <title>EARTH//PULSE — Your calamity forecast</title>
+  <meta name="description" content="Your weather app tells you if it will rain. EARTH//PULSE tells you what the rain will do: floods, heat, fire, melt and landslides, from NASA data." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,7 +22,7 @@
   <header class="brand" id="brand">
     <button class="brand-mark" id="brand-home" aria-label="Return to Earth">
       <span class="brand-name">EARTH<span class="brand-slash">//</span>PULSE</span>
-      <span class="brand-tag">WATCH EARTH CHANGE.</span>
+      <span class="brand-tag">WHAT THE WEATHER WILL DO.</span>
     </button>
   </header>
 
@@ -31,6 +31,7 @@
 
   <!-- Top-right controls -->
   <nav class="top-controls" id="top-controls" aria-label="View controls">
+    <button class="ghost-btn" id="btn-pulse" hidden title="Back to your Pulse card">◉ MY PULSE</button>
     <div class="modes" id="modes" role="radiogroup" aria-label="Visual mode"></div>
     <button class="ghost-btn" id="btn-sound" aria-pressed="false">♪ SOUND OFF</button>
     <button class="ghost-btn" id="btn-mc" aria-pressed="false" title="NASA layers, place probe, live alerts, Earth today">◈ MISSION CONTROL</button>
@@ -49,6 +50,10 @@
     <div class="chips" id="chips" aria-label="Suggested explorations"></div>
     <button class="mission-cta" id="mission-cta"><i></i>BEGIN THE MISSION — THE STORY OF A CHANGING PLANET</button>
   </section>
+
+  <!-- Pulse home: the calamity card for one place (src/pulse/home.js) -->
+  <div class="ph-veil" id="ph-veil"></div>
+  <section class="ph" id="pulse-home" aria-label="Your Pulse"></section>
 
   <!-- Mission Control: NASA layers, place probe, alerts, Earth today -->
   <aside class="mc glass" id="mc" hidden aria-label="Mission control"></aside>

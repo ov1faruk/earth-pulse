@@ -1,0 +1,28 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Inter, sans-serif; color: #fff; }
+    #s3-bg { position: absolute; inset: 0; background: url(assets/bg_punjab.jpg) center / cover; }
+    #s3-shade0 { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4,6,10,.9) 0%, rgba(4,6,10,.6) 45%, rgba(4,6,10,.3) 100%); }
+    #s3-shade { position: absolute; inset: 0; background: rgba(4,6,10,.74); }
+    #s3-a { position: absolute; left: 150px; top: 300px; font-size: 66px; font-weight: 300; color: rgba(255,255,255,.78); }
+    #s3-b { position: absolute; left: 144px; top: 420px; font-size: 136px; font-weight: 700; letter-spacing: -.035em; line-height: 1.04; }
+    #s3-b .w { display: inline-block; white-space: pre; }
+    #s3-b em { font-style: normal; color: #7fe6ff; }
+    #s3-credit { position: absolute; left: 96px; top: 1030px; font: 400 18px 'IBM Plex Mono', monospace; letter-spacing: .14em; color: rgba(255,255,255,.6); }
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1920" data-height="1080">
+    <div id="s3-bg"></div><div id="s3-shade0"></div><div id="s3-shade"></div>
+    <div id="s3-a">Your weather app tells you if it will rain.</div>
+    <div id="s3-b"><span class="w"><em>EARTH//PULSE</em> </span><span class="w">tells </span><span class="w">you</span><br /><span class="w">what </span><span class="w">the </span><span class="w">weather </span><span class="w">will </span><span class="w">do.</span></div>
+    <div id="s3-credit">REAL IMAGE · SMOKE OVER PUNJAB · 11 NOV 2026 · NASA VIIRS / NOAA-20 · NASA GIBS</div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s3-shade", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 0);
+      tl.fromTo("#s3-a", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, 0.5);
+      tl.fromTo("#s3-b .w", { opacity: 0, filter: "blur(8px)", y: 26 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.3, ease: "power4.out", stagger: 0.085 }, 3.15);
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>

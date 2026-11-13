@@ -66,15 +66,13 @@ export function createMission(app, mc) {
   });
 
   const ACTS = [
-    { id: 'pulse', chapter: 'THE PULSE', kicker: 'Vital signs · read moments ago', title: 'Earth has a pulse.', line: 'Four numbers describe the state of the planet. Each one is read from the agency that measures it.', dur: 13,
-      source: src('gistemp', 'noaa_co2', 'noaa_lsa', 'nsidc'),
+    { id: 'pulse', chapter: 'THE PULSE', kicker: 'Vital signs · read moments ago', title: 'Earth has a pulse.', line: 'Two NASA records describe the state of the planet: how warm it is, and how much Arctic ice is left.', dur: 13,
+      source: src('gistemp', 'nsidc'),
       async enter(tok) {
         viewer.pulseSetLighting(true); app.cam.idleSpin(true); fly(78, 14, 2.4e7, 3);
         const v = await vitalsP; if (tok !== st.token) return;
         const cards = [];
         if (v?.temperature?.last12MonthMean != null) cards.push([`+${(v.temperature.last12MonthMean + v.temperature.baselineShift).toFixed(2)} °C`, 'warmer than 1880–1899, last 12 months']);
-        if (v?.co2?.latestMonth) cards.push([`${v.co2.latestMonth.ppm.toFixed(1)} ppm`, `CO₂ at Mauna Loa — ${Math.round((v.co2.latestMonth.ppm / 280 - 1) * 100)}% above pre-industrial`]);
-        if (v?.seaLevel?.riseSinceStartMm) cards.push([`+${Math.round(v.seaLevel.riseSinceStartMm)} mm`, `sea level since ${v.seaLevel.startYear + 1}, by satellite radar`]);
         if (v?.seaIce?.latest) cards.push([`${v.seaIce.latest.extent.toFixed(2)} M km²`, `Arctic sea ice, ${v.seaIce.anomalyPct.toFixed(0)}% against normal for the day`]);
         data().innerHTML = cards.length ? figs(cards) : '<p class="ms-miss">The vital-signs sources are unreachable right now. Nothing is substituted.</p>';
       } },
@@ -92,18 +90,16 @@ export function createMission(app, mc) {
         let k = 0;
         every(70, () => { if (k >= bars.length) return; bars[k].classList.remove('off'); const [y, a] = t.annual[k]; $('#ms-year').innerHTML = `<b>${y}</b> ${a > 0 ? '+' : ''}${a.toFixed(2)} °C`; if (k % 3 === 0) sfx.year(a); k++; });
       } },
-    { id: 'breaks', chapter: 'WHEN EARTH BREAKS', kicker: 'Live · right now', title: 'And the surface never stops moving.', line: 'Every point on the globe is a real detection from the last hours and days: fires, earthquakes, storms, eruptions.', dur: 14,
-      source: `${src('firms', 'usgs', 'eonet', 'gdacs')}`,
+    { id: 'breaks', chapter: 'WHEN EARTH BREAKS', kicker: 'Live · right now', title: 'And the surface never stops moving.', line: 'Every point on the globe is a real NASA detection from the last hours and days: fires, storms, eruptions, ice.', dur: 14,
+      source: `${src('firms', 'eonet')}`,
       async enter(tok) {
         viewer.pulseSetLighting(false); app.cam.idleSpin(true); fly(125, 8, 1.6e7, 3.4);
-        const [q, e, f] = await Promise.all([getJson('/api/live/quakes').catch(() => null), getJson('/api/live/events').catch(() => null), getJson('/api/live/fires/density', 20000).catch(() => null)]);
+        const [e, f] = await Promise.all([getJson('/api/live/events').catch(() => null), getJson('/api/live/fires/density', 20000).catch(() => null)]);
         if (tok !== st.token) return;
-        const week = Date.now() - 7 * 864e5, qs = (q?.quakes || []).filter((x) => x[4] >= week && x[3] >= 4.5), top = qs.slice().sort((a, b) => b[3] - a[3])[0];
         const cards = [];
         if (f?.total) cards.push([f.total.toLocaleString(), 'fire detections in the last day']);
-        if (q) cards.push([String(qs.length), 'earthquakes of M 4.5+ this week']);
-        if (top) cards.push([`M ${top[3].toFixed(1)}`, `largest: ${top[6]}`]);
-        if (e) cards.push([String(e.events.filter((x) => x.category !== 'wildfires').length), 'open storms, eruptions, floods and droughts']);
+        if (f?.top?.[0]) cards.push([f.top[0].detections.toLocaleString(), `fires in the busiest region${f.top[0].place ? `: ${f.top[0].place}` : ''}`]);
+        if (e) cards.push([String(e.events.filter((x) => x.category !== 'wildfires').length), 'open storms, eruptions and ice events']);
         data().innerHTML = cards.length ? figs(cards) : '<p class="ms-miss">The live feeds are unreachable right now.</p>';
       } },
     ...EVENTS.map(eventAct),
@@ -145,8 +141,8 @@ export function createMission(app, mc) {
         lineChart($('#ms-chart'), { series: [{ label: 'Daily rain', color: '#48d6ff', points: obs, bars: true }, { label: 'Normal', color: '#fff', points: norm, dashed: true, width: 1.2 }], marks: [{ x: ev, label: 'LANDFALL' }], zero: true, height: 150, xFmt: (x) => { const t = new Date(x * 864e5); return `${t.getUTCDate()}/${t.getUTCMonth() + 1}`; }, yFmt: (y) => `${Math.round(y)}` });
         $('#ms-chart').classList.add('play'); sfx.scan();
       } },
-    { id: 'forecast', chapter: 'THE FORECAST', kicker: 'Hazard signals being measured today', title: 'Where are the signals elevated right now?', line: 'An index of measured rain, heat, fire and seismic signals around 24 cities. It is a risk estimate, not a prediction.', dur: 16,
-      source: `${src('power', 'usgs', 'firms', 'eonet')} · shading: population density 2020, NASA SEDAC GPW v4`,
+    { id: 'forecast', chapter: 'THE FORECAST', kicker: 'Hazard signals being measured today', title: 'Where are the signals elevated right now?', line: 'An index of NASA-measured rain, soil saturation, heat and fire signals around 24 cities. It is a risk estimate, not a prediction.', dur: 16,
+      source: `${src('power', 'firms', 'eonet')} · shading: population density 2020, NASA SEDAC GPW v4`,
       async enter(tok) {
         viewer.pulseSetLighting(false); app.cam.idleSpin(true); fly(60, 18, 2.3e7, 3.4);
         addGibs('GPW_Population_Density_2020', 'default', 7, 'png', 0.6); // where the signals meet people
@@ -202,6 +198,8 @@ export function createMission(app, mc) {
   function start(i = 0) {
     if (st.on) return;
     if (app.state.view !== 'home') app.goHome?.();
+    app.home?.hide({ silent: true });
+    app.startGlobe?.({ lapse: false });
     st.on = true; st.playing = true; st.wasOpen = !$('#mc').hidden;
     mc.setOpen(false);
     document.body.classList.add('mission-on');

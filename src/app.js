@@ -349,6 +349,7 @@ export async function startApp() {
   // ---------- keyboard ----------
   document.addEventListener('keydown', (e) => {
     if (e.target.matches('input, textarea') || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (document.body.classList.contains('home-on')) return; // the Pulse card owns the screen
     const k = e.key.toLowerCase();
     if (k === 'escape') {
       if (state.demoRunning) return demo.stop();
@@ -393,31 +394,40 @@ export async function startApp() {
     offerChange: (pos) => { if (state.view === 'home' && !state.demoRunning) change.offerAt(pos); },
     startChangePair: (h) => change.startPair(h),
   });
-  const liveStart = performance.now();
-  living.load().then(() => {
-    // First impression: let the planet light up with the real data, once —
-    // only if it arrived quickly (otherwise the layers simply appear).
-    const quick = performance.now() - liveStart < 15000;
-    if (quick && state.view === 'home' && !state.demoRunning && !new URLSearchParams(location.search).has('story') && !new URLSearchParams(location.search).has('change')) living.playLapse({ seconds: 12 });
-  });
+  // The heavy globe data (≈200k fire points, events, NISAR footprints, ~300
+  // satellite orbits) loads only when someone opens the globe, not on the home card.
+  let globeStarted = null;
+  function startGlobe({ lapse = true } = {}) {
+    if (globeStarted) return globeStarted;
+    const liveStart = performance.now();
+    sats.load().catch(() => toast('Satellite orbits temporarily unavailable.'));
+    globeStarted = living.load().then(() => {
+      // First impression: let the planet light up with the real data, once —
+      // only if it arrived quickly (otherwise the layers simply appear).
+      const quick = performance.now() - liveStart < 15000;
+      if (lapse && quick && state.view === 'home' && !state.demoRunning) living.playLapse({ seconds: 12 });
+    });
+    return globeStarted;
+  }
 
   // ---------- load data ----------
   const list = await listStories();
   state.storyList = list.stories;
   atlas.set(list.stories.filter((s) => s.available));
-  sats.load().catch(() => toast('Satellite orbits temporarily unavailable.'));
   status();
 
   const api = {
     viewer, state, sats, cam, layers, atlas, timebar, know, science, living, change,
-    openStory, openStoryData: getStory, goHome, selectSatellite, replayPass, setLiveClock, setMode, openScience, openDrawer, closePanels, status,
+    openStory, openStoryData: getStory, goHome, startGlobe, selectSatellite, replayPass, setLiveClock, setMode, openScience, openDrawer, closePanels, status,
   };
   const { createDemo } = await import('./demo/director.js');
   const demo = createDemo(api);
   api.demo = demo;
   $('#btn-demo').onclick = () => (state.demoRunning ? demo.stop() : demo.start());
-  if (new URLSearchParams(location.search).has('demo')) setTimeout(() => demo.start(), 1500);
-  const storyParam = new URLSearchParams(location.search).get('story');
+  const qp = new URLSearchParams(location.search);
+  if (['demo', 'story', 'change', 'mission', 'event', 'probe', 'globe'].some((k) => qp.has(k))) startGlobe({ lapse: false });
+  if (qp.has('demo')) setTimeout(() => demo.start(), 1500);
+  const storyParam = qp.get('story');
   if (storyParam) openStory(storyParam);
   // Deep link from the story page: /?change=lat,lon runs the change engine there.
   const changeParam = (new URLSearchParams(location.search).get('change') || '').split(',').map(Number);

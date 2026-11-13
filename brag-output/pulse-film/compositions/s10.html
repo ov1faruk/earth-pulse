@@ -1,0 +1,45 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Inter, sans-serif; color: #fff; }
+    #s10-wipe { position: absolute; inset: 0; background: #04060a; }
+    #s10-bg { position: absolute; inset: 0; background: url(assets/bg_punjab.jpg) center / cover; }
+    #s10-sh { position: absolute; inset: 0; background: rgba(4,6,10,.8); }
+    #s10-k { position: absolute; left: 130px; top: 250px; font: 500 30px 'IBM Plex Mono', monospace; letter-spacing: .22em; color: #7fe6ff; }
+    .s10-l { position: absolute; left: 124px; font-size: 96px; font-weight: 700; letter-spacing: -.03em; line-height: 1.05; width: 1000px; }
+    #s10-l1 { top: 310px; } #s10-l2 { top: 580px; }
+    #s10-phone { position: absolute; left: 1290px; top: 110px; width: 430px; height: 860px; border-radius: 64px; background: #0b0d12; border: 3px solid #2a2f3a; box-shadow: 0 60px 140px rgba(0,0,0,.7); padding: 26px; }
+    #s10-scr { height: 802px; border-radius: 42px; background: linear-gradient(180deg, #16243a 0%, #0a0f1a 100%); position: relative; overflow: hidden; }
+    #s10-time { position: absolute; left: 0; width: 100%; top: 90px; text-align: center; font-size: 110px; font-weight: 300; letter-spacing: -.03em; }
+    #s10-day { position: absolute; left: 0; width: 100%; top: 62px; text-align: center; font-size: 26px; color: rgba(255,255,255,.8); }
+    #s10-note { position: absolute; left: 16px; top: 290px; width: 346px; border-radius: 26px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.2); padding: 20px 22px 22px; }
+    #s10-note .a { font: 500 24px 'IBM Plex Mono', monospace; color: #7fe6ff; white-space: nowrap; }
+    #s10-note .b { font-size: 30px; font-weight: 600; margin-top: 10px; line-height: 1.2; }
+    #s10-note .c { font-size: 26px; color: rgba(255,255,255,.82); margin-top: 8px; line-height: 1.25; }
+    #s10-concept { position: absolute; left: 1290px; top: 990px; width: 430px; text-align: center; font: 500 22px 'IBM Plex Mono', monospace; letter-spacing: .2em; color: rgba(255,255,255,.6); }
+  </style>
+  <div id="root" data-composition-id="s10" data-width="1920" data-height="1080">
+    <div id="s10-wipe">
+      <div id="s10-bg"></div><div id="s10-sh"></div>
+      <div id="s10-k">WHAT'S NEXT</div>
+      <div class="s10-l" id="s10-l1">Alerts on every phone and watch.</div>
+      <div class="s10-l" id="s10-l2">Flood warnings measured by <span style="color:#c8a6ff">NISAR</span>.</div>
+      <div id="s10-phone"><div id="s10-scr"><div id="s10-day">Friday 13 November</div><div id="s10-time">7:02</div>
+        <div id="s10-note"><div class="a">EARTH//PULSE · now</div><div class="b">Ludhiana: 28 days dry</div><div class="c">Your line was 14. 74 fires within 50 km.</div></div></div></div>
+      <div id="s10-concept">CONCEPT · NOT YET BUILT</div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s10-wipe", { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.5, ease: "power3.inOut" }, 0);
+      tl.fromTo("#s10-bg", { scale: 1.12 }, { scale: 1.0, duration: 6.9, ease: "none" }, 0);
+      tl.fromTo("#s10-k", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.35);
+      tl.fromTo("#s10-phone", { y: 1000, rotation: 6 }, { y: 0, rotation: 0, duration: 0.85, ease: "expo.out" }, 0.3);
+      tl.fromTo("#s10-concept", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 1.2);
+      tl.fromTo("#s10-l1", { opacity: 0, x: -90, filter: "blur(12px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.42, ease: "expo.out" }, 0.95);
+      tl.fromTo("#s10-note", { y: -330, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 1.5);
+      tl.fromTo("#s10-l2", { opacity: 0, x: -90, filter: "blur(12px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.42, ease: "expo.out" }, 3.35);
+      window.__timelines["s10"] = tl;
+    })();
+  </script>
+</template>

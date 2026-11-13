@@ -1,0 +1,62 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Inter, sans-serif; color: #fff; }
+    #s9-wipe { position: absolute; inset: 0; background: linear-gradient(140deg, #1c1247 0%, #0b0a24 55%, #05050f 100%); }
+    #s9-k { position: absolute; left: 130px; top: 250px; font: 500 30px 'IBM Plex Mono', monospace; letter-spacing: .22em; color: #c8a6ff; }
+    #s9-big { position: absolute; left: 110px; top: 300px; font-size: 380px; font-weight: 700; letter-spacing: -.03em; line-height: 1; white-space: nowrap; }
+    #s9-big span { display: inline-block; }
+    #s9-sub { position: absolute; left: 130px; top: 720px; font-size: 54px; font-weight: 300; width: 1500px; }
+    #s9-sub b { font-weight: 600; color: #c8a6ff; }
+    #s9-box { position: absolute; left: 930px; top: 70px; width: 940px; height: 940px; border-radius: 30px; overflow: hidden; border: 1px solid rgba(255,255,255,.22); background: #05050f; }
+    .s9-im { position: absolute; left: 0; top: 0; width: 940px; height: 940px; background-size: cover; background-position: center; }
+    #s9-after { clip-path: inset(0% 100% 0% 0%); }
+    #s9-bar { position: absolute; left: 0; top: 0; width: 6px; height: 940px; background: #fff; }
+    #s9-t1, #s9-t2 { position: absolute; left: 110px; top: 330px; font-size: 132px; font-weight: 700; letter-spacing: -.035em; line-height: 1.02; }
+    .s9-d { position: absolute; left: 118px; top: 660px; font: 500 30px 'IBM Plex Mono', monospace; letter-spacing: .1em; color: #c8a6ff; white-space: nowrap; }
+    .s9-p { position: absolute; left: 118px; top: 730px; font-size: 40px; font-weight: 300; width: 760px; line-height: 1.25; color: rgba(255,255,255,.86); }
+    #s9-tag { position: absolute; left: 118px; top: 960px; font: 500 22px 'IBM Plex Mono', monospace; letter-spacing: .16em; color: rgba(255,255,255,.7); }
+  </style>
+  <div id="root" data-composition-id="s9" data-width="1920" data-height="1080">
+    <div id="s9-wipe">
+      <div id="s9-k">BEHIND EVERY CARD</div>
+      <div id="s9-big"><span>N</span><span>I</span><span>S</span><span>A</span><span>R</span></div>
+      <div id="s9-sub">A radar that sees through <b>cloud</b> and <b>night</b>. NASA × ISRO.</div>
+      <div id="s9-box">
+        <div class="s9-im" id="s9-before" style="background-image:url(assets/nisar_bd_before.webp)"></div>
+        <div class="s9-im" id="s9-after" style="background-image:url(assets/nisar_bd_after.webp)"></div>
+        <div id="s9-bar"></div>
+        <div class="s9-im" id="s9-kuma" style="background-image:url(assets/nisar_kumamoto.webp)"></div>
+      </div>
+      <div id="s9-t1">The water<br />changed.</div>
+      <div class="s9-d" id="s9-d1">BANGLADESH · 18 JUN → 17 AUG 2026</div>
+      <div class="s9-p" id="s9-p1">Calm water turns radar away, so floodwater shows dark.</div>
+      <div id="s9-t2">The ground<br />moved.</div>
+      <div class="s9-d" id="s9-d2">KUMAMOTO · M6.8 · 28 JUL 2026</div>
+      <div class="s9-p" id="s9-p2">Each colour ring is the ground moving toward or away from the satellite.</div>
+      <div id="s9-tag">REAL NISAR L2 DATA · NASA/JPL × ISRO · ASF DAAC</div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s9-wipe", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "power3.inOut" }, 0);
+      tl.fromTo("#s9-k", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.4);
+      tl.fromTo("#s9-big span", { opacity: 0, y: 160, filter: "blur(18px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "expo.out", stagger: 0.09 }, 1.5);
+      tl.fromTo("#s9-sub", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.35 }, 2.9);
+      tl.to(["#s9-k", "#s9-big", "#s9-sub"], { opacity: 0, x: -200, filter: "blur(16px)", duration: 0.3, ease: "power3.in" }, 5.45);
+      // Bangladesh: before → after
+      tl.fromTo("#s9-box", { x: 1100, opacity: 1 }, { x: 0, duration: 0.7, ease: "expo.out" }, 5.6);
+      tl.fromTo("#s9-kuma", { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0);
+      tl.fromTo(["#s9-t1", "#s9-d1", "#s9-p1", "#s9-tag"], { opacity: 0, x: -80, filter: "blur(12px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.4, ease: "expo.out", stagger: 0.07 }, 5.85);
+      tl.fromTo("#s9-before", { scale: 1.12 }, { scale: 1.0, duration: 5, ease: "sine.out" }, 5.6);
+      tl.fromTo("#s9-after", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 2.1, ease: "power2.inOut" }, 7.2);
+      tl.fromTo("#s9-bar", { x: -6, opacity: 1 }, { x: 940, duration: 2.1, ease: "power2.inOut" }, 7.2);
+      // Japan
+      tl.to(["#s9-t1", "#s9-d1", "#s9-p1"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in" }, 10.3);
+      tl.to("#s9-kuma", { opacity: 1, duration: 0.25, ease: "power2.out" }, 10.4);
+      tl.fromTo("#s9-kuma", { scale: 1.0, transformOrigin: "50% 42%" }, { scale: 1.5, duration: 4.2, ease: "power2.inOut" }, 10.4);
+      tl.fromTo(["#s9-t2", "#s9-d2", "#s9-p2"], { opacity: 0, x: -80, filter: "blur(12px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.4, ease: "expo.out", stagger: 0.07 }, 10.55);
+      window.__timelines["s9"] = tl;
+    })();
+  </script>
+</template>
