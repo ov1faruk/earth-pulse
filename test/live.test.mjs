@@ -19,17 +19,15 @@ test('fires snapshot: real FIRMS detections, each tagged with a satellite', () =
   assert.ok(span <= 36, `24 h product spans ${span} h`);
 });
 
-test('quakes snapshot: USGS M2.5+', () => {
-  const q = snap('quakes');
-  assert.ok(q.quakes.length > 500);
-  assert.ok(q.quakes.every((r) => r[3] >= 2.45 && // USGS feed threshold is on the rounded magnitude
-     typeof r[5] === 'string'));
-});
-
-test('events snapshot: EONET + GDACS with sources', () => {
+test('events snapshot: NASA EONET only, hazards not crowded out by wildfires', () => {
   const e = snap('events');
   assert.ok(e.events.length > 50);
-  assert.ok(e.events.every((x) => ['NASA EONET', 'GDACS'].includes(x.source) && x.url));
+  assert.ok(e.events.every((x) => x.source === 'NASA EONET' && x.url));
+  assert.ok(e.events.some((x) => x.category !== 'wildfires'), 'storms / volcanoes / ice present');
+});
+
+test('no non-NASA live feed ships in the snapshot', () => {
+  assert.ok(!fs.existsSync('public/data/live/quakes.json'));
 });
 
 test('nisar snapshot: real granule names with footprints', () => {

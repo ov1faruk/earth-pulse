@@ -87,7 +87,8 @@ export const STORIES = [
     radarExplainer: 'interferometry',
     evidenceKind: 'interferogram-series',
     beforeAfter: { before: 1, after: 2 },
-    contextEvent: { provider: 'USGS', eventId: 'us6000tgb9' },
+    // Epicentre, time and magnitude: a fixed, cited fact (USGS event us6000tgb9), not a live feed.
+    contextEvent: { event: { id: 'us6000tgb9', mag: 6.8, place: 'The 2026 Kumamoto Region, Japan Earthquake', time: '2026-07-28T07:27:14.640Z', lon: 130.6269, lat: 32.6043, depthKm: 8, url: 'https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgb9', dataClass: 'REAL_CONTEXT' } },
     dataClass: DATA_CLASS.REAL_NISAR,
   },
   {

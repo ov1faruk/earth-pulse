@@ -1,0 +1,47 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Inter, sans-serif; color: #10202e; }
+    #s1-sky { position: absolute; inset: 0; background: linear-gradient(180deg, #8fc9f7 0%, #cfe8fb 48%, #ffe6bd 100%); }
+    #s1-glow { position: absolute; left: 1180px; top: -260px; width: 1100px; height: 1100px; border-radius: 50%; background: radial-gradient(circle, rgba(255,246,205,.95) 0%, rgba(255,236,170,.5) 38%, rgba(255,236,170,0) 68%); }
+    #s1-phone { position: absolute; left: 250px; top: 70px; width: 470px; height: 940px; border-radius: 70px; background: #0b0d12; border: 3px solid #2a2f3a; box-shadow: 0 70px 120px rgba(20,50,90,.35); padding: 28px; }
+    #s1-phone .notch { width: 140px; height: 36px; border-radius: 20px; background: #000; margin: 4px auto 18px; }
+    .s1-wx { height: 812px; border-radius: 48px; padding: 48px 40px; background: linear-gradient(170deg, #4aa3f0 0%, #7cc4ff 55%, #f8d58a 100%); color: #fff; position: relative; overflow: hidden; }
+    .s1-wx .city { font-size: 38px; font-weight: 600; }
+    .s1-wx .cond { font-size: 26px; opacity: .92; margin-top: 4px; }
+    .s1-wx .temp { font-size: 210px; font-weight: 300; line-height: 1; margin: 36px 0 0 -8px; letter-spacing: -.05em; }
+    #s1-sun { position: absolute; right: -70px; top: -50px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle, #fff7c2 0%, #ffd95a 55%, rgba(255,217,90,0) 72%); }
+    .s1-wx .row { display: flex; justify-content: space-between; margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.35); font-size: 26px; }
+    .s1-wx .row b { display: block; font-size: 38px; font-weight: 600; margin-top: 4px; }
+    .s1-wx .days { display: flex; justify-content: space-between; margin-top: 48px; font-size: 26px; text-align: center; }
+    .s1-wx .days i { display: block; width: 28px; height: 28px; border-radius: 50%; background: #ffe27a; margin: 10px auto; }
+    #s1-kick { position: absolute; left: 860px; top: 300px; font: 500 28px 'IBM Plex Mono', monospace; letter-spacing: .2em; color: #1d5b8f; }
+    #s1-line { position: absolute; left: 860px; top: 356px; font-size: 44px; font-weight: 400; color: #2a4257; }
+    #s1-big { position: absolute; left: 852px; top: 440px; font-size: 168px; font-weight: 700; letter-spacing: -.04em; line-height: 1.02; color: #0d2233; }
+    #s1-big span { display: block; }
+    #s1-say { position: absolute; left: 860px; top: 968px; font-size: 32px; color: #3d566b; }
+  </style>
+  <div id="root" data-composition-id="s1" data-width="1920" data-height="1080">
+    <div id="s1-sky"></div><div id="s1-glow"></div>
+    <div id="s1-phone"><div class="notch"></div><div class="s1-wx"><div id="s1-sun"></div>
+      <div class="city">Ludhiana</div><div class="cond">Sunny</div><div class="temp">29°</div>
+      <div class="row"><div>Rain<b>0%</b></div><div>Wind<b>6 km/h</b></div><div>Low<b>18°</b></div></div>
+      <div class="days"><div>Fri<i></i>29°</div><div>Sat<i></i>29°</div><div>Sun<i></i>27°</div><div>Mon<i></i>26°</div><div>Tue<i></i>25°</div></div>
+    </div></div>
+    <div id="s1-kick">PUNJAB, INDIA · THIS MORNING</div>
+    <div id="s1-line">The weather app says:</div>
+    <div id="s1-big"><span id="s1-w1">Sunny.</span><span id="s1-w2">29°.</span><span id="s1-w3">No rain.</span></div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s1-glow", { scale: 0.8, opacity: 0.5 }, { scale: 1.08, opacity: 1, duration: 7.4, ease: "none" }, 0);
+      tl.fromTo("#s1-phone", { y: 150, rotation: 4, opacity: 1 }, { y: 0, rotation: 0, opacity: 1, duration: 0.9, ease: "expo.out" }, 0.05);
+      tl.fromTo("#s1-sun", { scale: 0.7 }, { scale: 1.12, duration: 7, ease: "sine.out" }, 0.3);
+      tl.fromTo("#s1-kick", { opacity: 1, x: -30 }, { opacity: 1, x: 0, duration: 0.6, ease: "power4.out" }, 0);
+      tl.fromTo("#s1-line", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, 3.1);
+      [["#s1-w1", 4.25], ["#s1-w2", 5.05], ["#s1-w3", 5.95]].forEach(([s, t]) =>
+        tl.fromTo(s, { opacity: 0, x: 90, filter: "blur(14px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.42, ease: "expo.out" }, t));
+      window.__timelines["s1"] = tl;
+    })();
+  </script>
+</template>

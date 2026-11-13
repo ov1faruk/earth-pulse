@@ -7,7 +7,7 @@ export default defineConfig({
   server: { port: 5173, fs: { deny: ['.env', '.env.*'] } },
   build: {
     chunkSizeWarningLimit: 6000,
-    // Two pages: the live globe (index.html) and the scroll story (story.html).
-    rollupOptions: { input: { main: 'index.html', story: 'story.html' } },
+    // One page: the Pulse home + globe (index.html).
+    rollupOptions: { input: { main: 'index.html' } },
   },
 });

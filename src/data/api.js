@@ -51,8 +51,7 @@ export async function getStory(id) {
     if (!def) throw new Error('unknown story');
     let manifest = null;
     try { manifest = await getJson(`/data/stories/${id}/manifest.json`); } catch { /* none */ }
-    story = resolveStory(def, manifest, { freshness: FRESHNESS.ARCHIVED });
-    if (def.contextEvent) story.contextError = 'Context source unreachable (offline)';
+    story = resolveStory(def, manifest, { contextEvent: def.contextEvent?.event || null, freshness: FRESHNESS.ARCHIVED });
   }
   storyCache.set(id, story);
   return story;

@@ -1,0 +1,56 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Inter, sans-serif; color: #fff; }
+    #s5-wipe { position: absolute; inset: 0; background: #04060a; }
+    #s5-bg { position: absolute; left: -60px; top: -34px; width: 2040px; height: 1148px; background: url(assets/bg_dhaka.jpg) center / cover; }
+    #s5-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4,6,10,.35) 0%, rgba(4,6,10,.55) 50%, rgba(4,6,10,.9) 100%); }
+    #s5-frame { position: absolute; left: 110px; top: 60px; width: 760px; height: 960px; border-radius: 34px; overflow: hidden; background: #070a10; border: 1px solid rgba(255,255,255,.2); box-shadow: 0 50px 120px rgba(0,0,0,.65); }
+    #s5-card { position: absolute; left: 0; top: 0; width: 760px; }
+    #s5-kick { position: absolute; left: 980px; top: 250px; font: 500 26px 'IBM Plex Mono', monospace; letter-spacing: .2em; color: #7fe6ff; }
+    #s5-h { position: absolute; left: 974px; top: 300px; font-size: 128px; font-weight: 700; letter-spacing: -.035em; line-height: 1.02; }
+    #s5-sub { position: absolute; left: 980px; top: 590px; font-size: 44px; font-weight: 300; color: rgba(255,255,255,.85); width: 840px; line-height: 1.25; }
+    .s5-c { position: absolute; left: 974px; top: 380px; width: 900px; }
+    .s5-c b { display: block; font-size: 118px; font-weight: 700; letter-spacing: -.035em; line-height: 1.02; }
+    .s5-c i { display: block; font: 500 26px 'IBM Plex Mono', monospace; font-style: normal; letter-spacing: .16em; color: #7fe6ff; margin-top: 26px; }
+    #s5-n { position: absolute; left: 980px; top: 300px; font: 500 26px 'IBM Plex Mono', monospace; letter-spacing: .2em; color: rgba(255,255,255,.6); }
+    #s5-credit { position: absolute; left: 980px; top: 1000px; font: 400 18px 'IBM Plex Mono', monospace; letter-spacing: .14em; color: rgba(255,255,255,.55); }
+  </style>
+  <div id="root" data-composition-id="s5" data-width="1920" data-height="1080">
+    <div id="s5-wipe">
+      <div id="s5-bg"></div><div id="s5-shade"></div>
+      <div id="s5-frame"><img id="s5-card" src="assets/card_everyone_dhaka.png" alt="" /></div>
+      <div id="s5-kick">THE REAL APP · DHAKA · TODAY</div>
+      <div id="s5-h">Pick any<br />place.</div>
+      <div id="s5-sub">Pulse reads NASA's own measurements for it.</div>
+      <div id="s5-n">WHAT IT READS</div>
+      <div class="s5-c" id="s5-c1"><b>Rain against normal</b><i>NASA POWER · IMERG</i></div>
+      <div class="s5-c" id="s5-c2"><b>Soil saturation</b><i>NASA POWER · GWETTOP</i></div>
+      <div class="s5-c" id="s5-c3"><b>Heat</b><i>NASA POWER · MERRA-2</i></div>
+      <div class="s5-c" id="s5-c4"><b>Fires</b><i>NASA FIRMS · VIIRS + MODIS</i></div>
+      <div class="s5-c" id="s5-c5"><b>Open events</b><i>NASA EONET</i></div>
+      <div class="s5-c" id="s5-c6"><b>The landslide record</b><i>NASA GLOBAL LANDSLIDE CATALOG</i></div>
+      <div id="s5-credit">BACKDROP: BANGLADESH FROM ORBIT · 11 NOV 2026 · NASA VIIRS</div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s5-wipe", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "power3.inOut" }, 0);
+      tl.fromTo("#s5-bg", { x: 50 }, { x: -50, duration: 12.8, ease: "none" }, 0);
+      tl.fromTo("#s5-frame", { x: -900, rotation: -4 }, { x: 0, rotation: 0, duration: 0.8, ease: "expo.out" }, 0.25);
+      tl.fromTo("#s5-card", { y: -330 }, { y: -330, duration: 0.01 }, 0);
+      tl.to("#s5-card", { y: -1010, duration: 1.3, ease: "power2.inOut" }, 3.9);
+      tl.fromTo("#s5-kick", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.6);
+      tl.fromTo("#s5-h", { opacity: 0, x: 80, filter: "blur(12px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.55);
+      tl.fromTo("#s5-sub", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3 }, 1.7);
+      tl.to(["#s5-h", "#s5-sub", "#s5-kick"], { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 4.2);
+      tl.fromTo("#s5-n", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 4.45);
+      const T = [4.6, 6.2, 8.35, 8.95, 9.55, 10.6, 12.9];
+      for (let i = 0; i < 6; i++) {
+        tl.fromTo("#s5-c" + (i + 1), { opacity: 0, y: 70, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.28, ease: "power4.out" }, T[i]);
+        if (i < 5) tl.to("#s5-c" + (i + 1), { opacity: 0, y: -60, filter: "blur(10px)", duration: 0.16, ease: "power2.in" }, T[i + 1] - 0.16);
+      }
+      window.__timelines["s5"] = tl;
+    })();
+  </script>
+</template>

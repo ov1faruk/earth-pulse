@@ -2,7 +2,7 @@
 //   LAYERS  NASA / JPL observation layers draped on the globe, with a day-by-day time-lapse
 //   PROBE   click any place (or search, or use your location) → hazard-signal index,
 //           landslide history, what to do, and a jump into the NISAR change engine
-//   ALERTS  live earthquakes and open events, click to fly there and probe
+//   ALERTS  open NASA EONET events (storms, volcanoes, floods, ice), click to fly there and probe
 //   EARTH   today's full-disc photos of Earth from DSCOVR/EPIC, played as a rotation
 // Every panel names its source. Nothing is simulated.
 // (Written with AI assistance — see README → AI disclosure.)
@@ -57,7 +57,7 @@ const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 export function createMissionControl(app) {
   const { viewer } = app;
   const dock = $('#mc');
-  const st = { tab: 'layers', open: innerWidth >= 1180, active: new Map(), date: null, playing: null, slides: null, slideLayer: null, probe: null, alerts: [], epic: null, epicTimer: null, marker: null };
+  const st = { tab: 'layers', open: false, active: new Map(), date: null, playing: null, slides: null, slideLayer: null, probe: null, alerts: [], epic: null, epicTimer: null, marker: null };
 
   dock.innerHTML = `<header class="mc-head"><span class="mc-title"><i class="mc-live"></i>MISSION CONTROL</span><button class="mc-x" data-a="close" aria-label="Close mission control">×</button></header>
     <div class="mc-vitals" id="mc-vitals"></div>
@@ -69,8 +69,6 @@ export function createMissionControl(app) {
   getJson('/api/vitals').catch(() => getJson('/data/story/vitals.json')).then((v) => {
     const items = [];
     if (v.temperature?.last12MonthMean != null) items.push(['TEMP', `+${(v.temperature.last12MonthMean + v.temperature.baselineShift).toFixed(2)} °C`, '#ff7a5c']);
-    if (v.co2?.latestMonth) items.push(['CO₂', `${v.co2.latestMonth.ppm.toFixed(1)} ppm`, '#ffd166']);
-    if (v.seaLevel?.riseSinceStartMm) items.push(['SEA', `+${Math.round(v.seaLevel.riseSinceStartMm)} mm`, '#48d6ff']);
     if (v.seaIce?.latest) items.push(['ICE', `${v.seaIce.latest.extent.toFixed(2)} M km²`, '#c8e9ff']);
     $('#mc-vitals').innerHTML = items.map(([k, val, c]) => `<a href="#" data-a="film" style="--c:${c}" title="Earth's vital signs — play the mission"><span>${k}</span><b>${esc(val)}</b></a>`).join('');
   }).catch(() => {});
@@ -191,24 +189,24 @@ export function createMissionControl(app) {
     const pr = projected(p, 0);
     return `<h4>Next 7 days · forecast</h4>
       <div class="mc-days">${o.days.map((d, k) => `<div class="mc-day" title="${d.date}: ${d.rainMm} mm rain, ${d.tmin}–${d.tmax} °C"><b>${d.rainMm >= 1 ? Math.round(d.rainMm) : ''}</b><i style="height:${Math.max(2, (d.rainMm / max) * 100)}%;animation-delay:${k * 70}ms"></i>${d.normalRainMm != null ? `<u style="bottom:${(d.normalRainMm / max) * 100}%"></u>` : ''}<span>${DAY[new Date(`${d.date}T00:00:00Z`).getUTCDay()]}</span></div>`).join('')}</div>
-      <p class="mc-out"><b>${Math.round(sum)} mm</b> of rain expected${sum >= 1 ? `, most on ${DAY[new Date(`${wettest.date}T00:00:00Z`).getUTCDay()]} (${Math.round(wettest.rainMm)} mm)` : ''}. Highs to <b>${Math.round(hot.tmax)} °C</b>${pr ? ` (${pr.tAnom >= 0 ? '+' : ''}${pr.tAnom.toFixed(1)} °C vs normal)` : ''}, gusts to ${Math.round(gust)} km/h.${o.river ? ` River flow nearby: <b>${o.river.today} m³/s</b> today${o.river.changePct > 5 ? `, rising to ${o.river.peak} m³/s (+${o.river.changePct}%) by ${DAY[new Date(`${o.river.peakDate}T00:00:00Z`).getUTCDay()]}` : ', not forecast to rise'}.` : ''} <span class="mc-dash">— dashed line: normal daily rain</span></p>
+      <p class="mc-out"><b>${Math.round(sum)} mm</b> of rain expected${sum >= 1 ? `, most on ${DAY[new Date(`${wettest.date}T00:00:00Z`).getUTCDay()]} (${Math.round(wettest.rainMm)} mm)` : ''}. Highs to <b>${Math.round(hot.tmax)} °C</b>${pr ? ` (${pr.tAnom >= 0 ? '+' : ''}${pr.tAnom.toFixed(1)} °C vs normal)` : ''}, gusts to ${Math.round(gust)} km/h. <span class="mc-dash">— dashed line: normal daily rain</span></p>
       <div class="mc-proj" id="mc-proj">${projLine(p, p.whatIf || 0)}</div>
       ${pr ? `<div class="mc-whatif"><label for="mc-whatif">SIMULATE: what if <b id="mc-wi-v">+${p.whatIf || 0} mm</b> more rain falls this week?</label><input class="mc-range" id="mc-whatif" type="range" min="0" max="400" step="10" value="${p.whatIf || 0}" /></div>` : ''}
-      <p class="mc-src">Forecast: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> (NOAA GFS / ECMWF)${o.river ? ' · river flow: Copernicus GloFAS' : ''} — not NASA products. Normals and recent rain: NASA POWER. The projection re-runs today's rain formula on 23 observed days plus the 7 forecast days; the simulator adds your amount to that. It is an estimate of the signal, not a flood forecast.</p>`;
+      <p class="mc-src">Forecast: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> (NOAA GFS / ECMWF) — the only non-NASA input in EARTH//PULSE. Normals and recent rain: NASA POWER. The projection re-runs today's rain formula on 23 observed days plus the 7 forecast days; the simulator adds your amount to that. It is an estimate of the signal, not a flood forecast.</p>`;
   }
   const measured = (k, m) => {
     if (k === 'wet' || k === 'dry') return m.rain ? `${m.rain.observedMm} mm in ${m.rain.days} d · normal ${m.rain.normalMm} mm` : 'no rainfall data';
     if (k === 'heat') return m.heat ? `${m.heat.observedC} °C · ${m.heat.anomalyC >= 0 ? '+' : ''}${m.heat.anomalyC} °C vs normal` : 'no temperature data';
-    if (k === 'seismic') return m.seismic.maxMag ? `largest M ${m.seismic.maxMag} within 300 km, 30 d` : 'no M 2.5+ quake within 300 km';
+    if (k === 'soil') return m.soil ? `surface soil ${Math.round(m.soil.wetness * 100)}% wet (7-day mean)` : 'no soil-moisture data';
     if (k === 'fire') return `${m.fire.detections} fire detections within 100 km`;
     return `${m.events.count} open events within 500 km`;
   };
   function renderProbe() {
     const p = st.probe;
     const search = `<form class="mc-search" id="mc-search" autocomplete="off"><input id="mc-q" type="search" placeholder="Search a place" aria-label="Search a place" /><button class="mc-mini" type="submit">GO</button><button class="mc-mini" type="button" data-a="locate" title="Use my location">◎ ME</button><ul id="mc-results" hidden></ul></form>`;
-    if (!p) { body.innerHTML = `${search}<div class="mc-empty"><span class="mc-cross"></span><strong>Click anywhere on the globe</strong><p>You get the hazard signals being measured there right now — rain, heat, earthquakes, fires — its landslide history, and what to do about the biggest one.</p></div>`; return; }
+    if (!p) { body.innerHTML = `${search}<div class="mc-empty"><span class="mc-cross"></span><strong>Click anywhere on the globe</strong><p>You get the hazard signals being measured there right now — rain, soil wetness, heat, fires — its landslide history, and what to do about the biggest one.</p></div>`; return; }
     const where = `<div class="mc-where"><b>${esc(p.name || 'Selected place')}</b><span>${Math.abs(p.lat).toFixed(2)}° ${p.lat >= 0 ? 'N' : 'S'}, ${Math.abs(p.lon).toFixed(2)}° ${p.lon >= 0 ? 'E' : 'W'}</span></div>`;
-    if (p.loading) { body.innerHTML = `${search}${where}<div class="mc-scan"><i></i><span>Reading NASA POWER, USGS, FIRMS, EONET…</span></div>`; return; }
+    if (p.loading) { body.innerHTML = `${search}${where}<div class="mc-scan"><i></i><span>Reading NASA POWER, FIRMS, EONET…</span></div>`; return; }
     if (p.error) { body.innerHTML = `${search}${where}<p class="mc-err">The live data service did not answer for this place. Nothing is substituted.</p>`; return; }
     const r = p.risk, lvl = riskLevel(r.overall);
     const order = Object.entries(r.scores).sort((a, b) => b[1] - a[1]);
@@ -221,7 +219,7 @@ export function createMissionControl(app) {
       ${ctxChips(['pop', 'slidehaz', 'floodhaz', 'rain'], 'CONTEXT ON THE GLOBE')}
       <div class="mc-act"><h4>${esc(g.title)} — what to do</h4><ul>${g.act.map((a) => `<li>${esc(a)}</li>`).join('')}</ul></div>
       <div class="mc-row"><button class="mc-cta" data-a="nisar">COMPARE NISAR RADAR PASSES HERE</button></div>
-      <details class="mc-how"><summary>How this is calculated</summary><p>${esc(METHOD.overall)}</p><p>${esc(METHOD.signals[order[0][0]].formula)}</p><p>${esc(METHOD.caveat)}</p><p>Weather to ${r.measured.rain ? esc(r.measured.rain.to) : '—'} · sources: NASA POWER, USGS, NASA FIRMS, NASA EONET, GDACS.</p></details>`;
+      <details class="mc-how"><summary>How this is calculated</summary><p>${esc(METHOD.overall)}</p><p>${esc(METHOD.signals[order[0][0]].formula)}</p><p>${esc(METHOD.caveat)}</p><p>Weather to ${r.measured.rain ? esc(r.measured.rain.to) : '—'} · sources: NASA POWER, NASA FIRMS, NASA EONET.</p></details>`;
   }
   async function search(q) {
     const res = $('#mc-results');
@@ -293,10 +291,10 @@ export function createMissionControl(app) {
 
   // ---------- ALERTS ----------
   async function loadAlerts() {
-    const [q, e] = await Promise.all([getJson('/api/live/quakes').catch(() => getJson('/data/live/quakes.json')).catch(() => null), getJson('/api/live/events').catch(() => getJson('/data/live/events.json')).catch(() => null)]);
-    const since = Date.now() - 7 * 864e5, items = [];
-    for (const x of q?.quakes || []) if (x[4] >= since && x[3] >= 5) items.push({ t: x[4], lat: x[1], lon: x[0], title: `M ${x[3].toFixed(1)} — ${x[6]}`, kind: 'EARTHQUAKE', color: '#ffb347', hot: x[3] >= 6 || !!x[7] || ['orange', 'red'].includes(x[8]), url: `https://earthquake.usgs.gov/earthquakes/eventpage/${x[5]}`, src: 'USGS' });
-    for (const x of e?.events || []) if (x.category !== 'wildfires' && Number.isFinite(x.lat)) items.push({ t: Date.parse(x.date), lat: x.lat, lon: x.lon, title: x.title, kind: (x.categoryTitle || 'EVENT').toUpperCase(), color: '#48d6ff', hot: false, url: x.url, src: x.source });
+    const e = await getJson('/api/live/events').catch(() => getJson('/data/live/events.json')).catch(() => null);
+    const items = [], day2 = Date.now() - 2 * 864e5;
+    // Hot = a storm or eruption EONET updated in the last 48 h.
+    for (const x of e?.events || []) if (x.category !== 'wildfires' && Number.isFinite(x.lat)) items.push({ t: Date.parse(x.date), lat: x.lat, lon: x.lon, title: x.title, kind: (x.categoryTitle || 'EVENT').toUpperCase(), color: '#48d6ff', hot: ['severeStorms', 'volcanoes', 'floods'].includes(x.category) && Date.parse(x.date) >= day2, url: x.url, src: x.source });
     st.alerts = items.sort((a, b) => b.t - a.t).slice(0, 60);
     const hot = st.alerts.filter((a) => a.hot).length;
     if (st.hotSeen != null && hot > st.hotSeen) sfx.alert();
@@ -307,7 +305,7 @@ export function createMissionControl(app) {
   }
   const ago = (t) => { const m = (Date.now() - t) / 6e4; return m < 60 ? `${Math.round(m)} min ago` : m < 2880 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} d ago`; };
   function renderAlerts() {
-    body.innerHTML = st.alerts.length ? `<p class="mc-k" style="margin:0 0 8px">EARTHQUAKES M 5+ (7 DAYS) AND OPEN EVENTS · CLICK TO FLY AND PROBE</p>${st.alerts.map((a, k) => `<button class="mc-alert${a.hot ? ' hot' : ''}" data-alert="${k}" style="--c:${a.color}"><i></i><span><strong>${esc(a.title)}</strong><em>${esc(a.kind)} · ${ago(a.t)} · ${esc(a.src)}</em></span></button>`).join('')}<p class="mc-src">Sources: USGS, NASA EONET, GDACS. Red entries are M 6+, tsunami messages or PAGER orange/red. Refreshes every 5 minutes.</p>` : '<div class="mc-scan"><i></i><span>Loading live feeds…</span></div>';
+    body.innerHTML = st.alerts.length ? `<p class="mc-k" style="margin:0 0 8px">OPEN NATURAL EVENTS · CLICK TO FLY AND PROBE</p>${st.alerts.map((a, k) => `<button class="mc-alert${a.hot ? ' hot' : ''}" data-alert="${k}" style="--c:${a.color}"><i></i><span><strong>${esc(a.title)}</strong><em>${esc(a.kind)} · ${ago(a.t)} · ${esc(a.src)}</em></span></button>`).join('')}<p class="mc-src">Source: NASA EONET. Red entries are storms, eruptions or floods updated in the last 48 hours. Refreshes every 5 minutes.</p>` : '<div class="mc-scan"><i></i><span>Loading live feeds…</span></div>';
   }
 
   // ---------- EARTH TODAY ----------

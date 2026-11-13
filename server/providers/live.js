@@ -2,9 +2,7 @@
 //
 //   NASA FIRMS   active-fire detections, last 24 h, per satellite
 //                (NOAA-20, NOAA-21, Suomi NPP VIIRS; Terra/Aqua MODIS)
-//   USGS         earthquakes M2.5+, last 30 days
 //   NASA EONET   open natural events (wildfires, storms, volcanoes, ice…)
-//   GDACS        current disaster alerts (floods, cyclones, drought…)
 //   NASA CMR     NISAR GCOV + GUNW granules (footprints) acquired recently
 //
 // Responses are compacted to arrays so hundreds of thousands of points can be
@@ -24,8 +22,7 @@ export const FIRE_SATS = ['NOAA 20', 'NOAA 21', 'SUOMI NPP', 'TERRA', 'AQUA'];
 // NORAD IDs verified against the CelesTrak catalog (NOAA 20 (JPSS-1), NOAA 21 (JPSS-2), SUOMI NPP, TERRA, AQUA).
 export const FIRE_SAT_NORAD = [43013, 54234, 37849, 25994, 27424];
 
-const fireCache = createCache('firms', { ttlMs: 60 * 60_000 });
-const quakeCache = createCache('usgs-feed', { ttlMs: 10 * 60_000 });
+const fireCache = createCache('firms-v2', { ttlMs: 60 * 60_000 });
 const eventCache = createCache('events', { ttlMs: 30 * 60_000 });
 const nisarCache = createCache('nisar-recent', { ttlMs: 3 * 3600_000 });
 
@@ -41,9 +38,9 @@ function parseFirms(csv) {
     if (c.length < head.length) continue;
     const t = c[iTime].padStart(4, '0');
     const ms = Date.parse(`${c[iDate]}T${t.slice(0, 2)}:${t.slice(2)}:00Z`);
-    const conf = c[iConf];
-    // VIIRS: l/n/h; MODIS: 0–100 → map to 0/1/2
-    const confN = conf === 'h' ? 2 : conf === 'n' ? 1 : conf === 'l' ? 0 : Number(conf) >= 80 ? 2 : Number(conf) >= 30 ? 1 : 0;
+    const conf = String(c[iConf] || '').trim().toLowerCase();
+    // VIIRS: low/nominal/high (or l/n/h); MODIS: 0–100 → map to 0/1/2
+    const confN = /^h/.test(conf) ? 2 : /^n/.test(conf) ? 1 : /^l/.test(conf) ? 0 : Number(conf) >= 80 ? 2 : Number(conf) >= 30 ? 1 : 0;
     out.push([
       Math.round(Number(c[iLon]) * 1e4) / 1e4,
       Math.round(Number(c[iLat]) * 1e4) / 1e4,
@@ -88,27 +85,6 @@ export async function getFires() {
   };
 }
 
-export async function getQuakes() {
-  const url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson';
-  const hit = await quakeCache.get(url, async () => {
-    const g = JSON.parse(await fetchText(url, { timeoutMs: 30000 }));
-    return {
-      body: g.features.map((f) => {
-        const [lon, lat, depth] = f.geometry.coordinates;
-        const p = f.properties;
-        return [Math.round(lon * 1e3) / 1e3, Math.round(lat * 1e3) / 1e3, Math.round(depth), p.mag, p.time, f.id, p.place, p.tsunami ? 1 : 0, p.alert || null];
-      }),
-    };
-  });
-  return {
-    fields: ['lon', 'lat', 'depthKm', 'mag', 'timeMs', 'id', 'place', 'tsunami', 'pagerAlert'],
-    quakes: hit.body,
-    freshness: hit.state,
-    fetchedAt: new Date(hit.at).toISOString(),
-    attribution: 'USGS Earthquake Hazards Program',
-  };
-}
-
 function centroidOf(geom) {
   const pts = [];
   const walk = (c) => (typeof c[0] === 'number' ? pts.push(c) : c.forEach(walk));
@@ -118,18 +94,21 @@ function centroidOf(geom) {
   return [lon, lat];
 }
 
+// EONET caps a response at `limit`, and open wildfires alone exceed 1,000, so
+// storms, volcanoes, floods and ice are fetched separately and never crowded out.
+const EONET = 'https://eonet.gsfc.nasa.gov/api/v3/events?status=open';
+const EONET_HAZARDS = 'severeStorms,volcanoes,floods,seaLakeIce,drought,landslides,snow,dustHaze,earthquakes,tempExtremes,waterColor,manmade';
+
 export async function getEvents() {
-  const eonetUrl = 'https://eonet.gsfc.nasa.gov/api/v3/events?status=open&limit=1000';
-  const to = new Date().toISOString().slice(0, 10);
-  const from = new Date(Date.now() - 30 * 864e5).toISOString().slice(0, 10);
-  const gdacsUrl = `https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;DR;WF&fromDate=${from}&toDate=${to}`;
-  const [eo, gd] = await Promise.allSettled([
-    eventCache.get(eonetUrl, async () => ({ body: JSON.parse(await fetchText(eonetUrl, { timeoutMs: 30000 })) })),
-    eventCache.get(gdacsUrl, async () => ({ body: JSON.parse(await fetchText(gdacsUrl, { timeoutMs: 30000 })) })),
-  ]);
+  const urls = [`${EONET}&category=${EONET_HAZARDS}&limit=1000`, `${EONET}&category=wildfires&limit=1500`];
+  const res = await Promise.allSettled(urls.map((u) => eventCache.get(u, async () => ({ body: JSON.parse(await fetchText(u, { timeoutMs: 30000 })) }))));
   const events = [];
-  if (eo.status === 'fulfilled') {
-    for (const e of eo.value.body.events || []) {
+  const seen = new Set();
+  for (const r of res) {
+    if (r.status !== 'fulfilled') continue;
+    for (const e of r.value.body.events || []) {
+      if (seen.has(e.id)) continue;
+      seen.add(e.id);
       const last = e.geometry?.at(-1);
       if (!last?.coordinates) continue;
       const [lon, lat] = last.type === 'Point' ? last.coordinates : centroidOf(last);
@@ -142,27 +121,13 @@ export async function getEvents() {
       });
     }
   }
-  const GD_CAT = { EQ: 'earthquakes', TC: 'severeStorms', FL: 'floods', VO: 'volcanoes', DR: 'drought', WF: 'wildfires' };
-  if (gd.status === 'fulfilled') {
-    for (const f of gd.value.body.features || []) {
-      const p = f.properties;
-      if (p.eventtype === 'WF' || p.eventtype === 'EQ') continue; // covered by FIRMS/EONET and USGS
-      if (!f.geometry?.coordinates) continue;
-      const [lon, lat] = f.geometry?.type === 'Point' ? f.geometry.coordinates : centroidOf(f.geometry);
-      events.push({
-        id: `gdacs:${p.eventtype}${p.eventid}`, source: 'GDACS', title: p.name || p.htmldescription, category: GD_CAT[p.eventtype] || 'other',
-        categoryTitle: { TC: 'Tropical cyclone', FL: 'Flood', VO: 'Volcano', DR: 'Drought' }[p.eventtype] || p.eventtype,
-        lon, lat, date: p.todate || p.fromdate, alert: p.alertlevel, country: p.country,
-        magnitude: p.severitydata?.severitytext || null, url: p.url?.report || p.url?.details || 'https://www.gdacs.org',
-      });
-    }
-  }
-  if (!events.length) throw new Error('no event feeds available');
+  if (!events.length) throw new Error('NASA EONET unavailable');
+  const ok = res.filter((r) => r.status === 'fulfilled');
   return {
     events,
-    freshness: eo.status === 'fulfilled' ? eo.value.state : 'STALE',
-    sources: { eonet: eo.status === 'fulfilled' ? 'ok' : 'unavailable', gdacs: gd.status === 'fulfilled' ? 'ok' : 'unavailable' },
-    attribution: 'NASA EONET · GDACS (EC JRC / UN OCHA)',
+    freshness: ok.length === res.length ? ok[0].value.state : 'STALE',
+    sources: { eonet: ok.length ? 'ok' : 'unavailable' },
+    attribution: 'NASA EONET v3 (Earth Observatory Natural Event Tracker, NASA GSFC)',
   };
 }
 

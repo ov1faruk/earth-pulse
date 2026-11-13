@@ -1,7 +1,6 @@
 // LIVING EARTH — hundreds of thousands of real, recent observations on the globe.
 //   fires   NASA FIRMS detections (24 h) — each tagged with the satellite that saw it
-//   quakes  USGS M2.5+ (30 d)
-//   events  NASA EONET + GDACS open events
+//   events  NASA EONET open events
 //   nisar   NISAR GCOV/GUNW footprints (recent days) — click to drape the real image
 import * as Cesium from 'cesium';
 import { reducedMotion } from './camera.js';
@@ -9,7 +8,7 @@ import { loadBrowse } from './browse.js';
 
 const C = (hex, a = 1) => Cesium.Color.fromCssColorString(hex).withAlpha(a);
 export const LIVE_COLORS = {
-  radar: '#ffffff', fires: '#ff7a2f', quakes: '#ff5fa2', events: '#ffd166', nisarGCOV: '#48d6ff', nisarGUNW: '#b388ff',
+  radar: '#ffffff', fires: '#ff7a2f', events: '#ffd166', nisarGCOV: '#48d6ff', nisarGUNW: '#b388ff',
 };
 export const EVENT_COLORS = {
   wildfires: '#ff8a3d', severeStorms: '#9ad0ff', volcanoes: '#ff4d4d', seaLakeIce: '#e6f4ff', floods: '#48d6ff',
@@ -56,14 +55,14 @@ async function loadFeed(name, live) {
 
 export function createLiveLayers(viewer) {
   const scene = viewer.scene;
-  const data = { radar: null, fires: null, quakes: null, events: null, nisar: null };
-  const status = { radar: 'loading', fires: 'loading', quakes: 'loading', events: 'loading', nisar: 'loading' };
-  const visible = { radar: true, fires: true, quakes: true, events: true, nisar: true };
+  const data = { radar: null, fires: null, events: null, nisar: null };
+  const status = { radar: 'idle', fires: 'idle', events: 'idle', nisar: 'idle' };
+  // NISAR footprints start hidden: 2,000+ translucent polygons are the heaviest layer to draw.
+  const visible = { radar: true, fires: true, events: true, nisar: false };
   const listeners = new Set();
   const emit = () => listeners.forEach((f) => f());
 
   const firePts = scene.primitives.add(new Cesium.PointPrimitiveCollection({ blendOption: Cesium.BlendOption.TRANSLUCENT }));
-  const quakePts = scene.primitives.add(new Cesium.PointPrimitiveCollection({ blendOption: Cesium.BlendOption.TRANSLUCENT }));
   const eventBoards = scene.primitives.add(new Cesium.BillboardCollection({ scene }));
   const eventTracks = scene.primitives.add(new Cesium.PolylineCollection());
   const radarPts = scene.primitives.add(new Cesium.PointPrimitiveCollection({ blendOption: Cesium.BlendOption.TRANSLUCENT }));
@@ -81,6 +80,8 @@ export function createLiveLayers(viewer) {
     const fade = new Cesium.NearFarScalar(1e6, 1.0, 3.5e7, 0.55);
     for (let i = 0; i < f.length; i++) {
       const r = f[i];
+      // Low-confidence detections (~10%) are kept in the data but not drawn.
+      if (r[5] === 0) { firePts.add({ position: Cesium.Cartesian3.fromDegrees(r[0], r[1], 0), show: false, id: i }); continue; }
       firePts.add({
         position: Cesium.Cartesian3.fromDegrees(r[0], r[1], 0),
         pixelSize: 1.6 + Math.min(4.2, Math.log10(1 + r[2]) * 1.9),
@@ -97,7 +98,7 @@ export function createLiveLayers(viewer) {
     if (!data.fires) return;
     const f = data.fires.fires;
     const n = firePts.length;
-    for (let i = 0; i < n; i++) firePts.get(i).show = visible.fires && (fireFilter == null || f[i][4] === fireFilter);
+    for (let i = 0; i < n; i++) firePts.get(i).show = visible.fires && f[i][5] !== 0 && (fireFilter == null || f[i][4] === fireFilter);
   }
 
   // ---------- NISAR change radar (hotspots from tools/scan_changes.py) ----------
@@ -121,26 +122,6 @@ export function createLiveLayers(viewer) {
     radarPts.show = visible.radar;
   }
 
-  // ---------- quakes ----------
-  function buildQuakes() {
-    quakePts.removeAll();
-    const now = Date.now();
-    for (let i = 0; i < data.quakes.quakes.length; i++) {
-      const q = data.quakes.quakes[i];
-      const ageD = (now - q[4]) / 864e5;
-      const recent = Math.max(0.25, 1 - ageD / 30);
-      quakePts.add({
-        position: Cesium.Cartesian3.fromDegrees(q[0], q[1], 0),
-        pixelSize: 3 + Math.max(0, q[3] - 2.5) * 3.2,
-        color: C('#ff5fa2', 0.2 + 0.45 * recent),
-        outlineColor: C(ageD < 1 ? '#ffffff' : '#ff9cc8', 0.5 + 0.4 * recent),
-        outlineWidth: ageD < 1 ? 1.6 : 1,
-        scaleByDistance: new Cesium.NearFarScalar(3e5, 1.8, 2e7, 0.7),
-        id: i,
-      });
-    }
-  }
-
   // ---------- events ----------
   function buildEvents() {
     eventBoards.removeAll();
@@ -150,7 +131,7 @@ export function createLiveLayers(viewer) {
       const e = data.events.events[i];
       const hex = EVENT_COLORS[e.category] || EVENT_COLORS.other;
       cache[hex] ||= haloCanvas(hex);
-      const big = e.source === 'GDACS' || e.category !== 'wildfires';
+      const big = e.category !== 'wildfires';
       eventBoards.add({
         position: Cesium.Cartesian3.fromDegrees(e.lon, e.lat, 0),
         image: cache[hex],
@@ -212,10 +193,14 @@ export function createLiveLayers(viewer) {
   }
 
   // ---------- loading ----------
-  async function load() {
+  let loading = null;
+  /** Loads every feed once; later calls return the same promise. */
+  function load() { return (loading ||= loadAll()); }
+  async function loadAll() {
+    for (const k of Object.keys(status)) status[k] = 'loading';
+    emit();
     const jobs = [
       ['radar', '/data/change/radar.json', buildRadar],
-      ['quakes', '/api/live/quakes', buildQuakes],
       ['events', '/api/live/events', buildEvents],
       ['nisar', '/api/live/nisar?days=3', buildNisar],
       ['fires', '/api/live/fires', buildFires],
@@ -238,7 +223,6 @@ export function createLiveLayers(viewer) {
     for (const p of picks) {
       if (p.collection === radarPts && data.radar) return { kind: 'radar', i: p.id, record: data.radar.hotspots[p.id] };
       if (p.collection === firePts && data.fires) return { kind: 'fire', i: p.id, record: data.fires.fires[p.id] };
-      if (p.collection === quakePts && data.quakes) return { kind: 'quake', i: p.id, record: data.quakes.quakes[p.id] };
       if (p.collection === eventBoards && data.events) return { kind: 'event', i: p.id, record: data.events.events[p.id] };
     }
     for (const p of picks) if (p.id?.live === 'nisar') return { kind: 'nisar', i: p.id.i, record: data.nisar.granules[p.id.i] };
@@ -247,32 +231,28 @@ export function createLiveLayers(viewer) {
 
   // ---------- time-lapse ----------
   let lapse = null;
-  /** Replays each layer across its own window (fires 24 h, quakes 30 d, NISAR N d) in `seconds`. */
+  /** Replays each layer across its own window (fires 24 h, NISAR N d) in `seconds`. */
   function playTimelapse({ seconds = 16, onProgress } = {}) {
     stopTimelapse();
     if (reducedMotion()) return Promise.resolve();
     const order = (arr, tOf) => arr.map((r, i) => [tOf(r), i]).sort((a, b) => a[0] - b[0]);
     const fo = data.fires ? order(data.fires.fires, (r) => r[3]) : [];
-    const qo = data.quakes ? order(data.quakes.quakes, (r) => r[4]) : [];
     const no = data.nisar ? order(data.nisar.granules, (r) => Date.parse(r.t)) : [];
     const hideAll = () => {
       for (let i = 0; i < firePts.length; i++) firePts.get(i).show = false;
-      for (let i = 0; i < quakePts.length; i++) quakePts.get(i).show = false;
       if (nisarPrim?.ready) no.forEach(([, i]) => { const a = nisarAttr(i); if (a) a.show = Cesium.ShowGeometryInstanceAttribute.toValue(false, a.show); });
     };
     hideAll();
-    const ptr = { f: 0, q: 0, n: 0 };
+    const ptr = { f: 0, n: 0 };
     const t0 = performance.now();
     return new Promise((resolve) => {
       const step = () => {
         const k = Math.min(1, (performance.now() - t0) / (seconds * 1000));
         const upTo = (ord, key, show) => { const lim = Math.floor(ord.length * k); while (ptr[key] < lim) show(ord[ptr[key]++][1]); };
-        upTo(fo, 'f', (i) => { if (visible.fires && (fireFilter == null || data.fires.fires[i][4] === fireFilter)) firePts.get(i).show = true; });
-        upTo(qo, 'q', (i) => { if (visible.quakes) quakePts.get(i).show = true; });
-        upTo(no, 'n', (i) => { const a = nisarAttr(i); if (a) a.show = Cesium.ShowGeometryInstanceAttribute.toValue(true, a.show); });
+        upTo(fo, 'f', (i) => { if (visible.fires && data.fires.fires[i][5] !== 0 && (fireFilter == null || data.fires.fires[i][4] === fireFilter)) firePts.get(i).show = true; });
+        upTo(no, 'n', (i) => { const a = visible.nisar && nisarAttr(i); if (a) a.show = Cesium.ShowGeometryInstanceAttribute.toValue(true, a.show); });
         onProgress?.(k, {
           fires: data.fires && fo.length ? new Date(fo[Math.max(0, ptr.f - 1)][0] * 60000) : null,
-          quakes: qo.length ? new Date(qo[Math.max(0, ptr.q - 1)][0]) : null,
           nisar: no.length ? new Date(no[Math.max(0, ptr.n - 1)][0]) : null,
         });
         if (k < 1) lapse = requestAnimationFrame(step);
@@ -288,15 +268,14 @@ export function createLiveLayers(viewer) {
   }
   function restoreVisibility() {
     applyFireFilter();
-    for (let i = 0; i < quakePts.length; i++) quakePts.get(i).show = visible.quakes;
     if (nisarPrim?.ready && data.nisar) data.nisar.granules.forEach((_, i) => { const a = nisarAttr(i); if (a) a.show = Cesium.ShowGeometryInstanceAttribute.toValue(true, a.show); });
+    if (nisarPrim) nisarPrim.show = visible.nisar;
   }
 
   // ---------- controls ----------
   function setVisible(k, v) {
     visible[k] = v;
     if (k === 'fires') applyFireFilter();
-    if (k === 'quakes') quakePts.show = v;
     if (k === 'radar') radarPts.show = v;
     if (k === 'events') { eventBoards.show = v; eventTracks.show = v; }
     if (k === 'nisar' && nisarPrim) nisarPrim.show = v;
@@ -340,7 +319,7 @@ export function createLiveLayers(viewer) {
     load, pickAt, playTimelapse, stopTimelapse, setVisible, setAll, setFireFilter, highlightNisar, drapeNisar, clearDraped,
     onChange: (f) => listeners.add(f),
     data, status, visible,
-    collections: { radar: radarPts, fires: firePts, quakes: quakePts, events: eventBoards },
+    collections: { radar: radarPts, fires: firePts, events: eventBoards },
     get fireFilter() { return fireFilter; },
     get nisarHighlight() { return nisarHighlight; },
   };

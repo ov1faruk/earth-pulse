@@ -9,10 +9,10 @@ DATA SOURCES            INGESTION / PROCESSING          STORAGE / CACHE         
 ASF DAAC Search API ──▶ server/providers/nisar.js  ──▶  .pulse-cache/ (TTL,  ──▶ /api/nisar/*       ──▶ src/ui/science.js
 NISAR browse PNGs   ──▶ tools/build_stories.py     ──▶  public/data/stories  ──▶ /api/story/:id     ──▶ src/globe/storyLayers.js
 CelesTrak GP/TLE    ──▶ server/providers/space.js  ──▶  .pulse-cache/        ──▶ /api/satellites    ──▶ src/globe/satellites.js
-USGS FDSN events    ──▶ server/providers/context.js──▶  .pulse-cache/        ──▶ /api/context/usgs  ──▶ story CONTEXT block
 Photon (OSM)        ──▶ server/providers/context.js──▶  .pulse-cache/        ──▶ /api/locations     ──▶ search
-FIRMS · USGS feed   ──▶ server/providers/live.js   ──▶  .pulse-cache/        ──▶ /api/live/*        ──▶ src/globe/live.js + src/livingEarth.js
-EONET · GDACS · CMR ──▶ (compacted arrays, gzip)
+NASA FIRMS          ──▶ server/providers/live.js   ──▶  .pulse-cache/        ──▶ /api/live/*        ──▶ src/globe/live.js + src/livingEarth.js
+EONET · CMR         ──▶ (compacted arrays, gzip)
+POWER · FIRMS · EONET · Landslides · ASF · Open-Meteo ──▶ server/providers/pulse.js ──▶ /api/pulse ──▶ src/pulse/home.js (+ logic.js)
 NASA GIBS, Esri     ─────────────────────────────── (browser tiles) ─────────────────────────────────▶ src/globe/viewer.js
 ```
 
@@ -26,6 +26,7 @@ NASA GIBS, Esri     ────────────────────
 | Globe | `src/globe/viewer.js`, `satellites.js`, `camera.js`, `storyLayers.js`, `atlas.js` | Cesium viewer, real-orbit satellites, camera verbs, NISAR imagery layers, change atlas. |
 | UI | `src/ui/*` | Story panel, time machine, How did NISAR know?, Science Mode, provenance, satellite card. |
 | Living Earth | `server/providers/live.js`, `src/globe/live.js`, `src/livingEarth.js`, `src/ui/live.js` | ~200k fires as one `PointPrimitiveCollection`, quakes, event billboards, NISAR footprints as one batched `Primitive` with per-instance colour/show (time-lapse), and click-to-drape NISAR browse images with in-browser corner-fit georeferencing. A central picking handler with a 14 px hit area prioritises satellites, then stories, then live data. |
+| Pulse home | `server/providers/pulse.js`, `src/pulse/logic.js`, `src/pulse/home.js`, `home.css` | First screen. One `/api/pulse` call per place; persona alerts are pure functions (`assess`) tested in `test/pulse.test.mjs`. The globe's live layers and satellites load only when the card is left (`app.startGlobe`). The old scroll page (`story.html`) was removed. |
 | Demo | `src/demo/director.js` | Deterministic, abortable 15-beat presenter sequence (`▶ PLAY DEMO`, or `?demo`). |
 
 ## Fallback hierarchy (§34)
@@ -62,7 +63,7 @@ the Bhote Koshi flood data (CC BY-NC 4.0).
 - ~300 satellites in one `PointPrimitiveCollection`, re-propagated at 2 Hz; only the selected object becomes an entity.
 - NISAR frames are single-tile WebP (≤1600 px, ~0.3–0.8 MB); layers are created per story and destroyed on exit.
 - The swath polygon is rebuilt at most every 2 s (simulated time) and cached between frames.
-- Upstream responses are cached server-side (ASF 3 h, TLE 6 h, USGS 24 h, geocoding 7 d, browse 30 d).
+- Upstream responses are cached server-side (ASF 3 h, TLE 6 h, POWER 12 h, Pulse 3 h, geocoding 7 d, browse 30 d).
 - Reduced motion shortens every camera move and disables idle spin, pulses and diagram animation.
 
 ## Scaling to full NISAR products

@@ -1,0 +1,31 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Inter, sans-serif; color: #fff; }
+    #s11-wipe { position: absolute; inset: 0; background: linear-gradient(180deg, #8fc9f7 0%, #cfe8fb 50%, #ffe6bd 100%); }
+    #s11-mark { position: absolute; left: 0; width: 1920px; top: 300px; text-align: center; font-size: 170px; font-weight: 700; letter-spacing: .1em; color: #0d2233; white-space: nowrap; }
+    #s11-mark em { font-style: normal; color: #1d7fb8; }
+    #s11-tag { position: absolute; left: 0; width: 1920px; top: 530px; text-align: center; font-size: 72px; font-weight: 400; color: #18364d; }
+    #s11-tag span { display: inline-block; white-space: pre; }
+    #s11-tag b { font-weight: 700; color: #0d5f8f; }
+    #s11-names { position: absolute; left: 0; width: 1920px; top: 730px; text-align: center; font-size: 28px; font-weight: 500; color: #23435a; line-height: 1.6; }
+    #s11-fine { position: absolute; left: 0; width: 1920px; top: 870px; text-align: center; font: 500 20px 'IBM Plex Mono', monospace; letter-spacing: .12em; line-height: 2; color: #3d566b; }
+  </style>
+  <div id="root" data-composition-id="s11" data-width="1920" data-height="1080">
+    <div id="s11-wipe">
+      <div id="s11-mark">EARTH<em>//</em>PULSE</div>
+      <div id="s11-tag"><span>Know </span><span>what </span><span>the </span><span>weather </span><span><b>will </b></span><span><b>do.</b></span></div>
+      <div id="s11-names"><b>THE L-BAND</b><br />Mohammad Golam Faruk Ovi · Md. Zaharabi Bhuiyain Rafi · Mohammad Mushfiq Us Saleheen · Rezaul Karim Anik · Rifah Tamanna</div>
+      <div id="s11-fine">NASA SPACE APPS 2026 · DATA: NASA NISAR (WITH ISRO) · POWER · FIRMS · EONET · GIBS · FORECAST: OPEN-METEO<br />VOICE: AI-GENERATED WITH ELEVENLABS · MUSIC: ORIGINAL, GENERATED IN CODE · ILLUSTRATIONS: ORIGINAL, DRAWN IN CODE</div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s11-wipe", { clipPath: "circle(0px at 1505px 540px)" }, { clipPath: "circle(2300px at 1505px 540px)", duration: 0.8, ease: "power3.inOut" }, 0);
+      tl.fromTo("#s11-mark", { clipPath: "inset(0% 100% 0% 0%)", x: -40 }, { clipPath: "inset(0% 0% 0% 0%)", x: 0, duration: 0.9, ease: "power3.out" }, 0.6);
+      tl.fromTo("#s11-tag span", { opacity: 0, filter: "blur(8px)", y: 20 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.28, ease: "power4.out", stagger: 0.09 }, 1.7);
+      tl.fromTo(["#s11-names", "#s11-fine"], { opacity: 0 }, { opacity: 1, duration: 0.5, stagger: 0.15 }, 3.0);
+      window.__timelines["s11"] = tl;
+    })();
+  </script>
+</template>

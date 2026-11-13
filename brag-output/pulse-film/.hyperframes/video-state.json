@@ -1,0 +1,1291 @@
+{
+  "version": 1,
+  "historyId": "6c7c6f14-5682-4184-9146-51ec18801b37",
+  "currentRevision": "65ff66d9-31c2-42ab-978e-6d7c0ffd4766",
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/26/268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a"
+    },
+    "CLAUDE.md": {
+      "hash": "268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/26/268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a"
+    },
+    "_ruler.png": {
+      "hash": "b7447006cb8b762faab983b775198ef57ec9fd44b6b3ed04d990e0c7a6dc828b",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/b7/b7447006cb8b762faab983b775198ef57ec9fd44b6b3ed04d990e0c7a6dc828b"
+    },
+    "assets/bg_dhaka.jpg": {
+      "hash": "3b69714f122b3ec38d509d30b1799146c25ac666be9e740fd3c7f1a06a04460a",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/3b/3b69714f122b3ec38d509d30b1799146c25ac666be9e740fd3c7f1a06a04460a"
+    },
+    "assets/bg_kathmandu.jpg": {
+      "hash": "70c0b24ce145552f6178a5c842bb7079e533dd071d7b1ddb0f752390e4993a55",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/70/70c0b24ce145552f6178a5c842bb7079e533dd071d7b1ddb0f752390e4993a55"
+    },
+    "assets/bg_lagos.jpg": {
+      "hash": "ca68d9e225d8ac0e0cc609672248a2ef0f30d1911bf750166126974000fefc98",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/ca/ca68d9e225d8ac0e0cc609672248a2ef0f30d1911bf750166126974000fefc98"
+    },
+    "assets/bg_langtang.jpg": {
+      "hash": "47de946d8bb7447351b6d79e8d429c328d1775f0ce8c85af286fa7975aa4df80",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/47/47de946d8bb7447351b6d79e8d429c328d1775f0ce8c85af286fa7975aa4df80"
+    },
+    "assets/bg_miami.jpg": {
+      "hash": "d201c5e047a03fe7af2f25d73b8393b04ed5fb30da5d4d980fdf918d827922ab",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/d2/d201c5e047a03fe7af2f25d73b8393b04ed5fb30da5d4d980fdf918d827922ab"
+    },
+    "assets/bg_punjab.jpg": {
+      "hash": "0ab9a221f4b80b68916dbbabce06bd2dee8efb1a28a99c3132c6f73ac607db2f",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/0a/0ab9a221f4b80b68916dbbabce06bd2dee8efb1a28a99c3132c6f73ac607db2f"
+    },
+    "assets/bg_tokyo.jpg": {
+      "hash": "18c045a7367436aded63b8511087577257274b04c563bf322d8e4fc0c85a38f6",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/18/18c045a7367436aded63b8511087577257274b04c563bf322d8e4fc0c85a38f6"
+    },
+    "assets/card_climber_langtang.png": {
+      "hash": "4b076547823037e6f8b7fc064b86ef1b444dffb33dadf2b8e4f1e376f5601c5f",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/4b/4b076547823037e6f8b7fc064b86ef1b444dffb33dadf2b8e4f1e376f5601c5f"
+    },
+    "assets/card_everyone_dhaka.png": {
+      "hash": "9a224705607ce02dd677560be593369026126c14e2e798d90da445d633768463",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/9a/9a224705607ce02dd677560be593369026126c14e2e798d90da445d633768463"
+    },
+    "assets/card_farmer_ludhiana.png": {
+      "hash": "c1384fca43322a20091d1efe8cd7fc6164a9ae1690bc6c808091384cc0d52c0f",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/c1/c1384fca43322a20091d1efe8cd7fc6164a9ae1690bc6c808091384cc0d52c0f"
+    },
+    "assets/card_w_kathmandu.png": {
+      "hash": "e2974ced96f27d7b40550fd8b378bf2270a038e556df223bd4f7ffa7c264dfce",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/e2/e2974ced96f27d7b40550fd8b378bf2270a038e556df223bd4f7ffa7c264dfce"
+    },
+    "assets/nisar_bd_after.webp": {
+      "hash": "fce3c166e9ef919ea26c2a4a28e68465f19adcd4ee61db8eb1c4e22c6c89578e",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/fc/fce3c166e9ef919ea26c2a4a28e68465f19adcd4ee61db8eb1c4e22c6c89578e"
+    },
+    "assets/nisar_bd_before.webp": {
+      "hash": "9fb275f3e930419b730c29860d25d3df34f77fc80ff2905987ad02914ffe9171",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/9f/9fb275f3e930419b730c29860d25d3df34f77fc80ff2905987ad02914ffe9171"
+    },
+    "assets/nisar_kumamoto.webp": {
+      "hash": "011a3546076f034063909bd9046ffdc39691f51346fa160057bdc7bf4f6052b5",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/01/011a3546076f034063909bd9046ffdc39691f51346fa160057bdc7bf4f6052b5"
+    },
+    "assets/t_anik.jpeg": {
+      "hash": "7373c52d96be20353b3543721d9440ced20f99dc2aa2e42d60359d2580e6ceb1",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/73/7373c52d96be20353b3543721d9440ced20f99dc2aa2e42d60359d2580e6ceb1"
+    },
+    "assets/t_mushfiq.jpeg": {
+      "hash": "bb4f56af7d5586e22e504f820e8d850f3d5e80267341e64829a25a29b30b46cb",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/bb/bb4f56af7d5586e22e504f820e8d850f3d5e80267341e64829a25a29b30b46cb"
+    },
+    "assets/t_ovi.jpeg": {
+      "hash": "59417ce9914146b74c0954f0a26492d498d4185ff539f52075f1972e58be31dd",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/59/59417ce9914146b74c0954f0a26492d498d4185ff539f52075f1972e58be31dd"
+    },
+    "assets/t_rafi.jpeg": {
+      "hash": "59637d8ce326d06be34ae45ec196d6e9a42b9925cb7af6213a702e78d6c27377",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/59/59637d8ce326d06be34ae45ec196d6e9a42b9925cb7af6213a702e78d6c27377"
+    },
+    "assets/t_rifah.jpeg": {
+      "hash": "e2b350f7f91b38828e34257c258d08b5d17467b03f3c57bb0f0e4ce3a25c37d4",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/e2/e2b350f7f91b38828e34257c258d08b5d17467b03f3c57bb0f0e4ce3a25c37d4"
+    },
+    "compositions/s1.html": {
+      "hash": "ef1c2b18808510515227c4d6bc13df5ae6a9714e9087398f2044ad3262e26452",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/ef/ef1c2b18808510515227c4d6bc13df5ae6a9714e9087398f2044ad3262e26452"
+    },
+    "compositions/s10.html": {
+      "hash": "b60dd3366d518888889875c23e9efc6ad9d9f87b243077366ce2c6648e58af03",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/b6/b60dd3366d518888889875c23e9efc6ad9d9f87b243077366ce2c6648e58af03"
+    },
+    "compositions/s11.html": {
+      "hash": "f31ed69e99cdb441071705d956733b1f16251cb3a6796a0691afff9bf788c552",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/f3/f31ed69e99cdb441071705d956733b1f16251cb3a6796a0691afff9bf788c552"
+    },
+    "compositions/s2.html": {
+      "hash": "7cd9137e62e3d1289132e4f6ce3aacc1f81d8f6434cef4438679ea0914ba1472",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/7c/7cd9137e62e3d1289132e4f6ce3aacc1f81d8f6434cef4438679ea0914ba1472"
+    },
+    "compositions/s3.html": {
+      "hash": "474a8a2bd9170a727a6fc0831ff46938728c517cd5c73496fe79e007bb92255b",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/47/474a8a2bd9170a727a6fc0831ff46938728c517cd5c73496fe79e007bb92255b"
+    },
+    "compositions/s4.html": {
+      "hash": "258852289a011977da93edc9149b33beeabb5e6336091edf0c63c165fc6d9271",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/25/258852289a011977da93edc9149b33beeabb5e6336091edf0c63c165fc6d9271"
+    },
+    "compositions/s5.html": {
+      "hash": "07219fa76062058f2fd413118f6f54e7ef9a8209cadb37858dfe520bc66e416f",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/07/07219fa76062058f2fd413118f6f54e7ef9a8209cadb37858dfe520bc66e416f"
+    },
+    "compositions/s6.html": {
+      "hash": "8bd1d1253539e4575028d75b0ae4488568bf3d4dfc75f59219ae0f6c0238c8f1",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/8b/8bd1d1253539e4575028d75b0ae4488568bf3d4dfc75f59219ae0f6c0238c8f1"
+    },
+    "compositions/s7.html": {
+      "hash": "3370cbb27a9b28c23d9c3b7e47352de618bb602f8d94504326282120b06b4486",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/33/3370cbb27a9b28c23d9c3b7e47352de618bb602f8d94504326282120b06b4486"
+    },
+    "compositions/s8.html": {
+      "hash": "c49186dc6f6cec3c5c5034e38c8ec925ecda878783942d029b656c060f1fc29a",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/c4/c49186dc6f6cec3c5c5034e38c8ec925ecda878783942d029b656c060f1fc29a"
+    },
+    "compositions/s9.html": {
+      "hash": "ce307915aff8ee999943a0b91a7da322f3a9fc03c8dd7d65e7f914a522ab9904",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/ce/ce307915aff8ee999943a0b91a7da322f3a9fc03c8dd7d65e7f914a522ab9904"
+    },
+    "hyperframes.json": {
+      "hash": "53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
+    },
+    "index.html": {
+      "hash": "4a538ec7fa89d4a215339a84a2ed26b0ec2d423d288bcfbbd2d19aef2bd6f246",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/4a/4a538ec7fa89d4a215339a84a2ed26b0ec2d423d288bcfbbd2d19aef2bd6f246"
+    },
+    "meta.json": {
+      "hash": "b6c3ecfb64f0f9ab4a9d28634b1d945ade442d86d2596c51b39524ad9d86a6b4",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/b6/b6c3ecfb64f0f9ab4a9d28634b1d945ade442d86d2596c51b39524ad9d86a6b4"
+    },
+    "package.json": {
+      "hash": "4e6d59eb8ae15920b08fa6fae7304661f67560ea4436296cde44947063aa67bf",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/4e/4e6d59eb8ae15920b08fa6fae7304661f67560ea4436296cde44947063aa67bf"
+    },
+    "assets/mix.wav": {
+      "hash": "83dbf0ebfb66f9cb1caba4f74c9d68ea2c4d7a3cc513f05f216d68e83fbbf460",
+      "content": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/83/83dbf0ebfb66f9cb1caba4f74c9d68ea2c4d7a3cc513f05f216d68e83fbbf460"
+    }
+  },
+  "revisions": {
+    "b043eedc-b771-408a-8f3d-72f541d55fee": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794573808385,
+      "endedAt": 1794573808392,
+      "files": {
+        "compositions/s1.html": {
+          "before": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/2c/2c660dfaeafc7305e91a68e07cf4342ea74d7739f7748043c62cc8c4f4041580",
+          "after": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/c2/c20770f160cf30d39154a10ff275f3320d256390ed31e930b545c49b573fb60b"
+        },
+        "compositions/s7.html": {
+          "before": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/50/5049ad9472a374cb5fb05e5057517590b317bd12f40054582d7123fa0a3cb31f",
+          "after": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/e0/e0daac63a1d52f0656d09c15f4a5eb94591b6026b500f3ecb8b7353a422b799f"
+        },
+        "compositions/s8.html": {
+          "before": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/92/92e69727b61490f7177f833c7bd88cca6074f2017db0d1aadb4782b270df98e4",
+          "after": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/0a/0a950d3342bb633662d63e8d0df6c5008fec5cba9efb608addf9ab562137ef44"
+        }
+      }
+    },
+    "44c898d7-4231-42d5-8092-15307cc51076": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794573833290,
+      "endedAt": 1794573833298,
+      "files": {
+        "compositions/s1.html": {
+          "before": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/c2/c20770f160cf30d39154a10ff275f3320d256390ed31e930b545c49b573fb60b",
+          "after": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/ef/ef1c2b18808510515227c4d6bc13df5ae6a9714e9087398f2044ad3262e26452"
+        },
+        "compositions/s2.html": {
+          "before": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/85/852f4c338ae2952a9d1f62d43d326da99fba47f5d64f5e95e9feaa331f5fe262",
+          "after": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/7c/7cd9137e62e3d1289132e4f6ce3aacc1f81d8f6434cef4438679ea0914ba1472"
+        }
+      }
+    },
+    "ef0a44bf-f21c-4c64-8650-9be777b3b915": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794573894111,
+      "endedAt": 1794573894124,
+      "files": {
+        "compositions/s10.html": {
+          "before": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/24/248f542b512f741bf929919f33ad3b618bcfac71c7470970e8e6a9f9fa97e1dd",
+          "after": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/b6/b60dd3366d518888889875c23e9efc6ad9d9f87b243077366ce2c6648e58af03"
+        },
+        "compositions/s11.html": {
+          "before": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/ac/acb56ef4dddc574844810de19fb475bd84da91546904e92a9eb3b006d214807b",
+          "after": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/f3/f31ed69e99cdb441071705d956733b1f16251cb3a6796a0691afff9bf788c552"
+        },
+        "compositions/s6.html": {
+          "before": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/17/176733be11fdc562f36cec9db4ecf800f80f67526d2020ff95ab9fd9c480e6f3",
+          "after": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/8b/8bd1d1253539e4575028d75b0ae4488568bf3d4dfc75f59219ae0f6c0238c8f1"
+        },
+        "compositions/s7.html": {
+          "before": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/e0/e0daac63a1d52f0656d09c15f4a5eb94591b6026b500f3ecb8b7353a422b799f",
+          "after": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/33/3370cbb27a9b28c23d9c3b7e47352de618bb602f8d94504326282120b06b4486"
+        },
+        "compositions/s8.html": {
+          "before": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/0a/0a950d3342bb633662d63e8d0df6c5008fec5cba9efb608addf9ab562137ef44",
+          "after": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/c4/c49186dc6f6cec3c5c5034e38c8ec925ecda878783942d029b656c060f1fc29a"
+        },
+        "compositions/s9.html": {
+          "before": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/99/99ab394a540400391de2c656b4e76931ff25b85b36991c7d658b6c61d96912c0",
+          "after": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/ce/ce307915aff8ee999943a0b91a7da322f3a9fc03c8dd7d65e7f914a522ab9904"
+        }
+      }
+    },
+    "65ff66d9-31c2-42ab-978e-6d7c0ffd4766": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794574038526,
+      "endedAt": 1794574038526,
+      "files": {
+        "index.html": {
+          "before": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/79/79864ecda83c49264bb466ba70e68127e718d9e70177936731f70dfec5e9d077",
+          "after": "/Users/mohammadgolamfarukovi/.cache/hyperframes/history/6c7c6f14-5682-4184-9146-51ec18801b37/blobs/4a/4a538ec7fa89d4a215339a84a2ed26b0ec2d423d288bcfbbd2d19aef2bd6f246"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": null,
+      "id": "953d166a-e806-4a8f-8dea-750c680a46fa"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "id": "953d166a-e806-4a8f-8dea-750c680a46fa",
+        "scope": "project",
+        "report": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/checks/953d166a-e806-4a8f-8dea-750c680a46fa.json",
+        "metadata": {
+          "ok": false,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "cache": true,
+            "contrast": true,
+            "craft": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto",
+            "includeUnmounted": false
+          }
+        },
+        "createdAt": 1794573785807,
+        "contentHash": "64f08f32c12858f33a886c7022b739f3f5f9213256d5fce97ae2a8b3ca734fff",
+        "revision": null,
+        "inputFingerprint": "4c0c6f2138c2cf9704266f0ccd6282bbf61586e194a51b03377eb47c7b1361dc",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": {
+      "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+      "id": "48c8096c-03f0-44f3-8717-708c335fbf32-8"
+    },
+    "revisions": {
+      "b043eedc-b771-408a-8f3d-72f541d55fee": [
+        {
+          "scope": "full",
+          "id": "3795c583-e68b-4ce9-b266-0e9d71e83515-0",
+          "time": 0.2,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573814706,
+          "contentHash": "bdf0329031c8d8a9201c33c590fd3ae2dbf63ff41420f792f606c2b6ee170933",
+          "revision": "b043eedc-b771-408a-8f3d-72f541d55fee",
+          "inputFingerprint": "d7c430530a02c4af2fd1b821600a41100edcd602f55d121fbc044312e868b0ab",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "3795c583-e68b-4ce9-b266-0e9d71e83515-1",
+          "time": 5.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573814706,
+          "contentHash": "0e5d11715c0242652ab0ae5af8ba368222116eb643bfe6b99b5e6ee2eb108a2d",
+          "revision": "b043eedc-b771-408a-8f3d-72f541d55fee",
+          "inputFingerprint": "d7c430530a02c4af2fd1b821600a41100edcd602f55d121fbc044312e868b0ab",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "3795c583-e68b-4ce9-b266-0e9d71e83515-2",
+          "time": 6.6,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573814706,
+          "contentHash": "f4e0d4e1f2b75fdcebc9094dc52ff79b61c36b991e81a97189e4de1385ba7cbc",
+          "revision": "b043eedc-b771-408a-8f3d-72f541d55fee",
+          "inputFingerprint": "d7c430530a02c4af2fd1b821600a41100edcd602f55d121fbc044312e868b0ab",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "3795c583-e68b-4ce9-b266-0e9d71e83515-3",
+          "time": 7.9,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573814706,
+          "contentHash": "6cfaf7ff9147ce164c076e0fb39e3f4c60ac8c8fd3886ad3d0e56c3b8d1886bd",
+          "revision": "b043eedc-b771-408a-8f3d-72f541d55fee",
+          "inputFingerprint": "d7c430530a02c4af2fd1b821600a41100edcd602f55d121fbc044312e868b0ab",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "3795c583-e68b-4ce9-b266-0e9d71e83515-4",
+          "time": 10.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573814706,
+          "contentHash": "a630c42776a575e41e905a95a7217c9d63482f5d64a5d837cd299363a85b6745",
+          "revision": "b043eedc-b771-408a-8f3d-72f541d55fee",
+          "inputFingerprint": "d7c430530a02c4af2fd1b821600a41100edcd602f55d121fbc044312e868b0ab",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "3795c583-e68b-4ce9-b266-0e9d71e83515-5",
+          "time": 17,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573814706,
+          "contentHash": "9d728e3794a27ef9fd40b2a035bddbb75b019e31abdc8d6edc5fd06bf331b31c",
+          "revision": "b043eedc-b771-408a-8f3d-72f541d55fee",
+          "inputFingerprint": "d7c430530a02c4af2fd1b821600a41100edcd602f55d121fbc044312e868b0ab",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "3795c583-e68b-4ce9-b266-0e9d71e83515-6",
+          "time": 22.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573814706,
+          "contentHash": "96537bc1b320ae12942b075ee60fd28854fe97352eec47450a2fe80fb85d4d1d",
+          "revision": "b043eedc-b771-408a-8f3d-72f541d55fee",
+          "inputFingerprint": "d7c430530a02c4af2fd1b821600a41100edcd602f55d121fbc044312e868b0ab",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "3795c583-e68b-4ce9-b266-0e9d71e83515-7",
+          "time": 27,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573814706,
+          "contentHash": "731c0b09854cca10c26738db4b445db9e2e7b8a541fab8bfa8c30d27cb42a1de",
+          "revision": "b043eedc-b771-408a-8f3d-72f541d55fee",
+          "inputFingerprint": "d7c430530a02c4af2fd1b821600a41100edcd602f55d121fbc044312e868b0ab",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "3795c583-e68b-4ce9-b266-0e9d71e83515-8",
+          "time": 31.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573814706,
+          "contentHash": "b6c8f694c68431214ef83156ab8369818514fff258f268badae43fd8d24b1f78",
+          "revision": "b043eedc-b771-408a-8f3d-72f541d55fee",
+          "inputFingerprint": "d7c430530a02c4af2fd1b821600a41100edcd602f55d121fbc044312e868b0ab",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "3795c583-e68b-4ce9-b266-0e9d71e83515-9",
+          "time": 36.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573814706,
+          "contentHash": "38aef9dd6b6dc0e130c1cc49aff3eb928cac20a63fa505c7b686c8db2327d600",
+          "revision": "b043eedc-b771-408a-8f3d-72f541d55fee",
+          "inputFingerprint": "d7c430530a02c4af2fd1b821600a41100edcd602f55d121fbc044312e868b0ab",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "3795c583-e68b-4ce9-b266-0e9d71e83515-10",
+          "time": 41.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573814706,
+          "contentHash": "d5a2afc72a2bce06889717fd8c56e232d83d784ba08f4181a13baefe81c587cb",
+          "revision": "b043eedc-b771-408a-8f3d-72f541d55fee",
+          "inputFingerprint": "d7c430530a02c4af2fd1b821600a41100edcd602f55d121fbc044312e868b0ab",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "3795c583-e68b-4ce9-b266-0e9d71e83515-11",
+          "time": 93.05,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573814706,
+          "contentHash": "36d85f4a85334972f10eca22db4913fb6c9083b4c2ef047eefb9742013e0e0fe",
+          "revision": "b043eedc-b771-408a-8f3d-72f541d55fee",
+          "inputFingerprint": "d7c430530a02c4af2fd1b821600a41100edcd602f55d121fbc044312e868b0ab",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        }
+      ],
+      "44c898d7-4231-42d5-8092-15307cc51076": [
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-0",
+          "time": 40.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "e1d94031dae2d34151904249aff4e79819c4450fd5a4710a1ed496b945e708b1",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-1",
+          "time": 45.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "0f41eac5ede4cf1649da83b36de557c00821cce125f7ab159bbef6ca7f7db4e2",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-2",
+          "time": 49.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "fdd7bf6051a1aa36e60376830e6fea8bda8019bbe0da4df558492ef61746fbd3",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-3",
+          "time": 54,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "21536d7712cdf8f1d4f695d7180f3d5de8f289fed0f11f345c1c1b4a9d14c480",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-4",
+          "time": 57.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "742d5272656b7bab3d49b678a2e496d5cb01b5353fc0d124c95a6ef08cc5ce82",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-5",
+          "time": 59.4,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "2daa7f45e9ff3c0c6273673e73a59b7c9702b28e631dfa0fde1231b134dfc593",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-6",
+          "time": 60.9,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "89a62a342c7f700e53286d9b33ad04c9e99f9078b43a8c194afd5423b182a70a",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-7",
+          "time": 63.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "dd137bf77d6c6cd490458975e86effeb3dcaabc7b6c19cb2f968504e1c185fb9",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-8",
+          "time": 67.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "32f4877fa298e6850330552056acddcd27da55f7e9395c487f028068e929b0fa",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-9",
+          "time": 72.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "4c9ea46a0415a2bf342773c72fcbfd26f041b0becd2913827126a0d207019aa1",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-10",
+          "time": 74.4,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "272f2b1896e8dcc0d544fbc899d1fc97f41610f86643ad7091ae0755b5f62a67",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-11",
+          "time": 77.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "0d6fae19d93222e55776da4c1c79569721c7a4f3488f9ce65bca071424a3ba45",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-12",
+          "time": 81.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "d361d18df1c377b0467e30b78d758d92c92230ff09e6fe8f7d432ad6c2797e43",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-13",
+          "time": 84,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840819,
+          "contentHash": "896117a6b2573cc4cfb4b4161b6611c11f2fa23f9f0e127599011fcf7f13986a",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-14",
+          "time": 88,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840820,
+          "contentHash": "c10d60e5ab23afbebd2cff73efd81f7468388fb860b6121faaa25d235519b6d0",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-15",
+          "time": 92.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840820,
+          "contentHash": "be4d89a0906f89cfa49f2536288d645503c1485fa1d48f8d0bead29e1646eca6",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        },
+        {
+          "scope": "full",
+          "id": "93331c68-42c4-4314-83da-29224cfae591-16",
+          "time": 93.05,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573840820,
+          "contentHash": "be4d89a0906f89cfa49f2536288d645503c1485fa1d48f8d0bead29e1646eca6",
+          "revision": "44c898d7-4231-42d5-8092-15307cc51076",
+          "inputFingerprint": "1cbd7be61cfacac56412cd6ebf8310f46b46044a3604aae431e28aa74e76f493",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d35fddbe-5eb2-4b98-aa07-990713b0be43"
+        }
+      ],
+      "ef0a44bf-f21c-4c64-8650-9be777b3b915": [
+        {
+          "scope": "full",
+          "id": "fc01640c-3b63-40d2-999d-1d6b104f65c4-0",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/0870c4ae-e8c6-484e-b9e7-887cf9b6e330/frame-00-at-46.5s.png",
+          "time": 46.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573899315,
+          "contentHash": "e969dacdef420f6e6b401acaa160e45d9151e467506578f99ac02660758840fc",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "fc01640c-3b63-40d2-999d-1d6b104f65c4-1",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/0870c4ae-e8c6-484e-b9e7-887cf9b6e330/frame-01-at-50s.png",
+          "time": 50,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573899315,
+          "contentHash": "f6f57e24a36de6e3922fd0425daabf28e4295b4872d351d02fb7507f9244827e",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "fc01640c-3b63-40d2-999d-1d6b104f65c4-2",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/0870c4ae-e8c6-484e-b9e7-887cf9b6e330/frame-02-at-53.5s.png",
+          "time": 53.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573899315,
+          "contentHash": "4571879b05fd7d974afb26c6584a448884d8e3b6d26a619a6e8c86b008c971e7",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "fc01640c-3b63-40d2-999d-1d6b104f65c4-3",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/0870c4ae-e8c6-484e-b9e7-887cf9b6e330/frame-03-at-57.5s.png",
+          "time": 57.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573899315,
+          "contentHash": "b79854908f70c081ef7eb9b74de39a922f6d4a0a23871b4de7ec0c0d0cfa44e3",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "fc01640c-3b63-40d2-999d-1d6b104f65c4-4",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/0870c4ae-e8c6-484e-b9e7-887cf9b6e330/frame-04-at-60.9s.png",
+          "time": 60.9,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573899315,
+          "contentHash": "461b5b3e998d45f8ef89beea0709b34c54c30b705fe7bb0629274a3b94473637",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "fc01640c-3b63-40d2-999d-1d6b104f65c4-5",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/0870c4ae-e8c6-484e-b9e7-887cf9b6e330/frame-05-at-77.5s.png",
+          "time": 77.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573899315,
+          "contentHash": "036e0998d4cbb81b3459cb21eaa3071e1f905adfa4e0bc5e5d0887a91d464a0c",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "fc01640c-3b63-40d2-999d-1d6b104f65c4-6",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/0870c4ae-e8c6-484e-b9e7-887cf9b6e330/frame-06-at-82.5s.png",
+          "time": 82.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573899315,
+          "contentHash": "9640037f06de25bab3692b6f4b78b8dd5404686fe837d11280d8e3f0f913755d",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "fc01640c-3b63-40d2-999d-1d6b104f65c4-7",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/0870c4ae-e8c6-484e-b9e7-887cf9b6e330/frame-07-at-92.5s.png",
+          "time": 92.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573899315,
+          "contentHash": "7fd12a83b35af2b305085eeca90f9b522ccb39fe89720b8d42e9e70f9fad0897",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "fc01640c-3b63-40d2-999d-1d6b104f65c4-8",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/0870c4ae-e8c6-484e-b9e7-887cf9b6e330/frame-08-at-93.05s.png",
+          "time": 93.05,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573899315,
+          "contentHash": "7fd12a83b35af2b305085eeca90f9b522ccb39fe89720b8d42e9e70f9fad0897",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "48c8096c-03f0-44f3-8717-708c335fbf32-0",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/9a571875-3791-476d-abb2-e852cb5797c8/frame-00-at-46.5s.png",
+          "time": 46.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573911921,
+          "contentHash": "e969dacdef420f6e6b401acaa160e45d9151e467506578f99ac02660758840fc",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "48c8096c-03f0-44f3-8717-708c335fbf32-1",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/9a571875-3791-476d-abb2-e852cb5797c8/frame-01-at-50s.png",
+          "time": 50,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573911921,
+          "contentHash": "f6f57e24a36de6e3922fd0425daabf28e4295b4872d351d02fb7507f9244827e",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "48c8096c-03f0-44f3-8717-708c335fbf32-2",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/9a571875-3791-476d-abb2-e852cb5797c8/frame-02-at-53.5s.png",
+          "time": 53.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573911921,
+          "contentHash": "4571879b05fd7d974afb26c6584a448884d8e3b6d26a619a6e8c86b008c971e7",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "48c8096c-03f0-44f3-8717-708c335fbf32-3",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/9a571875-3791-476d-abb2-e852cb5797c8/frame-03-at-57.5s.png",
+          "time": 57.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573911921,
+          "contentHash": "b79854908f70c081ef7eb9b74de39a922f6d4a0a23871b4de7ec0c0d0cfa44e3",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "48c8096c-03f0-44f3-8717-708c335fbf32-4",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/9a571875-3791-476d-abb2-e852cb5797c8/frame-04-at-60.9s.png",
+          "time": 60.9,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573911922,
+          "contentHash": "461b5b3e998d45f8ef89beea0709b34c54c30b705fe7bb0629274a3b94473637",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "48c8096c-03f0-44f3-8717-708c335fbf32-5",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/9a571875-3791-476d-abb2-e852cb5797c8/frame-05-at-77.5s.png",
+          "time": 77.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573911922,
+          "contentHash": "036e0998d4cbb81b3459cb21eaa3071e1f905adfa4e0bc5e5d0887a91d464a0c",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "48c8096c-03f0-44f3-8717-708c335fbf32-6",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/9a571875-3791-476d-abb2-e852cb5797c8/frame-06-at-82.5s.png",
+          "time": 82.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573911922,
+          "contentHash": "9640037f06de25bab3692b6f4b78b8dd5404686fe837d11280d8e3f0f913755d",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "48c8096c-03f0-44f3-8717-708c335fbf32-7",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/9a571875-3791-476d-abb2-e852cb5797c8/frame-07-at-92.5s.png",
+          "time": 92.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573911922,
+          "contentHash": "7fd12a83b35af2b305085eeca90f9b522ccb39fe89720b8d42e9e70f9fad0897",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "48c8096c-03f0-44f3-8717-708c335fbf32-8",
+          "image": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/pulse-film/.hyperframes/artifacts/snapshots/9a571875-3791-476d-abb2-e852cb5797c8/frame-08-at-93.05s.png",
+          "time": 93.05,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794573911922,
+          "contentHash": "7fd12a83b35af2b305085eeca90f9b522ccb39fe89720b8d42e9e70f9fad0897",
+          "revision": "ef0a44bf-f21c-4c64-8650-9be777b3b915",
+          "inputFingerprint": "952d9ae0843ed6ddad6ddf1c3a00facf820c9600fd65547f9bc46b54432c3b31",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "718338ec-e9bc-4133-b2e9-1d688ac5cc34",
+      "completedAt": 1794574097162,
+      "output": "/Users/mohammadgolamfarukovi/Documents/NASA/earth-pulse/brag-output/EARTH-PULSE_film_v5.mp4",
+      "status": "completed",
+      "revision": "65ff66d9-31c2-42ab-978e-6d7c0ffd4766"
+    },
+    "retainedRevisions": [
+      "65ff66d9-31c2-42ab-978e-6d7c0ffd4766",
+      "ef0a44bf-f21c-4c64-8650-9be777b3b915"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

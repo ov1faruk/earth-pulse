@@ -3,7 +3,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { parseGistemp, parseCo2, parseSeaLevel, parseSeaIce } from '../server/providers/vitals.js';
+import { parseGistemp, parseSeaIce } from '../server/providers/vitals.js';
 import { scoreSignals, windowVsClimatology, haversineKm, riskLevel, METHOD } from '../src/core/risk.js';
 import { SOURCES, EVENTS, NEPAL, RIPPLE, SCENARIOS, SIGNAL_CASES, SIGNAL_NOTES, YEAR_CONTEXT, HAZARD_GUIDE, COMPILED_ON } from '../src/story/data.js';
 
@@ -20,25 +20,6 @@ test('GISTEMP: parses annual and monthly anomalies, skips missing months', () =>
   assert.deepEqual(t.latestMonth, { year: 2026, month: 3, anomaly: 1.5 });
   assert.equal(t.baselineShift, 0.2);
   assert.equal(t.last12MonthMean, 1.2); // nine months at 1.20 + 1.00 + 1.10 + 1.50 = 14.4 / 12
-});
-
-test('CO2: latest month, year-on-year change, complete years only', () => {
-  const lines = ['# comment', 'year,month,decimal date,average,deseasonalized,ndays,sdev,unc'];
-  for (let m = 1; m <= 12; m++) lines.push(`2024,${m},2024.${m},${420 + m * 0.1},421,30,0.5,0.2`);
-  for (let m = 1; m <= 3; m++) lines.push(`2025,${m},2025.${m},${423 + m * 0.1},424,30,0.5,0.2`);
-  const c = parseCo2(lines.join('\n'));
-  assert.equal(c.monthly.length, 15);
-  assert.deepEqual(c.latestMonth, { year: 2025, month: 3, ppm: 423.3, trendPpm: 424 });
-  assert.equal(c.yearOverYear, 3);
-  assert.deepEqual(c.annual.map((a) => a[0]), [2024]);
-});
-
-test('sea level: empty columns are not read as zero', () => {
-  const csv = '#trend = 3.11 mm/year\nyear,TOPEX/Poseidon,Jason-1,Jason-2,Jason-3,Sentinel-6MF\n1993.0100,-20.0,,,,\n1993.5000,-18.0,,,,\n2024.5000,,,,,80.0\n2025.0000,,,,82.0,84.0\n';
-  const s = parseSeaLevel(csv);
-  assert.equal(s.trendMmPerYear, 3.11);
-  assert.deepEqual(s.latest, { decimalYear: 2025, mm: 83 });
-  assert.equal(s.riseSinceStartMm, 100.5); // mean(80, 83) − mean(−20, −18)
 });
 
 test('sea ice: same-day climatology and September trend', () => {
@@ -71,20 +52,22 @@ test('risk: deserts and dry seasons are not flagged as drought', () => {
   assert.equal(scoreSignals({ rain: { observed: 10, normal: 100 } }).scores.dry, 100);
 });
 
-test('risk: seismic, fire and heat scores follow the published formulas', () => {
-  const s = scoreSignals({ maxMag: 7.5, fires: 999, heat: { observed: 22.5, normal: 20 }, events: 1 });
-  assert.equal(s.scores.seismic, 100);
+test('risk: soil, fire and heat scores follow the published formulas', () => {
+  const s = scoreSignals({ soil: 0.95, fires: 999, heat: { observed: 22.5, normal: 20 }, events: 1 });
+  assert.equal(s.scores.soil, 100);
   assert.equal(s.scores.fire, 100);
   assert.equal(s.scores.heat, 50);
   assert.equal(s.scores.events, 33);
-  assert.equal(scoreSignals({ maxMag: 4 }).scores.seismic, 0);
+  assert.equal(scoreSignals({ soil: 0.7 }).scores.soil, 0);
+  assert.equal(scoreSignals({ soil: 0.825 }).scores.soil, 50);
+  assert.equal(scoreSignals({}).scores.soil, undefined, 'no soil data → no soil signal');
   assert.equal(scoreSignals({}).overall, 0);
 });
 
 test('risk: overall = 0.6 × max + 0.4 × mean, and levels are ordered', () => {
-  const s = scoreSignals({ maxMag: 7.5 }); // seismic 100, fire 0, events 0
+  const s = scoreSignals({ soil: 0.95 }); // soil 100, fire 0, events 0
   assert.equal(s.overall, Math.round(0.6 * 100 + 0.4 * (100 / 3)));
-  assert.equal(s.top, 'seismic');
+  assert.equal(s.top, 'soil');
   assert.deepEqual([0, 30, 60, 90].map((v) => riskLevel(v).id), ['low', 'moderate', 'high', 'severe']);
   for (const k of Object.keys(s.scores)) assert.ok(METHOD.signals[k], `method text for ${k}`);
 });
@@ -162,10 +145,9 @@ test('signal cases and hazard guide are complete', () => {
 // ---------- offline snapshots ----------
 test('story snapshots: real, dated vital signs and risk map', () => {
   const v = JSON.parse(fs.readFileSync('public/data/story/vitals.json', 'utf8'));
-  for (const k of ['temperature', 'co2', 'seaLevel', 'seaIce']) { assert.ok(v[k] && !v[k].unavailable, k); assert.match(v[k].source.url, /^https:/); assert.ok(v[k].snapshotAt || v[k].fetchedAt); }
+  assert.ok(!v.co2 && !v.seaLevel, 'non-NASA vital signs removed');
+  for (const k of ['temperature', 'seaIce']) { assert.ok(v[k] && !v[k].unavailable, k); assert.match(v[k].source.url, /^https:/); assert.ok(v[k].snapshotAt || v[k].fetchedAt); }
   assert.ok(v.temperature.annual.length > 140 && v.temperature.annual[0][0] === 1880);
-  assert.ok(v.co2.latestMonth.ppm > 400 && v.co2.monthly[0][0] === 1958);
-  assert.ok(v.seaLevel.riseSinceStartMm > 80 && v.seaLevel.riseSinceStartMm < 150);
   assert.ok(v.seaIce.september.length >= 47);
   const r = JSON.parse(fs.readFileSync('public/data/story/risk.json', 'utf8'));
   assert.ok(r.places.length >= 20 && r.snapshotAt);

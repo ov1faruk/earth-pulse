@@ -1,0 +1,65 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Inter, sans-serif; color: #fff; }
+    #s6-wipe { position: absolute; inset: 0; background: #d9903f; }
+    #s6-svg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    #s6-kick { position: absolute; left: 120px; top: 110px; font: 500 28px 'IBM Plex Mono', monospace; letter-spacing: .2em; color: #ffe3a8; }
+    #s6-h { position: absolute; left: 112px; top: 160px; font-size: 170px; font-weight: 700; letter-spacing: -.04em; line-height: 1; }
+    #s6-q { position: absolute; left: 120px; top: 370px; font-size: 44px; font-weight: 300; line-height: 1.2; width: 700px; }
+    .s6-chip { position: absolute; left: 120px; height: 86px; padding: 0 34px; border-radius: 43px; background: rgba(28,15,4,.82); border: 1px solid rgba(255,227,168,.5); font-size: 36px; font-weight: 500; line-height: 84px; white-space: nowrap; }
+    .s6-chip b { color: #ffcf7a; font-weight: 700; margin-left: 14px; }
+    #s6-hit { position: absolute; left: 120px; top: 880px; font-size: 52px; font-weight: 700; letter-spacing: -.02em; color: #fff; white-space: nowrap; }
+    #s6-hit em { font-style: normal; color: #ffcf7a; }
+    #s6-frame { position: absolute; left: 1050px; top: 60px; width: 760px; height: 960px; border-radius: 34px; overflow: hidden; background: #070a10; border: 1px solid rgba(255,255,255,.25); box-shadow: 0 50px 120px rgba(40,20,0,.6); }
+    #s6-card { position: absolute; left: 0; top: 0; width: 760px; }
+  </style>
+  <div id="root" data-composition-id="s6" data-width="1920" data-height="1080">
+    <div id="s6-wipe">
+      <svg id="s6-svg" viewBox="0 0 1920 1080">
+        <defs><linearGradient id="s6-g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2b25c" /><stop offset=".5" stop-color="#f6cf8b" /><stop offset="1" stop-color="#d9903f" /></linearGradient>
+          <linearGradient id="s6-g2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1c0f04" stop-opacity=".9" /><stop offset=".55" stop-color="#1c0f04" stop-opacity=".25" /><stop offset="1" stop-color="#1c0f04" stop-opacity=".45" /></linearGradient></defs>
+        <rect width="1920" height="1080" fill="url(#s6-g1)" />
+        <g transform="translate(150 0)"><g id="s6-sun"><circle cx="840" cy="330" r="210" fill="#fff3c9" opacity=".22" /><circle cx="840" cy="330" r="120" fill="#fff3c9" opacity=".92" /></g></g>
+        <path d="M0 520 C300 470 700 500 1100 480 S1700 450 1920 500 V640 H0Z" fill="#c98a45" opacity=".55" />
+        <g id="s6-haze" fill="#f4e6cf" opacity=".55"><ellipse cx="420" cy="520" rx="460" ry="46" /><ellipse cx="1100" cy="490" rx="420" ry="38" /><ellipse cx="1700" cy="470" rx="320" ry="30" /><ellipse cx="-300" cy="500" rx="360" ry="34" /></g>
+        <path d="M0 590 C500 550 1300 560 1920 580 V1080 H0Z" fill="#8a5a22" />
+        <g stroke="#5e3b12" stroke-width="5" opacity=".7" fill="none"><path d="M780 585 L-600 1080" /><path d="M800 585 L-240 1080" /><path d="M820 585 L120 1080" /><path d="M840 585 L480 1080" /><path d="M860 585 L840 1080" /><path d="M880 585 L1200 1080" /><path d="M900 585 L1560 1080" /><path d="M920 585 L1920 1080" /></g>
+        <g transform="translate(262 0)"><g id="s6-man" fill="#2a1706" stroke="#2a1706" stroke-linecap="round">
+          <path d="M635 468 L765 468 L700 420Z" /><circle cx="700" cy="486" r="27" />
+          <path d="M700 516 v150" stroke-width="54" /><path d="M684 668 v150 M718 668 v150" stroke-width="22" />
+          <path d="M678 540 l-58 96" stroke-width="16" /><path d="M724 540 l64 60" stroke-width="16" />
+          <path d="M800 470 L778 850" stroke-width="9" /><path d="M800 470 l44 14" stroke-width="16" />
+        </g></g>
+        <rect width="1920" height="1080" fill="url(#s6-g2)" />
+      </svg>
+      <div id="s6-kick">FOR THE FARMER</div>
+      <div id="s6-h">The field.</div>
+      <div id="s6-q">Set your own lines. Pulse watches them.</div>
+      <div class="s6-chip" id="s6-k1" style="top:520px">Heavy rain <b>60 mm / 7 days</b></div>
+      <div class="s6-chip" id="s6-k2" style="top:626px">Dry spell <b>14 days</b></div>
+      <div class="s6-chip" id="s6-k3" style="top:732px;">Heat <b>35 °C</b></div>
+      <div class="s6-chip" id="s6-k4" style="top:732px;left:470px">Frost <b>0 °C</b></div>
+      <div id="s6-hit"><em>28 days dry.</em> The line was 14.</div>
+      <div id="s6-frame"><img id="s6-card" src="assets/card_farmer_ludhiana.png" alt="" /></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s6-wipe", { clipPath: "circle(0px at 960px 540px)" }, { clipPath: "circle(1200px at 960px 540px)", duration: 0.6, ease: "power3.inOut" }, 0);
+      tl.fromTo("#s6-sun", { y: 150 }, { y: -30, duration: 9.6, ease: "sine.out" }, 0);
+      tl.fromTo("#s6-haze", { x: -120 }, { x: 160, duration: 9.6, ease: "none" }, 0);
+      tl.fromTo("#s6-man", { x: 60 }, { x: 0, duration: 1.4, ease: "expo.out" }, 0.1);
+      tl.fromTo("#s6-kick", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.4);
+      tl.fromTo("#s6-h", { opacity: 0, y: 70, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.45);
+      tl.fromTo("#s6-q", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3 }, 1.0);
+      tl.fromTo("#s6-frame", { x: 1000, rotation: 5 }, { x: 0, rotation: 0, duration: 0.8, ease: "expo.out" }, 1.5);
+      tl.fromTo("#s6-card", { y: -330 }, { y: -330, duration: 0.01 }, 0);
+      [["#s6-k1", 2.85], ["#s6-k2", 3.8], ["#s6-k3", 4.95], ["#s6-k4", 5.4]].forEach(([s, t]) =>
+        tl.fromTo(s, { opacity: 0, scale: 0.7, x: -40 }, { opacity: 1, scale: 1, x: 0, duration: 0.45, ease: "back.out(1.6)" }, t));
+      tl.fromTo("#s6-hit", { opacity: 0, x: -80, filter: "blur(12px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, 6.4);
+      tl.to("#s6-card", { y: -1560, duration: 1.5, ease: "power2.inOut" }, 6.9);
+      window.__timelines["s6"] = tl;
+    })();
+  </script>
+</template>
